@@ -1,0 +1,25 @@
+
+    <div class="card custom-card product-card">
+      <div class="card-body">
+        <a routerLink="/pages/ecommerce/productdetails" class="product-image">
+          <img [src]="productImage" class="card-img mb-3" alt="...">
+        </a>
+        <div class="product-icons">
+          <a routerLink="/pages/ecommerce/wishlist" class="wishlist"><i class="ri-heart-line"></i></a>
+          <a routerLink="/pages/ecommerce/cart" class="cart"><i class="ri-shopping-cart-line"></i></a>
+          <a routerLink="/pages/ecommerce/productdetails" class="view"><i class="ri-eye-line"></i></a>
+        </div>
+        <p class="product-name fw-semibold mb-0 d-flex align-items-center justify-content-between">{{ productName }}
+          <span class="float-end text-warning fs-12">{{ rating }}<i class="ri-star-s-fill align-middle ms-1 d-inline-block"></i></span>
+        </p>
+        <p class="product-description fs-11 text-muted mb-2">{{ productDescription }}</p>
+        <p class="mb-1 fw-semibold fs-16 d-flex align-items-center justify-content-between">
+          <span>${{ productPrice }}<span class="text-muted text-decoration-line-through ms-1 d-inline-block op-6">${{ originalPrice }}</span></span>
+          <span class="badge bg-secondary-transparent float-end fs-10">{{ discountPercentage }}% off</span>
+        </p>
+        <p class="fs-11 text-success fw-semibold mb-0 d-flex align-items-center">
+          <i class="ti ti-discount-2 fs-16 me-1"></i>Offer Price ${{ offerPrice }}</p>
+      </div>
+    </div>
+ 
+  

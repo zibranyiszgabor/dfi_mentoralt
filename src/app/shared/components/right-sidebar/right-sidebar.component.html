@@ -1,0 +1,148 @@
+<!-- Start Switcher -->
+    <div class="offcanvas-header border-bottom bg-primary text-fixed-white">
+        <h6 class="offcanvas-title d-inline-flex text-fixed-white" id="offcanvasRightLabel2">
+            <span class=" me-2 d-inline-flex">
+                <i class="fe fe-bell my-auto"></i> <span class=" pulse w-9 h-9 bg-success rounded-circle"></span>
+            </span>
+            Notifications
+        </h6>
+        <button type="button" (click)="activeOffcanvas.close('Close click')" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body p-0">
+        <nav ngbNav #nav="ngbNav" class="nav nav-tabs nav-justified" role="tablist">
+            <ng-container [ngbNavItem]="1">
+                <button ngbNavLink class="nav-link" id="sidebar-side1" data-bs-toggle="tab" data-bs-target="#sidebar-slidepane-1"
+                    type="button" role="tab" aria-controls="sidebar-slidepane-1" aria-selected="true"><i class="d-inline-flex fe fe-settings me-1"></i> Feeds</button>
+                    <ng-template ngbNavContent>
+                        <div class="show border-0 p-0" id="sidebar-slidepane-1" role="tabpanel" aria-labelledby="sidebar-side1" tabindex="0">
+                            <!-- Feeds Section -->
+                            <div class="p-3 fw-semibold">Feeds</div>
+                            <div class="py-3 px-4 pt-0">
+                                @for (feed of feeds; track $index) {
+                              <div class="row mb-3">
+                                <div class="col-sm-2 mb-sm-0 mb-3">
+                                  <span class="feeds avatar avatar-sm avatar-rounded" [ngClass]="feed.bgClass">
+                                    <i [ngClass]="[feed.iconClass, feed.iconColorClass]"></i>
+                                  </span>
+                                </div>
+                                <div class="col-sm-10 ps-sm-0 my-auto">
+                                  <div class="d-flex align-items-end justify-content-between ms-2">
+                                    <h6 class="mb-0 fw-normal fs-14">{{ feed.title }}</h6>
+                                    <div>
+                                      <a aria-label="anchor" href="javascript:void(0)" class="text-primary"><i class="fe fe-settings me-1"></i></a>
+                                      <a aria-label="anchor" href="javascript:void(0)" class="text-primary"><i class="fe fe-x"></i></a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                               }
+                            </div>
+                          
+                            <!-- Settings Section -->
+                            <div class="p-3 fw-semibold">Settings</div>
+                            <div class="py-3 px-4 pt-0">
+                                @for (setting of settings; track $index) {
+                              <div class="row mb-3">
+                                <div class="col-sm-2 mb-sm-0 mb-3">
+                                  <span class="feeds avatar avatar-sm avatar-rounded" [ngClass]="setting.bgClass">
+                                    <i [ngClass]="[setting.iconClass, setting.iconColorClass]"></i>
+                                  </span>
+                                </div>
+                                <div class="col-sm-10 ps-sm-0 my-auto">
+                                  <div class="d-flex align-items-end justify-content-between ms-2">
+                                    <h6 class="mb-0 fw-normal fs-14">{{ setting.title }}</h6>
+                                    <div>
+                                      <a aria-label="anchor" href="javascript:void(0)" class="text-primary"><i class="fe fe-settings"></i></a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            }
+                            </div>
+                          </div>
+                    </ng-template>
+            </ng-container>
+            <ng-container [ngbNavItem]="2">
+            <button ngbNavLink class="nav-link" id="sidebar-side2" data-bs-toggle="tab" data-bs-target="#sidebar-slidepane-2"
+                type="button" role="tab" aria-controls="sidebar-slidepane-2" aria-selected="false"><i class="d-inline-flex fe fe-message-circle me-1"></i>Chat</button>
+                <ng-template ngbNavContent>
+                    <div class="border-0 p-0" id="sidebar-slidepane-2" role="tabpanel" aria-labelledby="sidebar-side2" tabindex="0">
+                        <div class="p-3 fw-semibold">Today</div>
+                        @for (user of chatUsers; track $index) {
+                        <div class="d-flex align-items-center py-3 px-3 pt-0">
+                            <div class="me-2">
+                              <span
+                                class="avatar avatar-md avatar-rounded cover-image"
+                                [ngClass]="{'online': user.status === 'online'}"
+                              ><ng-content><img  [attr.src]="user.avatar" alt=""></ng-content></span>
+                            </div>
+                            <div>
+                              <a routerlink="/pages/chat">
+                                <div class="fw-semibold text-dark">{{ user.name }}</div>
+                                <p class="mb-0 fs-12 text-muted">{{ user.message }}</p>
+                              </a>
+                            </div>
+                          </div>
+                        }
+                        <div class="p-3 fw-semibold">Yesterday</div>
+                        @for (user of chatUsers1; track $index) {
+                            <div class="d-flex align-items-center py-3 px-3 pt-0">
+                                <div class="me-2">
+                                  <span
+                                    class="avatar avatar-md avatar-rounded cover-image"
+                                    [ngClass]="{'online': user.status === 'online'}"
+                                  ><ng-content><img  [attr.src]="user.avatar" alt=""></ng-content></span>
+                                </div>
+                                <div>
+                                  <a routerlink="/pages/chat">
+                                    <div class="fw-semibold text-dark">{{ user.name }}</div>
+                                    <p class="mb-0 fs-12 text-muted">{{ user.message }}</p>
+                                  </a>
+                                </div>
+                              </div>
+                            }
+                    </div>
+                </ng-template>
+             </ng-container>  
+          
+                <ng-container [ngbNavItem]="3">
+            <button ngbNavLink class="nav-link" id="sidebar-side3" data-bs-toggle="tab" data-bs-target="#sidebar-slidepane-3"
+                type="button" role="tab" aria-controls="sidebar-slidepane-3" aria-selected="false"><i class="d-inline-flex fe fe-anchor me-1"></i>Timeline</button>
+                <ng-template ngbNavContent>
+                    <div class="border-0 p-3" id="sidebar-slidepane-3" role="tabpanel" aria-labelledby="sidebar-side3" tabindex="0">
+                        <ul class="task-list timeline-task">
+                            @for (task of tasks; track $index) {
+                            <li class="d-sm-flex">
+                              <div>
+                                <i class="task-icon1"></i>
+                                <h6 class="fw-semibold fs-14">
+                                  {{ task.title }}
+                                  <span class="text-muted fs-11 mx-2 fw-normal">{{ task.date }}</span>
+                                </h6>
+                                <p class="text-muted fs-12 mb-0">
+                                  {{ task.description }}
+                                  <a href="javascript:void(0)" class="fw-semibold text-primary">{{ task.project }}</a>
+                                </p>
+                              </div>
+                              <div class="ms-auto d-md-flex task-icon-link">
+                                <a aria-label="anchor" href="javascript:void(0)" class="text-muted me-2">
+                                  <i class="fe fe-edit"></i>
+                                </a>
+                                <a aria-label="anchor" href="javascript:void(0)" class="text-muted">
+                                  <i class="fe fe-trash-2 fs-12"></i>
+                                </a>
+                              </div>
+                            </li>
+                        }
+                          </ul>
+                    </div>  
+                </ng-template>
+        </ng-container>
+        </nav>
+        <overlay-scrollbars>
+            <div class="tab-content"  [ngbNavOutlet]="nav">
+            </div>
+        </overlay-scrollbars>
+       
+    </div>
+<!-- End Switcher -->

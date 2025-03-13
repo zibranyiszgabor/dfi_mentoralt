@@ -1,0 +1,179 @@
+<app-page-header [title]="'Placeholders'" [title1]="['Advanced Ui']" [activeitem]="'Placeholders'"></app-page-header>
+
+        <!-- Start:: row-1 -->
+        <div class="row row-sm">
+            <div class="col-xl-6">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                        <div class="card custom-card">
+                            <img class="card-img-top" src="./assets/images/media/media-60.jpg" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make
+                                    up
+                                    the bulk of the card's content.</p>
+                                <a href="javascript:void(0);" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                        <div class="card" aria-hidden="true">
+                            <img class="card-img-top" src="./assets/images/media/media-61.jpg" alt="">
+                            <div class="card-body">
+                                <div class="h5 card-title placeholder-glow">
+                                    <span class="placeholder col-6"></span>
+                                </div>
+                                <p class="card-text placeholder-glow">
+                                    <span class="placeholder col-7"></span>
+                                    <span class="placeholder col-4"></span>
+                                    <span class="placeholder col-4"></span>
+                                    <span class="placeholder col-6"></span>
+                                </p>
+                                <a href="javascript:void(0);" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-header justify-content-between">
+                                <div class="card-title">
+                                    Animation
+                                </div>
+                                <div class="prism-toggle">
+                                     <button class="btn btn-sm btn-primary-light" (click)="toggleInput1()">Show Code<i class="ri-eye-{{toggleClass1}} ms-2 d-inline-block align-middle fs-14"></i></button>
+
+                                </div>
+                            </div>
+                            <div class="card-body" [class.d-none]="isContentVisible1">
+                                <p class="placeholder-glow mb-0">
+                                    <span class="placeholder col-12"></span>
+                                </p>
+                                <p class="placeholder-wave mb-0">
+                                    <span class="placeholder col-12"></span>
+                                </p>
+                            </div>
+                            <div class="card-footer  border-top-0">
+<!-- Prism Code -->
+      @if(isContentVisible1){
+    <div>
+    
+        <pre class="language-html"><code class="language-html">{{ts1}}</code></pre>   
+   </div>
+  }
+
+<!-- Prism Code -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card custom-card">
+                                    <div class="card-header justify-content-between">
+                                        <div class="card-title">
+                                            Sizing
+                                        </div>
+                                        <div class="prism-toggle">
+                                             <button class="btn btn-sm btn-primary-light" (click)="toggleInput2()">Show Code<i class="ri-eye-{{toggleClass2}} ms-2 d-inline-block align-middle fs-14"></i></button>
+
+                                        </div>
+                                    </div>
+                                    <div class="card-body" [class.d-none]="isContentVisible2">
+                                        <span class="placeholder col-12 placeholder-xl mb-1"></span>
+                                        <span class="placeholder col-12 placeholder-lg"></span>
+                                        <span class="placeholder col-12"></span>
+                                        <span class="placeholder col-12 placeholder-sm"></span>
+                                        <span class="placeholder col-12 placeholder-xs"></span>
+                                    </div>
+                                    <div class="card-footer  border-top-0">
+<!-- Prism Code -->
+      @if(isContentVisible2){
+    <div>
+    
+        <pre class="language-html"><code class="language-html">{{ts2}}</code></pre>   
+   </div>
+  }
+
+<!-- Prism Code -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="card custom-card">
+                            <div class="card-header justify-content-between">
+                                <div class="card-title">
+                                    Colors
+                                </div>
+                                <div class="prism-toggle">
+                                     <button class="btn btn-sm btn-primary-light" (click)="toggleInput3()">Show Code<i class="ri-eye-{{toggleClass3}} ms-2 d-inline-block align-middle fs-14"></i></button>
+
+                                </div>
+                            </div>
+                            <div class="card-body" [class.d-none]="isContentVisible3">
+                                <span class="placeholder col-12"></span>
+                                <span class="placeholder col-12 bg-primary"></span>
+                                <span class="placeholder col-12 bg-secondary"></span>
+                                <span class="placeholder col-12 bg-success"></span>
+                                <span class="placeholder col-12 bg-danger"></span>
+                                <span class="placeholder col-12 bg-warning"></span>
+                                <span class="placeholder col-12 bg-info"></span>
+                                <span class="placeholder col-12 bg-light"></span>
+                                <span class="placeholder col-12 bg-dark"></span>
+                            </div>
+                            <div class="card-footer  border-top-0">
+<!-- Prism Code -->
+      @if(isContentVisible3){
+    <div>
+    
+        <pre class="language-html"><code class="language-html">{{ts3}}</code></pre>   
+   </div>
+  }
+
+<!-- Prism Code -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End:: row-1 -->
+
+        <!-- Start:: row-2 -->
+        <div class="row row-sm">
+            <div class="col-xl-12">
+                <div class="card custom-card">
+                    <div class="card-header justify-content-between">
+                        <div class="card-title">
+                            Width
+                        </div>
+                        <div class="prism-toggle">
+                             <button class="btn btn-sm btn-primary-light" (click)="toggleInput4()">Show Code<i class="ri-eye-{{toggleClass4}} ms-2 d-inline-block align-middle fs-14"></i></button>
+
+                        </div>
+                    </div>
+                    <div class="card-body" [class.d-none]="isContentVisible4">
+                        <span class="placeholder bg-primary col-6"></span>
+                        <span class="placeholder bg-primary w-75"></span>
+                        <span class="placeholder bg-primary" style="width: 25%;"></span>
+                    </div>
+                    <div class="card-footer  border-top-0">
+<!-- Prism Code -->
+      @if(isContentVisible4){
+    <div>
+    
+        <pre class="language-html"><code class="language-html">{{ts4}}</code></pre>   
+   </div>
+  }
+
+<!-- Prism Code -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Start:: row-2 -->

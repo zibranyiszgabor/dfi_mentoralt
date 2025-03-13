@@ -1,0 +1,44 @@
+<app-page-header [title]="'Reviews'" [title1]="['Pages']" [activeitem]="'Reviews'"></app-page-header>
+
+<div class="container-lg">
+    <!-- Start::row-1 -->
+    <div class="row justify-content-center ">
+        <h5 class="mb-5 fw-semibold text-center">Reviews Style-1</h5>
+        <div class="col-xxl-10 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="row gy-4">
+                @for (card of cards; track $index) {
+                    <div class="col-xxl-4 col-xl-12 col-lg-12 col-md-12 col-sm-12 mt-xxl-0 mt-3">
+                <spk-review-style1
+      [avatar]="card.avatar"
+      [name]="card.name"
+      [rating]="card.rating"
+      [timeAgo]="card.timeAgo"
+      [review]="card.review"
+      [likes]="card.likes"
+      [dislikes]="card.dislikes">
+    </spk-review-style1>
+    </div>
+}
+            </div>
+        </div>
+        <h5 class="mb-5 mt-3 fw-semibold text-center">Reviews Style-2</h5>
+        <div class="col-xxl-10 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="row gy-4  reviews-container">
+                @for (card of cards1; track $index) {
+                    <div class="col-xxl-4 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <spk-review-style2
+                [avatar]="card.avatar"
+                [name]="card.name"
+                [role]="card.role"
+                [review]="card.review"
+                [rating]="card.rating"
+                [timeAgo]="card.timeAgo"
+                [reviewerName]="card.reviewerName">
+              </spk-review-style2>
+           </div>
+        }
+            </div>
+        </div>
+    </div>
+    <!--End::row-1 -->
+</div>

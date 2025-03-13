@@ -1,0 +1,15 @@
+<div class="card custom-card overflow-hidden">
+    <a [class]="file.customClass" [routerLink]="['/pages/filemanager/file-details']" >
+      <img [src]="file.image" alt="img" [class]="file.fileClass">
+    </a>
+    <div class="card-footer">
+      <div class="d-flex">
+        <div>
+          <h6 class="mb-0 fw-semibold text-break">{{ file.name }}</h6>
+        </div>
+        <div class="ms-auto my-auto">
+          <span class="text-muted mb-0">{{ file.size }}</span>
+        </div>
+      </div>
+    </div>
+  </div>

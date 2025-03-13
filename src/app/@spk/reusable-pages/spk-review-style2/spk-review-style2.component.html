@@ -1,0 +1,43 @@
+
+    <div class="card custom-card">
+      <div class="card-body">
+        <div class="d-flex align-items-center mb-3">
+          <span class="avatar avatar-md avatar-rounded me-3">
+            <img [src]="avatar" alt="{{ name }}">
+          </span>
+          <div>
+            <p class="mb-0 fw-semibold fs-14 text-primary">{{ name }}</p>
+            <p class="mb-0 fs-10 fw-semibold text-muted">{{ role }}</p>
+          </div>
+        </div>
+        <div class="mb-3">
+          <span class="text-muted">
+            - {{ review }}
+            <a href="javascript:void(0);" class="fw-semibold fs-11 text-primary" data-bs-toggle="tooltip" 
+              data-bs-custom-class="tooltip-primary" data-bs-placement="top" ngbTooltip="Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio" tooltipClass="tooltip-primary" >
+              Read More
+            </a> 
+          </span>
+        </div>
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <span class="text-muted">Rating : </span>
+            <span class="text-warning d-block ms-1">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-half-fill"></i>
+            </span>
+          </div>
+          <div class="float-end fs-12 fw-semibold text-muted text-end">
+            <span>{{ timeAgo }}</span>
+            <span class="d-block fw-normal fs-12 text-success">
+              <i>{{ reviewerName }}</i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  

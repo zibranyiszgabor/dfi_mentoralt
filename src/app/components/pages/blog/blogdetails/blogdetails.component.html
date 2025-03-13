@@ -1,0 +1,361 @@
+<app-page-header [title]="'Blog Details'" [title1]="['Pages']" [activeitem]="'Blog Details'"></app-page-header>
+
+  <!-- Start::row-1 -->
+  <div class="row">
+    <div class="col-xxl-8">
+        <div class="card">
+            <img class="card-img-top " src="./assets/images/media/photos/8.jpg" alt="Card image cap">
+            <div class="card-body border-bottom">
+                <div class="d-md-flex">
+                    <a href="javascript:void(0);" class="d-flex me-4 mb-sm-0 mb-2">
+                        <span class=" bg-secondary-transparent text-secondary avatar">
+                            <i class="fe fe-calendar"></i>
+                        </span>
+                        <span class="my-auto ms-2 text-muted fw-semibold">Sep-25-2021</span>
+                    </a>
+                    <a [routerLink]="['/pages/profile']" class="d-flex mb-sm-0 mb-2">
+                        <span class=" bg-primary-transparent text-primary avatar">
+                            <i class="fe fe-user"></i>
+                        </span>
+                        <span class="my-auto ms-2 text-muted fw-semibold">Harry Fisher</span>
+                    </a>
+                    <div class="ms-auto">
+                        <a href="javascript:void(0);" class="d-flex mb-sm-0 mb-2">
+                            <span class=" bg-success-transparent text-success avatar">
+                                <i class="fe fe-message-square"></i>
+                            </span>
+                            <span class="my-auto ms-2 text-muted fw-semibold">13 Comments</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <h4 class="fw-normal"><a href="javascript:void(0)"> Voluptatem quia voluptas</a></h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p> Lorem ipsum dolor sit amet, quis Neque porro quisquam est, nostrud exercitation ullamco laboris commodo consequat. There’s an old maxim that states, “No fun for the writer, no fun for the reader.”No matter what industry
+                    you’re working in, as a blogger, you should live and die by this statement.</p>
+                <p class="mb-0">I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the
+                    truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Comments</div>
+            </div>
+            <div class="card-body pb-0 media-visibility">
+                <div class="media mb-4 overflow-visible d-block d-sm-flex">
+                    <div class="me-3 mb-2 mb-sm-0">
+                        <a [routerLink]="['/pages/profile']"> <img class="media-object avatar avatar-rounded" alt="64x64" src="./assets/images/faces/5.jpg"> </a>
+                    </div>
+                    <div class="media-body  overflow-visible">
+                        <div class="border mb-4 p-3 br-7">
+                            <nav class="nav float-end">
+                                <spk-dropdowns [Customclass]="'dropdown'" [Id]="'dropdownMenuButton1'"
+                                [class]="'nav-link text-muted fs-16 p-0 ps-4 no-caret'"  [Menuclass]="'dropdown-menu dropdown-menu-end'" [Icon]="true" [IconClass]="'fe fe-more-vertical'">
+                                @for(item of dropdownItems;track $index){
+                                        <a ngbDropdownItem class="dropdown-item d-inline-flex align-items-center" href="javascript:void(0)"><i class="fe fe-{{item.icon}} me-2"></i> {{item.item}}</a>
+                                }
+                                    </spk-dropdowns>
+                            </nav>
+                            <h6 class="mt-0 fw-normal">Gavin Murray</h6>
+                            <span><i class="fe fe-thumb-up text-danger"></i></span>
+                            <p class="font-13 text-muted">Lorem ipsum dolor sit amet, quis Neque porro quisquam est, nostrud exercitation ullamco laboris commodo consequat. There’s an old maxim that states, “No fun for the writer, no fun for the reader.”No matter
+                                what industry you’re working in, as a blogger, you should live and die by this statement.</p>
+                            <a class="like" href="javascript:void(0);">
+                                <span class="badge bg-danger-transparent rounded-pill py-2 px-3 d-inline-flex me-1">
+                                    <i class="fe fe-heart me-1"></i>56</span>
+                            </a>
+                            <span class="reply">
+                                <a (click)="toggleReply()" href="javascript:void(0);"><span class="badge bg-primary-transparent rounded-pill py-2 px-3 d-inline-flex"><i class="fe fe-corner-up-left mx-1"></i>Reply</span></a>
+                            </span>
+                            @if (showReply) {
+                            <div class="comment mt-3 d-grid">
+                                <textarea class="form-control" rows="5">Your Comment</textarea>
+                                <div class="btn-list ms-auto mt-2">
+                                    <button class="btn btn-danger" (click)="cancelReply()">Cancel</button>
+                                    <button class="btn btn-success ms-3">Submit</button>
+                                </div>
+                            </div>
+                           }
+                        </div>
+                        <div class="media mb-4 overflow-visible d-block d-sm-flex">
+                            <div class="me-3 mb-2 mb-sm-0">
+                                <a [routerLink]="['/pages/profile']"> <img class="media-object avatar avatar-rounded" alt="64x64" src="./assets/images/faces/2.jpg"> </a>
+                            </div>
+                            <div class="media-body border p-3 overflow-visible br-7">
+                                <nav class="nav float-end">
+                                    <spk-dropdowns [Customclass]="'dropdown'" [Id]="'dropdownMenuButton1'"
+                                    [class]="'nav-link text-muted fs-16 p-0 ps-4 no-caret'"  [Menuclass]="'dropdown-menu dropdown-menu-end'" [Icon]="true" [IconClass]="'fe fe-more-vertical'">
+                                    @for(item of dropdownItems;track $index){
+                                            <a ngbDropdownItem class="dropdown-item d-inline-flex align-items-center" href="javascript:void(0)"><i class="fe fe-{{item.icon}} me-2"></i> {{item.item}}</a>
+                                    }
+                                        </spk-dropdowns>
+                                </nav>
+                                <h6 class="mt-0 fw-normal">Mozelle Belt</h6>
+                                <span><i class="fe fe-thumb-up text-danger"></i></span>
+                                <p class="font-13 text-muted">Nostrud exercitation ullamco laboris commodo consequat. There’s an old maxim that states, “No fun for the writer, no fun for the reader.”No matter what industry you’re working in, as a blogger, you should
+                                    live and die by this statement.</p>
+                                <a class="like" href="javascript:void(0);"><span class="badge bg-danger-transparent rounded-pill py-2 px-3 d-inline-flex me-1"><i class="fe fe-heart me-1"></i>56</span></a>
+                                <span class="reply">
+                                    <a (click)="toggleReply1()" href="javascript:void(0);"><span class="badge bg-primary-transparent rounded-pill py-2 px-3 d-inline-flex"><i class="fe fe-corner-up-left mx-1"></i>Reply</span></a>
+                                </span>
+                                @if (showReply1) {
+                                <div class="comment mt-3 d-grid">
+                                    <textarea class="form-control" rows="5">Your Comment</textarea>
+                                    <div class="btn-list ms-auto mt-2">
+                                        <button class="btn btn-danger" (click)="cancelReply1()">Cancel</button>
+                                        <button class="btn btn-success ms-3">Submit</button>
+                                    </div>
+                                </div>
+                               }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="media mb-4 overflow-visible d-block d-sm-flex">
+                    <div class="me-3 mb-2 mb-sm-0">
+                        <a [routerLink]="['/pages/profile']"> <img class="media-object avatar avatar-rounded" alt="64x64" src="./assets/images/faces/15.jpg"> </a>
+                    </div>
+                    <div class="media-body overflow-visible">
+                        <div class="border p-3 br-7">
+                            <nav class="nav float-end">
+                                   <spk-dropdowns [Customclass]="'dropdown'" [Id]="'dropdownMenuButton1'"
+                                [class]="'nav-link text-muted fs-16 p-0 ps-4 no-caret'"  [Menuclass]="'dropdown-menu dropdown-menu-end'" [Icon]="true" [IconClass]="'fe fe-more-vertical'">
+                                @for(item of dropdownItems;track $index){
+                                        <a ngbDropdownItem class="dropdown-item d-inline-flex align-items-center" href="javascript:void(0)"><i class="fe fe-{{item.icon}} me-2"></i> {{item.item}}</a>
+                                }
+                                    </spk-dropdowns>
+                            </nav>
+                            <h6 class="mt-0 fw-normal">Paul Smith</h6>
+                            <p class="font-13 text-muted">Very nice ! On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the “No fun for the writer, no fun for the reader.” </p>
+                            <a class="like" href="javascript:void(0);"><span class="badge bg-danger-transparent rounded-pill py-2 px-3 d-inline-flex me-1"><i class="fe fe-heart me-1"></i>56</span></a>
+                            <span class="reply">
+                                <a (click)="toggleReply2()" href="javascript:void(0);"><span class="badge bg-primary-transparent rounded-pill py-2 px-3 d-inline-flex"><i class="fe fe-corner-up-left mx-1"></i>Reply</span></a>
+                            </span>
+                            @if (showReply2) {
+                            <div class="comment mt-3 d-grid">
+                                <textarea class="form-control" rows="5">Your Comment</textarea>
+                                <div class="btn-list ms-auto mt-2">
+                                    <button class="btn btn-danger" (click)="cancelReply2()">Cancel</button>
+                                    <button class="btn btn-success ms-3">Submit</button>
+                                </div>
+                            </div>
+                           }
+                        </div>
+                    </div>
+                </div>
+                <div class="media mb-4 overflow-visible d-block d-sm-flex">
+                    <div class="me-3 mb-1">
+                        <a [routerLink]="['/pages/profile']"> <img class="media-object avatar avatar-rounded" alt="64x64" src="./assets/images/faces/5.jpg"> </a>
+                    </div>
+                    <div class="media-body overflow-visible">
+                        <div class="border mb-4 p-3 br-7">
+                            <nav class="nav float-end">
+                                   <spk-dropdowns [Customclass]="'dropdown'" [Id]="'dropdownMenuButton1'"
+                                [class]="'nav-link text-muted fs-16 p-0 ps-4 no-caret'"  [Menuclass]="'dropdown-menu dropdown-menu-end'" [Icon]="true" [IconClass]="'fe fe-more-vertical'">
+                                @for(item of dropdownItems;track $index){
+                                        <a ngbDropdownItem class="dropdown-item d-inline-flex align-items-center" href="javascript:void(0)"><i class="fe fe-{{item.icon}} me-2"></i> {{item.item}}</a>
+                                }
+                                    </spk-dropdowns>
+                            </nav>
+                            <h6 class="mt-0 fw-normal">Gavin Murray</h6>
+                            <span><i class="fe fe-thumb-up text-danger"></i></span>
+                            <p class="font-13 text-muted">Lorem ipsum dolor sit amet, quis Neque porro quisquam est, nostrud exercitation ullamco laboris commodo consequat. There’s an old maxim that states, “No fun for the writer, no fun for the reader.”No matter
+                                what industry you’re working in, as a blogger, you should live and die by this statement.</p>
+                            <a class="like" href="javascript:void(0);"><span class="badge bg-danger-transparent rounded-pill py-2 px-3 d-inline-flex me-1"><i class="fe fe-heart me-1"></i>56</span></a>
+                            <span class="reply">
+                                <a (click)="toggleReply3()" href="javascript:void(0);"><span class="badge bg-primary-transparent rounded-pill py-2 px-3 d-inline-flex"><i class="fe fe-corner-up-left mx-1"></i>Reply</span></a>
+                            </span>
+                            @if (showReply3) {
+                            <div class="comment mt-3 d-grid">
+                                <textarea class="form-control" rows="5">Your Comment</textarea>
+                                <div class="btn-list ms-auto mt-2">
+                                    <button class="btn btn-danger" (click)="cancelReply3()">Cancel</button>
+                                    <button class="btn btn-success ms-3">Submit</button>
+                                </div>
+                            </div>
+                           }
+                        </div>
+                        <div class="media mb-4 overflow-visible d-block d-sm-flex">
+                            <div class="me-3 mb-1">
+                                <a [routerLink]="['/pages/profile']"> <img class="media-object avatar avatar-rounded" alt="64x64" src="./assets/images/faces/2.jpg"> </a>
+                            </div>
+                            <div class="media-body overflow-visible">
+                                <div class="border mb-4 p-3 br-7">
+                                    <nav class="nav float-end">
+                                        <spk-dropdowns [Customclass]="'dropdown'" [Id]="'dropdownMenuButton1'"
+                                        [class]="'nav-link text-muted fs-16 p-0 ps-4 no-caret'"  [Menuclass]="'dropdown-menu dropdown-menu-end'" [Icon]="true" [IconClass]="'fe fe-more-vertical'">
+                                        @for(item of dropdownItems;track $index){
+                                                <a ngbDropdownItem class="dropdown-item d-inline-flex align-items-center" href="javascript:void(0)"><i class="fe fe-{{item.icon}} me-2"></i> {{item.item}}</a>
+                                        }
+                                            </spk-dropdowns>
+                                    </nav>
+                                    <h6 class="mt-0 fw-normal">Mozelle Belt</h6>
+                                    <span><i class="fe fe-thumb-up text-danger"></i></span>
+                                    <p class="font-13 text-muted">Nostrud exercitation ullamco laboris commodo consequat. There’s an old maxim that states, “No fun for the writer, no fun for the reader.”No matter what industry you’re working in, as a blogger, you
+                                        should live and die by this statement.</p>
+                                    <a class="like" href="javascript:void(0);"><span class="badge bg-danger-transparent rounded-pill py-2 px-3 d-inline-flex me-1"><i class="fe fe-heart me-1"></i>56</span></a>
+                                    <span class="reply">
+                                        <a (click)="toggleReply4()" href="javascript:void(0);"><span class="badge bg-primary-transparent rounded-pill py-2 px-3 d-inline-flex"><i class="fe fe-corner-up-left mx-1"></i>Reply</span></a>
+                                    </span>
+                                    @if (showReply4) {
+                                    <div class="comment mt-3 d-grid">
+                                        <textarea class="form-control" rows="5">Your Comment</textarea>
+                                        <div class="btn-list ms-auto mt-2">
+                                            <button class="btn btn-danger" (click)="cancelReply4()">Cancel</button>
+                                            <button class="btn btn-success ms-3">Submit</button>
+                                        </div>
+                                    </div>
+                                   }
+                                </div>
+                                <div class="media overflow-visible d-block d-sm-flex">
+                                    <div class="me-3 mb-2 mb-sm-0">
+                                        <a [routerLink]="['/pages/profile']"> <img class="media-object avatar avatar-rounded" alt="64x64" src="./assets/images/faces/9.jpg"> </a>
+                                    </div>
+                                    <div class="media-body border p-3 overflow-visible br-7">
+                                        <nav class="nav float-end">
+                                            <spk-dropdowns [Customclass]="'dropdown'" [Id]="'dropdownMenuButton1'"
+                                            [class]="'nav-link text-muted fs-16 p-0 ps-4 no-caret'"  [Menuclass]="'dropdown-menu dropdown-menu-end'" [Icon]="true" [IconClass]="'fe fe-more-vertical'">
+                                            @for(item of dropdownItems;track $index){
+                                                    <a ngbDropdownItem class="dropdown-item d-inline-flex align-items-center" href="javascript:void(0)"><i class="fe fe-{{item.icon}} me-2"></i> {{item.item}}</a>
+                                            }
+                                                </spk-dropdowns>
+                                        </nav>
+                                        <h6 class="mt-0 fw-normal">Paul Smith</h6>
+                                        <span><i class="fe fe-thumb-up text-danger"></i></span>
+                                        <p class="font-13 text-muted">Nostrud exercitation ullamco laboris commodo consequat. There’s an old maxim that states, “No fun for the writer, no fun for the reader.”No matter what industry you’re working in, as a blogger,
+                                            you should live and die by this statement.</p>
+                                        <a class="like" href="javascript:void(0);"><span class="badge bg-danger-transparent rounded-pill py-2 px-3 d-inline-flex me-1"><i class="fe fe-heart me-1"></i>56</span></a>
+                                        <span class="reply">
+                                            <a (click)="toggleReply5()" href="javascript:void(0);"><span class="badge bg-primary-transparent rounded-pill py-2 px-3 d-inline-flex"><i class="fe fe-corner-up-left mx-1"></i>Reply</span></a>
+                                        </span>
+                                        @if (showReply5) {
+                                        <div class="comment mt-3 d-grid">
+                                            <textarea class="form-control" rows="5">Your Comment</textarea>
+                                            <div class="btn-list ms-auto mt-2">
+                                                <button class="btn btn-danger" (click)="cancelReply5()">Cancel</button>
+                                                <button class="btn btn-success ms-3">Submit</button>
+                                            </div>
+                                        </div>
+                                       }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Add a Comments</div>
+            </div>
+            <div class="card-body">
+                <form class="form-horizontal  m-t-20" action="index.html">
+                    <div class="form-group mb-3">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="text" required placeholder="Username*">
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="email" required placeholder="Email*">
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <div class="col-xs-12">
+                            <textarea class="form-control" rows="5">Your Comment*</textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-rounded  waves-effect waves-light">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-xxl-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="input-group">
+                    <input type="text" class="form-control border-end-0" placeholder="Search ...">
+                    <button aria-label="button" type="button" class="btn input-group-text bg-transparent border-start-0 text-muted">
+                            <i class="fe fe-search" aria-hidden="true"></i>
+                        </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Categories</div>
+            </div>
+            <div class="card-body px-0 py-2">
+                <div class="list-group">
+                    <a class="list-group-item list-group-item-action border-0 py-2" href="javascript:void(0)"><span><i class="fe fe-chevron-right transform-arrow d-inline-flex lh-sm"></i> Development</span><span class="badge float-end bg-light text-dark">22</span></a>
+                    <a class="list-group-item list-group-item-action border-0 py-2" href="javascript:void(0)"><span><i class="fe fe-chevron-right transform-arrow d-inline-flex lh-sm"></i> Web Design</span><span class="badge float-end bg-light text-dark">15</span></a>
+                    <a class="list-group-item list-group-item-action border-0 py-2" href="javascript:void(0)"><span><i class="fe fe-chevron-right transform-arrow d-inline-flex lh-sm"></i> Technology</span><span class="badge float-end bg-light text-dark">10</span></a>
+                    <a class="list-group-item list-group-item-action border-0 py-2" href="javascript:void(0)"><span><i class="fe fe-chevron-right transform-arrow d-inline-flex lh-sm"></i>Sports</span><span class="badge float-end bg-light text-dark">88</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Professional Blog Writers</div>
+            </div>
+            <div class="card-body">
+                @for (user of users; track $index;let i = $index) {
+                <div class="d-flex overflow-visible" [ngClass]="{'mt-4': i > 0}">
+                    <img class="avatar bradius avatar-xl me-3" [src]="user.image" alt="avatar-img">
+                    <div class="media-body valign-middle">
+                        <a [routerLink]="['/pages/profile']" class="fw-semibold text-dark">{{ user.name }}</a>
+                        <p class="text-muted mb-0">{{ user.description }}</p>
+                    </div>
+                </div>
+            }
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Recent Posts</div>
+            </div>
+            <div class="card-body">
+                @for (blog of blogs; track $index;let i = $index) {
+                <div class="d-flex overflow-visible" [ngClass]="{'mt-4': i > 0}">
+                    <img
+                        aria-label="anchor"
+                        [routerLink]="['/pages/blog/blogdetails']"
+                        class="card-aside-column br-7 cover-image"
+                        [src]="blog.image"
+                        alt="blog-image"
+                    />
+                    <div class="ps-3 flex-column">
+                        <h6 class="fw-normal">
+                            <a [routerLink]="['/pages/blog/blogdetails']">{{ blog.title }}</a>
+                        </h6>
+                        <div class="text-muted">{{ blog.description }}</div>
+                    </div>
+                </div>
+             }
+            </div>
+            
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Tags</div>
+            </div>
+            <div class="card-body">
+                <a href="javascript:void(0)" class="tag">Development</a>
+                <a href="javascript:void(0)" class="tag">Design</a>
+                <a href="javascript:void(0)" class="tag">Technology</a>
+                <a href="javascript:void(0)" class="tag">Popular</a>
+                <a href="javascript:void(0)" class="tag">Codiegniter</a>
+                <a href="javascript:void(0)" class="tag">JavaScript</a>
+                <a href="javascript:void(0)" class="tag">Bootstrap</a>
+                <a href="javascript:void(0)" class="tag">PHP</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End::row-1 -->

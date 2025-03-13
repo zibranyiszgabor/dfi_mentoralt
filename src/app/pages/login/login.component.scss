@@ -1,0 +1,31 @@
+/* Login oldal alapstílusai */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+body {
+  background-image: url('/images/landing/backgrounds/3.png') !important;
+  background-size: cover; /* A háttérkép kitöltése az oldal teljes területén */
+  background-position: center; /* A háttérkép középre igazítása */
+}
+
+:host {
+  display: block;
+  height: 100vh;
+  background-image: url('/images/landing/backgrounds/3.png') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}

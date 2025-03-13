@@ -1,0 +1,14 @@
+<div class="card text-center team-card">
+    <div class="card-body p-5">
+      <span class="avatar avatar-xxl avatar-rounded mb-3 team-avatar">
+        <img [src]="member.image" [alt]="member.name">
+      </span>
+      <p class="fw-semibold fs-17 mb-0 text-default">{{ member.name }}</p>
+      <span class="text-muted fs-14 text-primary fw-semibold">{{ member.role }}</span>
+      <p class="text-muted mt-2 fs-13">{{ member.description }}</p>
+      <div class="mt-2">
+        <a routerLink="/pages/profile" class="btn btn-light">View profile</a>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,14 @@
+<div [class]="'card custom-card border-top-card ' + borderTopClass + ' rounded-0'">
+    <div class="card-body">
+      <div class="text-center">
+        <span [class]="'avatar avatar-md ' + avatarClass + ' shadow-sm avatar-rounded mb-2'">
+          <i [class]="iconClass + ' fs-16'"></i>
+        </span>
+        <p class="fs-14 fw-semibold mb-2">{{ title }}</p>
+        <div class="d-flex align-items-center justify-content-center flex-wrap gap-1">
+          <h5 class="mb-0 fw-semibold">{{ value }}</h5>
+          <span [class]="'badge rounded-pill ms-1 ' + badgeClass">{{ percentage }}</span>
+        </div>
+      </div>
+    </div>
+  </div>

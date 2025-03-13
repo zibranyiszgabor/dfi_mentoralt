@@ -1,0 +1,1 @@
+C:\DEV\DFI\dfi.client\obj\Debug\dfi.client.esproj.CoreCompileInputs.cache

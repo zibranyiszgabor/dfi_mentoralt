@@ -1,0 +1,32 @@
+<ul class="list-unstyled timeline-widget mb-0 my-3">
+    @for (event of events; track $index) {
+    <li class="timeline-widget-list mb-3">
+      <div class="d-flex align-items-top">
+        <div class="me-4 text-center">
+          <span class="d-block fs-20 fw-semibold">{{ event.date }}</span>
+          <span class="d-block fs-12 text-muted">{{ event.day }}</span>
+        </div>
+        <div class="d-flex flex-wrap flex-fill align-items-center justify-content-between">
+          <div>
+            <p class="mb-1 text-truncate timeline-widget-content text-wrap">{{ event.content }}</p>
+            @if (event.time) {
+            <p  class="mb-0 fs-12 lh-1 text-muted">
+              {{ event.time }}
+              <span class="badge ms-2" [ngClass]="'bg-' + event.badgeType + '-transparent'">
+                {{ event.badgeText }}
+              </span>
+            </p>
+        }
+          </div>
+          <spk-dropdowns [Customclass]="'dropdown border-0'" [Icon]="true" [IconClass]="'fe fe-more-vertical'"
+          [class]="'p-2 fs-16 text-muted no-caret border-0'" [Menuclass]="'dropdown-menu'">
+              <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
+          </spk-dropdowns>
+        </div>
+      </div>
+    </li>
+    }
+  </ul>
+  

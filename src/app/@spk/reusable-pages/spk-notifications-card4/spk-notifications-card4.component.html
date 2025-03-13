@@ -1,0 +1,42 @@
+<div class="card custom-card un-read">
+    <div class="card-body p-3">
+      <a href="javascript:void(0);">
+        <div class="d-flex align-items-top mt-0 flex-wrap">
+          <div class="lh-1">
+            @if (isImage) {
+            <span class="avatar avatar-md {{ status }} me-3 avatar-rounded">
+              <img alt="avatar" [src]="avatar">
+            </span>
+        }
+        @if(isAvatar){
+            <span class="avatar avatar-md  me-3 avatar-rounded bg-{{avatarBg}}-transparent">
+               {{avatarName}}
+            </span>
+        }
+          </div>
+          <div class="flex-fill">
+            <div class="d-flex align-items-center">
+              <div class="mt-sm-0 mt-2">
+                <p class="mb-0 fs-14 fw-semibold">{{ name }}</p>
+                <p class="mb-0 text-muted">
+                  {{ description }}
+                  @if (badgeText) {
+                  <span class="badge fw-semibold mx-1" [ngClass]="badgeClass">{{ badgeText }}</span> 
+                  }
+                  @if (verifiedText) {
+                    <i class="ri-checkbox-circle-line text-success ms-1 fs-16 align-middle"></i>
+                    }
+                </p>
+              </div>
+              <div class="ms-auto">
+                <span class="float-end badge bg-light text-muted">
+                  {{ time }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  

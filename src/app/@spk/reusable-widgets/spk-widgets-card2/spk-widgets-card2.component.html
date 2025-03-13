@@ -1,0 +1,23 @@
+<div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="card-body p-4">
+        <div class="d-flex flex-wrap align-items-top justify-content-between">
+          <div class="flex-fill">
+            <p class="mb-0 text-muted">{{ title }}</p>
+            <div class="d-flex align-items-center">
+              <span class="fs-5 fw-semibold">{{ count }}</span>
+              <span class="fs-12 {{ textClass }} ms-2">
+                <i class="ti ti-trending-up me-1 d-inline-block"></i>{{ percentageChange }}
+              </span>
+            </div>
+          </div>
+          <div>
+            <span class="avatar avatar-md avatar-rounded {{ bgClass }} text-{{textColor}} fs-18">
+              <i class="{{ iconClass }} fs-16"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

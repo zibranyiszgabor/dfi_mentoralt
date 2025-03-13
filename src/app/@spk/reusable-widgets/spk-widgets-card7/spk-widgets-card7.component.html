@@ -1,0 +1,48 @@
+<div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="card-body p-0">
+        <div class="p-3">
+          <div class="d-flex flex-wrap mb-1">
+            <a href="javascript:void(0);" class="pe-2">
+              <span class="avatar border text-muted text-primary">
+                <i [class]="iconClass + ' fs-18'"></i>
+              </span>
+            </a>
+            <div class="flex-fill">
+              <div
+                class="d-flex flex-wrap align-items-center justify-content-between mb-1"
+              >
+                <span class="fw-semibold">{{ title }}</span>
+                <span [class]="percentageClass">
+                  <i
+                    class="ti ti-trending-up fs-11 me-1 d-inline-block"
+                  ></i>{{ percentage }}
+                </span>
+              </div>
+              <div
+                class="d-flex flex-wrap align-items-center justify-content-between fs-12 mb-3"
+              >
+                <span class="text-muted">{{ price }}</span>
+                <span [class]="changeClass">{{ change }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center">
+            <a
+              href="javascript:void(0);"
+              class="flex-fill btn btn-sm btn-light me-2"
+            >
+              Short
+            </a>
+            <a
+              href="javascript:void(0);"
+              class="flex-fill btn btn-sm btn-primary-light"
+            >
+              Buy
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

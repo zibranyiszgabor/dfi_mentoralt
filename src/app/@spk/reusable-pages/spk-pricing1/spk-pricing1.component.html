@@ -1,0 +1,31 @@
+
+  <div class="card custom-card overflow-hidden" [ngClass]="highlightClass">
+    <div class="card-body p-0">
+      <div class="px-1 py-2 op-3 {{bgClass}}" ></div>
+      <div class="p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="fs-18 fw-semibold">{{ planName }}</div>
+          <div>
+            <span class="badge" [ngClass]="badgeClass">{{ badgeText }}</span>
+          </div>
+        </div>
+        <div class="fs-25 fw-bold mb-1">
+          {{ price }}<sub class="text-muted fw-semibold fs-11 ms-1">/ {{ billingCycle }}</sub>
+        </div>
+        <div class="mb-1 text-muted">{{ description }}</div>
+        <div class="fs-12 mb-3"><u>Billed {{ billingCycle1 }}</u></div>
+        <ul class="list-unstyled mb-0">
+          <li *ngFor="let feature of features" class="d-flex align-items-center mb-3">
+            <span class="me-2">
+              <i class="ri-checkbox-circle-line fs-15" [ngClass]="feature.isAvailable ? 'text-success' : 'text-muted op-3'"></i>
+            </span>
+            <span>{{ feature.text }}</span>
+          </li>
+          <li class="d-grid">
+            <button class="btn btn-wave" [ngClass]="buttonClass">{{ buttonText }}</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
