@@ -61,7 +61,7 @@ export class NavService implements OnDestroy {
     { headTitle: 'Main' },
     {
       title: 'Dashboard',
-      path: '/dashboard',
+      path: '/content/dashboard',
       type: 'link',
       icon: 'fe fe-home',
       active: false,
