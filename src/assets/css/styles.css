@@ -3,13 +3,13 @@
 [Master Stylesheet]
 
 Project                            :   sash - HTML5 Bootstrap Admin Template
-Create Date                        :   
-Author & Copyright Ownership       :   Spruko Technologies Private Limited 
+Create Date                        :
+Author & Copyright Ownership       :   Spruko Technologies Private Limited
 Author URL                         :   https://themeforest.net/user/spruko
 Support	                           :   https://support.spruko.com/
 License Details                    :   https://spruko.com/licenses-details
 ------------------------------------------------------------------*/
-/* Table Of Content 
+/* Table Of Content
 variables
 switcher
 accordion
@@ -31680,7 +31680,6 @@ code[class*=language-] {
   inset-inline-end: 0;
   width: 35%;
   height: 80%;
-  background-image: url("../images/landing/backgrounds/1.png");
 }
 .landing-body .featur-icon {
   width: 90px;
@@ -31837,7 +31836,6 @@ code[class*=language-] {
   width: 35%;
   height: 80%;
   overflow: hidden;
-  background-image: url("../images/landing/backgrounds/1.png");
 }
 .landing-body .landing-banner .main-banner-container {
   padding: 4rem 3rem;
