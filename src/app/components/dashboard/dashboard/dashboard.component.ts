@@ -2,27 +2,21 @@ import { Component } from '@angular/core';
 import { SharedModule } from '../../../shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { NgApexchartsModule } from 'ng-apexcharts';
+
 import { SpkDashboardComponent } from '../../../@spk/reusable-dashboard/spk-dashboard/spk-dashboard.component';
 import { SpkReusableTablesComponent } from '../../../@spk/reusable-tables/spk-reusable-tables/spk-reusable-tables.component';
 import { CommonModule } from '@angular/common';
-import { ChartOptions, ChartOptions1, ChartOptions2, ChartOptions3, RecentOrdersData, RevenueChartData } from '../../../shared/data/dashboard';
-import { SpkApexChartsComponent } from '../../../@spk/reusable-charts/spk-apex-charts/spk-apex-charts.component';
+
+
 import { SpkLeafletMapComponent } from '../../../@spk/spk-leaflet-map/spk-leaflet-map.component';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [SharedModule,NgbModule,NgSelectModule,NgApexchartsModule,SpkDashboardComponent,SpkReusableTablesComponent,CommonModule,SpkApexChartsComponent,SpkLeafletMapComponent],
+  imports: [SharedModule,NgbModule,NgSelectModule,SpkDashboardComponent,SpkReusableTablesComponent,CommonModule,SpkLeafletMapComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-  public chartOptions = ChartOptions; 
-  public chartOptions1 = ChartOptions1;
-  public chartOptions2 = ChartOptions2;
-  public chartOptions3 = ChartOptions3;
-  public chartOptions4 = RevenueChartData; 
-  public chartOptions5 = RecentOrdersData; 
   cardData = [
     {
       title: 'Total Users',
@@ -31,8 +25,7 @@ export class DashboardComponent {
       trendColor: 'text-secondary',
       trendValue: '5%',
       trendPeriod: 'Last week',
-      chartId: 'saleschart',
-      chartOptions:this.chartOptions
+
     },
     {
       title: 'Total Profit',
@@ -41,8 +34,7 @@ export class DashboardComponent {
       trendColor: 'text-pink',
       trendValue: '0.75%',
       trendPeriod: 'Last 6 days',
-      chartId: 'leadschart',
-      chartOptions:this.chartOptions1
+
     },
     {
       title: 'Total Expenses',
@@ -51,8 +43,7 @@ export class DashboardComponent {
       trendColor: 'text-green',
       trendValue: '0.9%',
       trendPeriod: 'Last 9 days',
-      chartId: 'profitchart',
-      chartOptions:this.chartOptions2
+
     },
     {
       title: 'Total Cost',
@@ -61,8 +52,7 @@ export class DashboardComponent {
       trendColor: 'text-warning',
       trendValue: '0.6%',
       trendPeriod: 'Last year',
-      chartId: 'costchart',
-      chartOptions:this.chartOptions3
+
     }
   ];
 

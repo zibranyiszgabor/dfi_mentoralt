@@ -7,7 +7,6 @@ import { SpkLandingMissionCardComponent } from '../../@spk/reusable-pages/spk-la
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
     standalone: true,
-  imports: [SpkLandingMissionCardComponent], // 🔹 Itt kell importálni
 
 })
 export class LoginComponent {

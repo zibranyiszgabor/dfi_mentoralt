@@ -3,17 +3,7 @@
 <div class="row">
     @for (crypto of cryptos; track $index) {
     <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6">
-    <spk-widgets-card1 
-      [name]="crypto.name"
-      [symbol]="crypto.symbol"
-      [price]="crypto.price"
-      [percentageChange]="crypto.percentageChange"
-      [chartOptions]="crypto.chartOptions"
-      [iconClass]="crypto.iconClass"
-      [chartId]="crypto.chartId"
-      [svgPath]="crypto.svgPath"
- >
-    </spk-widgets-card1>
+
     </div>
 }
   </div>
@@ -95,17 +85,6 @@
                 >
               </div>
               <div id="totalRevenue">
-                <apx-chart
-                  [series]="chartOptions4.series"
-                  [chart]="chartOptions4.chart"
-                  [xaxis]="chartOptions4.xaxis"
-                  [stroke]="chartOptions4.stroke"
-                  [colors]="chartOptions4.colors"
-                  [tooltip]="chartOptions4.tooltip"
-                  [dataLabels]="chartOptions4.dataLabels"
-                  [grid]="chartOptions4.grid"
-                  [yaxis]="chartOptions4.yaxis"
-                ></apx-chart>
               </div>
             </div>
           </div>
@@ -871,7 +850,7 @@
         </div>
         <div class="card-body">
           <div id="views">
-            <spk-apexcharts [chartOptions]="chartOptions1"></spk-apexcharts>
+            
           </div>
         </div>
       </div>
@@ -883,7 +862,7 @@
         </div>
         <div class="card-body">
           <div id="sessionsByDevice">
-            <spk-apexcharts [chartOptions]="chartOptions2"></spk-apexcharts>
+           
           </div>
         </div>
       </div>
@@ -941,7 +920,7 @@
             <span class="text-muted fs-12">33% of target reached</span>
           </div>
           <div id="report">
-            <spk-apexcharts [chartOptions]="chartOptions3"></spk-apexcharts>
+            
           </div>
         </div>
       </div>

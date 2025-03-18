@@ -91,8 +91,8 @@ export class NavService implements OnDestroy {
           title: 'Sweet Alerts',
           type: 'link',
         },
-     
-       
+
+
       ],
     },
     {
@@ -361,7 +361,7 @@ export class NavService implements OnDestroy {
               title: 'File Details',
               type: 'link',
             },
-           
+
           ],
         },
         {
@@ -568,7 +568,7 @@ export class NavService implements OnDestroy {
               title: 'Range Slider',
               type: 'link',
             },
-       
+
             {
               path: '/forms/forms-elements/file-uploads',
               title: 'File Uploads',
@@ -678,8 +678,8 @@ export class NavService implements OnDestroy {
         },
       ],
     },
-    
-    { headTitle: 'Tables & Charts' },
+
+    { headTitle: 'Tables' },
     {
       title: 'Tables',
       icon: 'fe fe-layout',
@@ -713,118 +713,6 @@ export class NavService implements OnDestroy {
         },
       ],
     },
-    {
-      title: 'Charts',
-      type: 'sub',
-      icon: 'fe fe-bar-chart-2',
-      active: false,
-      children: [
-        {
-          title: 'Apex Charts',
-          type: 'sub',
-          active: false,
-          children: [
-            {
-              path: '/charts/apex-charts/line-charts',
-              title: 'Line Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/area-charts',
-              title: 'Area Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/bar-charts',
-              title: 'Bar Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/column-charts',
-              title: 'Column-Charts',
-              type: 'link',
-            },
-
-            {
-              path: '/charts/apex-charts/mixed-charts',
-              title: 'Mixed charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/range-area-charts',
-              title: 'Range Area Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/timeline-charts',
-              title: 'TimeLine Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/candlestick-charts',
-              title: 'CandleStick Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/boxplot-charts',
-              title: 'BoxPlot Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/bubble-charts',
-              title: 'Bubble charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/scatter-charts',
-              title: 'Scatter Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/heatmap-charts',
-              title: 'Heatmap Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/treemap-charts',
-              title: 'TreeMap Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/pie-charts',
-              title: 'Pie Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/radialbar-charts',
-              title: 'Radialbar Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/radar-charts',
-              title: 'Radar Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/polararea-charts',
-              title: 'Polararea Charts',
-              type: 'link',
-            },
-          ],
-        },
-        {
-          path: '/charts/chartjs-charts',
-          title: 'Chartjs',
-          type: 'link',
-        },
-        {
-          path: '/charts/echart-charts',
-          title: 'Echart',
-          type: 'link',
-        },
-      ],
-    },
-
      //TABLES
      { headTitle: 'MAPS & ICONS' },
      {
@@ -850,7 +738,7 @@ export class NavService implements OnDestroy {
            selected: false,
            path: '/maps/leaflet-map',
          },
-         
+
        ],
      },
      {
