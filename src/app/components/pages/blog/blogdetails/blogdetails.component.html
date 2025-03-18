@@ -13,7 +13,7 @@
                         </span>
                         <span class="my-auto ms-2 text-muted fw-semibold">Sep-25-2021</span>
                     </a>
-                    <a [routerLink]="['/pages/profile']" class="d-flex mb-sm-0 mb-2">
+                    <a [routerLink]="['content/profile']" class="d-flex mb-sm-0 mb-2">
                         <span class=" bg-primary-transparent text-primary avatar">
                             <i class="fe fe-user"></i>
                         </span>
@@ -45,7 +45,7 @@
             <div class="card-body pb-0 media-visibility">
                 <div class="media mb-4 overflow-visible d-block d-sm-flex">
                     <div class="me-3 mb-2 mb-sm-0">
-                        <a [routerLink]="['/pages/profile']"> <img class="media-object avatar avatar-rounded" alt="64x64" src="./assets/images/faces/5.jpg"> </a>
+                        <a [routerLink]="['/content/pages/profile']"> <img class="media-object avatar avatar-rounded" alt="64x64" src="./assets/images/faces/5.jpg"> </a>
                     </div>
                     <div class="media-body  overflow-visible">
                         <div class="border mb-4 p-3 br-7">
@@ -80,7 +80,7 @@
                         </div>
                         <div class="media mb-4 overflow-visible d-block d-sm-flex">
                             <div class="me-3 mb-2 mb-sm-0">
-                                <a [routerLink]="['/pages/profile']"> <img class="media-object avatar avatar-rounded" alt="64x64" src="./assets/images/faces/2.jpg"> </a>
+                                <a [routerLink]="['/content/pages/profile']"> <img class="media-object avatar avatar-rounded" alt="64x64" src="./assets/images/faces/2.jpg"> </a>
                             </div>
                             <div class="media-body border p-3 overflow-visible br-7">
                                 <nav class="nav float-end">
@@ -114,7 +114,7 @@
                 </div>
                 <div class="media mb-4 overflow-visible d-block d-sm-flex">
                     <div class="me-3 mb-2 mb-sm-0">
-                        <a [routerLink]="['/pages/profile']"> <img class="media-object avatar avatar-rounded" alt="64x64" src="./assets/images/faces/15.jpg"> </a>
+                        <a [routerLink]="['/content/pages/profile']"> <img class="media-object avatar avatar-rounded" alt="64x64" src="./assets/images/faces/15.jpg"> </a>
                     </div>
                     <div class="media-body overflow-visible">
                         <div class="border p-3 br-7">
@@ -146,7 +146,7 @@
                 </div>
                 <div class="media mb-4 overflow-visible d-block d-sm-flex">
                     <div class="me-3 mb-1">
-                        <a [routerLink]="['/pages/profile']"> <img class="media-object avatar avatar-rounded" alt="64x64" src="./assets/images/faces/5.jpg"> </a>
+                        <a [routerLink]="['/content/pages/profile']"> <img class="media-object avatar avatar-rounded" alt="64x64" src="./assets/images/faces/5.jpg"> </a>
                     </div>
                     <div class="media-body overflow-visible">
                         <div class="border mb-4 p-3 br-7">
@@ -178,7 +178,7 @@
                         </div>
                         <div class="media mb-4 overflow-visible d-block d-sm-flex">
                             <div class="me-3 mb-1">
-                                <a [routerLink]="['/pages/profile']"> <img class="media-object avatar avatar-rounded" alt="64x64" src="./assets/images/faces/2.jpg"> </a>
+                                <a [routerLink]="['/content/pages/profile']"> <img class="media-object avatar avatar-rounded" alt="64x64" src="./assets/images/faces/2.jpg"> </a>
                             </div>
                             <div class="media-body overflow-visible">
                                 <div class="border mb-4 p-3 br-7">
@@ -210,7 +210,7 @@
                                 </div>
                                 <div class="media overflow-visible d-block d-sm-flex">
                                     <div class="me-3 mb-2 mb-sm-0">
-                                        <a [routerLink]="['/pages/profile']"> <img class="media-object avatar avatar-rounded" alt="64x64" src="./assets/images/faces/9.jpg"> </a>
+                                        <a [routerLink]="['/content/pages/profile']"> <img class="media-object avatar avatar-rounded" alt="64x64" src="./assets/images/faces/9.jpg"> </a>
                                     </div>
                                     <div class="media-body border p-3 overflow-visible br-7">
                                         <nav class="nav float-end">
@@ -307,7 +307,7 @@
                 <div class="d-flex overflow-visible" [ngClass]="{'mt-4': i > 0}">
                     <img class="avatar bradius avatar-xl me-3" [src]="user.image" alt="avatar-img">
                     <div class="media-body valign-middle">
-                        <a [routerLink]="['/pages/profile']" class="fw-semibold text-dark">{{ user.name }}</a>
+                        <a [routerLink]="['/content/pages/profile']" class="fw-semibold text-dark">{{ user.name }}</a>
                         <p class="text-muted mb-0">{{ user.description }}</p>
                     </div>
                 </div>
@@ -324,21 +324,21 @@
                 <div class="d-flex overflow-visible" [ngClass]="{'mt-4': i > 0}">
                     <img
                         aria-label="anchor"
-                        [routerLink]="['/pages/blog/blogdetails']"
+                        [routerLink]="['/content/pages/blog/blogdetails']"
                         class="card-aside-column br-7 cover-image"
                         [src]="blog.image"
                         alt="blog-image"
                     />
                     <div class="ps-3 flex-column">
                         <h6 class="fw-normal">
-                            <a [routerLink]="['/pages/blog/blogdetails']">{{ blog.title }}</a>
+                            <a [routerLink]="['/content/pages/blog/blogdetails']">{{ blog.title }}</a>
                         </h6>
                         <div class="text-muted">{{ blog.description }}</div>
                     </div>
                 </div>
              }
             </div>
-            
+
         </div>
 
         <div class="card">
