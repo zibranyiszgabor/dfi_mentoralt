@@ -19,8 +19,8 @@ export class BlogComponent {
       authorName: 'Megan Peters',
       authorImage: './assets/images/faces/18.jpg',
       daysAgo: '1 day ago',
-      blogLink: '/pages/blog/blogdetails',
-      profileLink: '/pages/profile'
+      blogLink: '/content/pages/blog/blogdetails',
+      profileLink: '/content/pages/profile'
     },
     {
       image: './assets/images/media/photos/4.jpg',
@@ -29,8 +29,8 @@ export class BlogComponent {
       authorName: 'Carol Paige',
       authorImage: './assets/images/faces/6.jpg',
       daysAgo: '2 days ago',
-      blogLink: '/pages/blog/blogdetails',
-      profileLink: '/pages/profile'
+      blogLink: '/content/pages/blog/blogdetails',
+      profileLink: '/content/pages/profile'
     },
   ];
 

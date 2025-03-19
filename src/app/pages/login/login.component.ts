@@ -1,17 +1,14 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
-import { SpkLandingMissionCardComponent } from '../../@spk/reusable-pages/spk-landing-mission-card/spk-landing-mission-card.component';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
-    standalone: true,
-  imports: [SpkLandingMissionCardComponent], // 🔹 Itt kell importálni
-
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+  standalone: true,
 })
 export class LoginComponent {
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
   loginAsEmployee(): void {
     console.log('🔹 Dolgozóként történő bejelentkezés...');

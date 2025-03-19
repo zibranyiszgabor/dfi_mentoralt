@@ -7,7 +7,6 @@ import { elementsRoutingModule } from '../../../app/components/elements/elements
 import { advanceduiRoutingModule } from '../../../app/components/advancedui/advancedui.routes';
 import { pagesRoutingModule } from '../../../app/components/pages/pages.route';
 import { utilitiesRoutingModule } from '../../../app/components/utilities/utilities.routes';
-import { chartsRoutingModule } from '../../../app/components/charts/charts.route';
 import { formsRoutingModule } from '../../../app/components/Forms/forms.routes';
 import { formelementsRoutingModule } from '../../../app/components/Forms/Form-Elements/form-elements.routes';
 import { tablesRoutingModule } from '../../../app/components/tables/tables.route';
@@ -28,7 +27,6 @@ export const content: Routes = [
     ...advanceduiRoutingModule.routes,
     ...pagesRoutingModule.routes,
     ...utilitiesRoutingModule.routes,
-    ...chartsRoutingModule.routes,
     ...formelementsRoutingModule.routes,
     ...formsRoutingModule.routes,
     ...tablesRoutingModule.routes,

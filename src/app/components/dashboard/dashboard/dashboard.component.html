@@ -10,8 +10,6 @@
         [trendColor]="card.trendColor"
         [trendValue]="card.trendValue"
         [trendPeriod]="card.trendPeriod" 
-        [chartId]="card.chartId"
-        [chartOptions]="card.chartOptions"
       ></spk-dashboard>
     </div>
 }
@@ -26,9 +24,7 @@
                 <h3 class="card-title">Sales Analytics</h3>
             </div>
             <div class="card-body">
-                <div class="chartjs-wrapper-demo w-100">
-                    <spk-apexcharts id="transactions" class="chart-dropshadow" [chartOptions]="chartOptions4"></spk-apexcharts>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -37,9 +33,7 @@
         <div class="card overflow-hidden">
             <div class="card-body pb-0 bg-recentorder">
                 <h3 class="card-title text-fixed-white mb-4">Recent Orders</h3>
-                <div class="chartjs-wrapper-demo">
-                    <spk-apexcharts id="recentorders" class="chart-dropshadow" [chartOptions]="chartOptions5"></spk-apexcharts>
-                </div>
+                
             </div>
             <div id="back-chart"></div>
             <div class="card-body">

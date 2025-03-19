@@ -61,7 +61,7 @@ export class NavService implements OnDestroy {
     { headTitle: 'Main' },
     {
       title: 'Dashboard',
-      path: '/dashboard',
+      path: '/content/dashboard',
       type: 'link',
       icon: 'fe fe-home',
       active: false,
@@ -75,24 +75,24 @@ export class NavService implements OnDestroy {
       active: false,
       children: [
         {
-          path: '/apps/full-calender',
+          path: '/content/apps/full-calender',
           title: 'Full calender',
           type: 'link',
           active: false,
         },
         {
-          path: '/apps/gallery',
+          path: '/content/apps/gallery',
           title: 'Gallery',
           type: 'link',
           active: false,
         },
         {
-          path: '/apps/sweet-alerts',
+          path: '/content/apps/sweet-alerts',
           title: 'Sweet Alerts',
           type: 'link',
         },
-     
-       
+
+
       ],
     },
     {
@@ -102,28 +102,28 @@ export class NavService implements OnDestroy {
       menutype:'mega-menu',
       active: false,
       children: [
-        { path: '/elements/alerts', title: 'Alerts', type: 'link' },
-        { path: '/elements/badge', title: 'Badge', type: 'link' },
-        { path: '/elements/breadcrumb', title: 'Breadcrumb', type: 'link' },
-        { path: '/elements/buttons', title: 'Buttons', type: 'link' },
-        { path: '/elements/button-group', title: 'Button Group', type: 'link' },
-        { path: '/elements/cards', title: 'cards', type: 'link' },
-        { path: '/elements/dropdowns', title: 'Dropdown', type: 'link' },
-        { path: '/elements/images-figures', title: 'Images & Figures', type: 'link' },
-        { path: '/elements/list-group', title: 'List Group', type: 'link' },
-        { path: '/elements/navs-tabs', title: 'Navs & Tabs', type: 'link' },
+        { path: '/content/elements/alerts', title: 'Alerts', type: 'link' },
+        { path: '/content/elements/badge', title: 'Badge', type: 'link' },
+        { path: '/content/elements/breadcrumb', title: 'Breadcrumb', type: 'link' },
+        { path: '/content/elements/buttons', title: 'Buttons', type: 'link' },
+        { path: '/content/elements/button-group', title: 'Button Group', type: 'link' },
+        { path: '/content/elements/cards', title: 'cards', type: 'link' },
+        { path: '/content/elements/dropdowns', title: 'Dropdown', type: 'link' },
+        { path: '/content/elements/images-figures', title: 'Images & Figures', type: 'link' },
+        { path: '/content/elements/list-group', title: 'List Group', type: 'link' },
+        { path: '/content/elements/navs-tabs', title: 'Navs & Tabs', type: 'link' },
         {
-          path: '/elements/object-fit',
+          path: '/content/elements/object-fit',
           title: 'Object Fit',
           type: 'link',
         },
-        { path: '/elements/pagination', title: 'Pagination', type: 'link' },
-        { path: '/elements/popover', title: 'Popovers', type: 'link' },
-        { path: '/elements/progress', title: 'Progress', type: 'link' },
-        { path: '/elements/spinners', title: 'Spinners', type: 'link' },
-        { path: '/elements/toast', title: 'Toast', type: 'link' },
-        { path: '/elements/tooltips', title: 'Tooltips', type: 'link' },
-        { path: '/elements/typography', title: 'Typography', type: 'link' },
+        { path: '/content/elements/pagination', title: 'Pagination', type: 'link' },
+        { path: '/content/elements/popover', title: 'Popovers', type: 'link' },
+        { path: '/content/elements/progress', title: 'Progress', type: 'link' },
+        { path: '/content/elements/spinners', title: 'Spinners', type: 'link' },
+        { path: '/content/elements/toast', title: 'Toast', type: 'link' },
+        { path: '/content/elements/tooltips', title: 'Tooltips', type: 'link' },
+        { path: '/content/elements/typography', title: 'Typography', type: 'link' },
       ],
     },
     {
@@ -132,16 +132,16 @@ export class NavService implements OnDestroy {
       type: 'sub',
       active: false,
       children: [
-        { path: '/utilities/avatars', title: 'Avatars', type: 'link' },
-        { path: '/utilities/borders', title: 'Borders', type: 'link' },
-        { path: '/utilities/breakpoints', title: 'BreakPoints', type: 'link' },
-        { path: '/utilities/colors', title: 'Colors', type: 'link' },
-        { path: '/utilities/columns', title: 'Columns', type: 'link' },
-        { path: '/utilities/flex', title: 'Flex', type: 'link' },
-        { path: '/utilities/gutters', title: 'Gutters', type: 'link' },
-        { path: '/utilities/helpers', title: 'Helpers', type: 'link' },
-        { path: '/utilities/position', title: 'Position', type: 'link' },
-        { path: '/utilities/more', title: 'Additional Content', type: 'link' },
+        { path: '/content/utilities/avatars', title: 'Avatars', type: 'link' },
+        { path: '/content/utilities/borders', title: 'Borders', type: 'link' },
+        { path: '/content/utilities/breakpoints', title: 'BreakPoints', type: 'link' },
+        { path: '/content/utilities/colors', title: 'Colors', type: 'link' },
+        { path: '/content/utilities/columns', title: 'Columns', type: 'link' },
+        { path: '/content/utilities/flex', title: 'Flex', type: 'link' },
+        { path: '/content/utilities/gutters', title: 'Gutters', type: 'link' },
+        { path: '/content/utilities/helpers', title: 'Helpers', type: 'link' },
+        { path: '/content/utilities/position', title: 'Position', type: 'link' },
+        { path: '/content/utilities/more', title: 'Additional Content', type: 'link' },
       ],
     },
     { headTitle: 'Pre Build Pages' },
@@ -158,7 +158,7 @@ export class NavService implements OnDestroy {
           type: 'link',
           active: false,
           selected: false,
-          path: '/pages/about-us',
+          path: '/content/pages/about-us',
         },
         {
           title: 'Blog',
@@ -173,7 +173,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/blog/blog',
+              path: '/content/pages/blog/blog',
             },
             {
               title: 'Blog Details',
@@ -181,7 +181,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/blog/blogdetails',
+              path: '/content/pages/blog/blogdetails',
             },
             {
               title: 'Create Blog',
@@ -189,7 +189,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/blog/createblog',
+              path: '/content/pages/blog/createblog',
             },
           ],
         },
@@ -199,9 +199,9 @@ export class NavService implements OnDestroy {
           type: 'link',
           active: false,
           selected: false,
-          path: '/pages/chat',
+          path: '/content/pages/chat',
         },
-        { path: '/pages/contacts', title: 'Contacts', type: 'link' },
+        { path: '/content/pages/contacts', title: 'Contacts', type: 'link' },
         {
           title: 'Ecommerce',
           dirchange: false,
@@ -215,7 +215,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/ecommerce/addproducts',
+              path: '/content/pages/ecommerce/addproducts',
             },
             {
               title: 'Cart',
@@ -223,7 +223,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/ecommerce/cart',
+              path: '/content/pages/ecommerce/cart',
             },
             {
               title: 'Checkout',
@@ -231,7 +231,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/ecommerce/checkout',
+              path: '/content/pages/ecommerce/checkout',
             },
             {
               title: 'Edit Products',
@@ -239,7 +239,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/ecommerce/editproducts',
+              path: '/content/pages/ecommerce/editproducts',
             },
             {
               title: 'Order Details',
@@ -247,7 +247,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/ecommerce/order-details',
+              path: '/content/pages/ecommerce/order-details',
             },
             {
               title: 'Orders',
@@ -255,7 +255,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/ecommerce/orders',
+              path: '/content/pages/ecommerce/orders',
             },
 
             {
@@ -264,7 +264,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/ecommerce/products',
+              path: '/content/pages/ecommerce/products',
             },
             {
               title: 'Product Details',
@@ -272,7 +272,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/ecommerce/productdetails',
+              path: '/content/pages/ecommerce/productdetails',
             },
             {
               title: 'Products List',
@@ -280,7 +280,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/ecommerce/productslist',
+              path: '/content/pages/ecommerce/productslist',
             },
             {
               title: 'Wishlist',
@@ -288,7 +288,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/ecommerce/wishlist',
+              path: '/content/pages/ecommerce/wishlist',
             },
           ],
         },
@@ -305,7 +305,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/email/mail-inbox',
+              path: '/content/pages/email/mail-inbox',
             },
             {
               title: 'Mail Read',
@@ -313,7 +313,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/email/mail-read',
+              path: '/content/pages/email/mail-read',
             },
             {
               title: 'Mail Settings',
@@ -321,7 +321,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/email/mailsettings',
+              path: '/content/pages/email/mailsettings',
             },
           ],
         },
@@ -331,7 +331,7 @@ export class NavService implements OnDestroy {
           type: 'link',
           active: false,
           selected: false,
-          path: '/pages/empty',
+          path: '/content/pages/empty',
         },
         {
           title: "FAQ'S",
@@ -339,7 +339,7 @@ export class NavService implements OnDestroy {
           type: 'link',
           active: false,
           selected: false,
-          path: '/pages/faqs',
+          path: '/content/pages/faqs',
         },
         {
           title: 'File manager',
@@ -347,21 +347,21 @@ export class NavService implements OnDestroy {
           active: false,
           children: [
             {
-              path: '/pages/filemanager/filemanager',
+              path: '/content/pages/filemanager/filemanager',
               title: 'File Manager',
               type: 'link',
             },
             {
-              path: '/pages/filemanager/filemanager-list',
+              path: '/content/pages/filemanager/filemanager-list',
               title: 'File Manager List',
               type: 'link',
             },
             {
-              path: '/pages/filemanager/file-details',
+              path: '/content/pages/filemanager/file-details',
               title: 'File Details',
               type: 'link',
             },
-           
+
           ],
         },
         {
@@ -377,7 +377,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/invoice/createinvoice',
+              path: '/content/pages/invoice/createinvoice',
             },
             {
               title: 'Invoice-Details',
@@ -385,7 +385,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/invoice/invoicedetails',
+              path: '/content/pages/invoice/invoicedetails',
             },
             {
               title: 'Invoice List',
@@ -393,7 +393,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/invoice/invoicelist',
+              path: '/content/pages/invoice/invoicelist',
             },
           ],
         },
@@ -410,7 +410,7 @@ export class NavService implements OnDestroy {
           type: 'link',
           active: false,
           selected: false,
-          path: '/pages/notifications',
+          path: '/content/pages/notifications',
         },
         {
           title: 'Pricing',
@@ -418,7 +418,7 @@ export class NavService implements OnDestroy {
           type: 'link',
           active: false,
           selected: false,
-          path: '/pages/pricing',
+          path: '/content/pages/pricing',
         },
         {
           title: 'Profile',
@@ -426,7 +426,7 @@ export class NavService implements OnDestroy {
           type: 'link',
           active: false,
           selected: false,
-          path: '/pages/profile',
+          path: '/content/pages/profile',
         },
         {
           title: 'Reviews',
@@ -434,7 +434,7 @@ export class NavService implements OnDestroy {
           type: 'link',
           active: false,
           selected: false,
-          path: '/pages/reviews',
+          path: '/content/pages/reviews',
         },
         {
           title: 'Team',
@@ -442,7 +442,7 @@ export class NavService implements OnDestroy {
           type: 'link',
           active: false,
           selected: false,
-          path: '/pages/team',
+          path: '/content/pages/team',
         },
         {
           title: 'Terms Conditions',
@@ -450,7 +450,7 @@ export class NavService implements OnDestroy {
           type: 'link',
           active: false,
           selected: false,
-          path: '/pages/terms-conditions',
+          path: '/content/pages/terms-conditions',
         },
         {
           title: 'Timeline',
@@ -465,7 +465,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/timeline/timeline-1',
+              path: '/content/pages/timeline/timeline-1',
             },
             {
               title: 'Timeline-2',
@@ -473,7 +473,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/pages/timeline/timeline-2',
+              path: '/content/pages/timeline/timeline-2',
             },
           ]
         },
@@ -483,7 +483,7 @@ export class NavService implements OnDestroy {
           type: 'link',
           active: false,
           selected: false,
-          path: '/pages/to-do-list',
+          path: '/content/pages/to-do-list',
         },
       ],
     },
@@ -568,7 +568,7 @@ export class NavService implements OnDestroy {
               title: 'Range Slider',
               type: 'link',
             },
-       
+
             {
               path: '/forms/forms-elements/file-uploads',
               title: 'File Uploads',
@@ -678,8 +678,8 @@ export class NavService implements OnDestroy {
         },
       ],
     },
-    
-    { headTitle: 'Tables & Charts' },
+
+    { headTitle: 'Tables' },
     {
       title: 'Tables',
       icon: 'fe fe-layout',
@@ -713,118 +713,6 @@ export class NavService implements OnDestroy {
         },
       ],
     },
-    {
-      title: 'Charts',
-      type: 'sub',
-      icon: 'fe fe-bar-chart-2',
-      active: false,
-      children: [
-        {
-          title: 'Apex Charts',
-          type: 'sub',
-          active: false,
-          children: [
-            {
-              path: '/charts/apex-charts/line-charts',
-              title: 'Line Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/area-charts',
-              title: 'Area Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/bar-charts',
-              title: 'Bar Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/column-charts',
-              title: 'Column-Charts',
-              type: 'link',
-            },
-
-            {
-              path: '/charts/apex-charts/mixed-charts',
-              title: 'Mixed charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/range-area-charts',
-              title: 'Range Area Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/timeline-charts',
-              title: 'TimeLine Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/candlestick-charts',
-              title: 'CandleStick Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/boxplot-charts',
-              title: 'BoxPlot Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/bubble-charts',
-              title: 'Bubble charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/scatter-charts',
-              title: 'Scatter Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/heatmap-charts',
-              title: 'Heatmap Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/treemap-charts',
-              title: 'TreeMap Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/pie-charts',
-              title: 'Pie Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/radialbar-charts',
-              title: 'Radialbar Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/radar-charts',
-              title: 'Radar Charts',
-              type: 'link',
-            },
-            {
-              path: '/charts/apex-charts/polararea-charts',
-              title: 'Polararea Charts',
-              type: 'link',
-            },
-          ],
-        },
-        {
-          path: '/charts/chartjs-charts',
-          title: 'Chartjs',
-          type: 'link',
-        },
-        {
-          path: '/charts/echart-charts',
-          title: 'Echart',
-          type: 'link',
-        },
-      ],
-    },
-
      //TABLES
      { headTitle: 'MAPS & ICONS' },
      {
@@ -850,7 +738,7 @@ export class NavService implements OnDestroy {
            selected: false,
            path: '/maps/leaflet-map',
          },
-         
+
        ],
      },
      {

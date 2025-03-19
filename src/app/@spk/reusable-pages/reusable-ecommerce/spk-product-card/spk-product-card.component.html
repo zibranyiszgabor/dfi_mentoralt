@@ -1,13 +1,13 @@
 
     <div class="card custom-card product-card">
       <div class="card-body">
-        <a routerLink="/pages/ecommerce/productdetails" class="product-image">
+        <a routerLink="/content/pages/ecommerce/productdetails" class="product-image">
           <img [src]="productImage" class="card-img mb-3" alt="...">
         </a>
         <div class="product-icons">
-          <a routerLink="/pages/ecommerce/wishlist" class="wishlist"><i class="ri-heart-line"></i></a>
-          <a routerLink="/pages/ecommerce/cart" class="cart"><i class="ri-shopping-cart-line"></i></a>
-          <a routerLink="/pages/ecommerce/productdetails" class="view"><i class="ri-eye-line"></i></a>
+          <a routerLink="/content/pages/ecommerce/wishlist" class="wishlist"><i class="ri-heart-line"></i></a>
+          <a routerLink="/content/pages/ecommerce/cart" class="cart"><i class="ri-shopping-cart-line"></i></a>
+          <a routerLink="/content/pages/ecommerce/productdetails" class="view"><i class="ri-eye-line"></i></a>
         </div>
         <p class="product-name fw-semibold mb-0 d-flex align-items-center justify-content-between">{{ productName }}
           <span class="float-end text-warning fs-12">{{ rating }}<i class="ri-star-s-fill align-middle ms-1 d-inline-block"></i></span>
@@ -21,5 +21,4 @@
           <i class="ti ti-discount-2 fs-16 me-1"></i>Offer Price ${{ offerPrice }}</p>
       </div>
     </div>
- 
-  
+
