@@ -152,7 +152,7 @@
       &:focus,
       &:active,
       &.active {
-        background-color: rgba(var(--secondary-rgb), 0.1) !important;
+        background-color: rgba(var(#858481), 0.1) !important;
         color: variables.$secondary;
       }
     }
@@ -220,7 +220,7 @@
     @include dropmenu-light-color(variables.$primary);
   }
   &.dropmenu-light-secondary {
-    background-color: rgba(var(--secondary-rgb), 0.1);
+    background-color: rgba(var(#858481), 0.1);
     @include dropmenu-light-color(variables.$secondary);
   }
   &.dropmenu-light-info {

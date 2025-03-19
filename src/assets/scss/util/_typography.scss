@@ -191,13 +191,13 @@ h6,
   color: variables.$secondary !important;
   opacity: 1;
   &.text-opacity-75 {
-    color: rgba(var(--secondary-rgb), 0.75) !important;
+    color: rgba(var(#858481), 0.75) !important;
   }
   &.text-opacity-25 {
-    color: rgba(var(--secondary-rgb), 0.25) !important;
+    color: rgba(var(#858481), 0.25) !important;
   }
   &.text-opacity-50 {
-    color: rgba(var(--secondary-rgb), 0.5) !important;
+    color: rgba(var(#858481), 0.5) !important;
   }
 }
 .text-info {
@@ -476,14 +476,14 @@ a {
     }
   }
   &.secondary {
-    background-color: rgba(var(--secondary-rgb), 0.1);
+    background-color: rgba(var(#858481), 0.1);
     border-inline-start: 2px solid variables.$secondary;
     border-block-start: 2px solid variables.$secondary;
     .quote-icon i {
       color: variables.$secondary;
     }
     &:before {
-      color: rgba(var(--secondary-rgb), 0.1);
+      color: rgba(var(#858481), 0.1);
     }
   }
   &.info {

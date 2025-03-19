@@ -513,7 +513,7 @@ fieldset:disabled .btn {
     }
 
     &.toggle-secondary {
-      background-color: rgba(var(--secondary-rgb), 0.4);
+      background-color: rgba(var(#858481), 0.4);
 
       span {
         background-color: variables.$secondary;

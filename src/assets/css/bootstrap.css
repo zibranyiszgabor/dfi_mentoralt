@@ -2,7 +2,7 @@
 :root {
   --body-bg-rgb:	240 ,240, 245;
   --primary-rgb:	255, 229, 31;
-  --secondary-rgb:	5, 195, 251;
+  #858481:	5, 195, 251;
   --warning-rgb:	247, 183, 49;
   --info-rgb:	17, 112, 228;
   --success-rgb:	9, 173, 149;
@@ -3402,8 +3402,8 @@ fieldset:disabled .btn {
 
 .btn-primary {
   --bs-btn-color: #000;
-  --bs-btn-bg: #0d6efd;
-  --bs-btn-border-color: #0d6efd;
+  --bs-btn-bg: #ffe51f;
+  --bs-btn-border-color: #ffe51f;
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #0b5ed7;
   --bs-btn-hover-border-color: #0a58ca;

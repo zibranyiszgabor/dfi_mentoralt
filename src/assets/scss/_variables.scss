@@ -1,7 +1,7 @@
 :root {
 	--body-bg-rgb : 									240 ,240, 245;
 	--primary-rgb: 										255, 229, 31;
-	--secondary-rgb :									5, 195, 251;
+	#858481 :									5, 195, 251;
 	--warning-rgb :										247, 183, 49;
 	--info-rgb :										17, 112, 228;
 	--success-rgb :										9, 173, 149; 
@@ -133,7 +133,7 @@ $primary-09:											var(--primary09);
 $primary-005:											var(--primary005);
 $custom-white:											var(--custom-white);
 $custom-black:											var(--custom-black);
-$secondary:												rgb(var(--secondary-rgb));
+$secondary:												rgb(var(#858481));
 $warning:												rgb(var(--warning-rgb));
 $info:													rgb(var(--info-rgb));
 $success:												rgb(var(--success-rgb));

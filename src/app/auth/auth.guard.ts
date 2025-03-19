@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
     console.log('🔹 AuthGuard meghívva');
 
     if (!this.authService.isLoggedIn) {
-      this.router.navigate(['/login']); // 🔹 Ha nincs bejelentkezve, átirányítás a login oldalra
+      this.router.navigate(['/home']); // 🔹 Ha nincs bejelentkezve, átirányítás a login oldalra
       console.log('teszt1');
 
       return false;

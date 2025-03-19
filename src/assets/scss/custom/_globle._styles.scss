@@ -756,7 +756,7 @@ div:where(.swal2-container) input:where(.swal2-input){
   color: #fff !important;
 }
 .colored-toast.bg-secondary .toast-header {
-  background-color: rgb(var(--secondary-rgb)) !important;
+  background-color: rgb(var(#858481)) !important;
   color: #fff !important;
 }
 .colored-toast.bg-warning .toast-header {
@@ -781,7 +781,7 @@ div:where(.swal2-container) input:where(.swal2-input){
   color: #fff !important;
 }
 .bg-secondary-transparent .toast-header {
-  background-color: rgb(var(--secondary-rgb)) !important;
+  background-color: rgb(var(#858481)) !important;
   color: #fff !important;
 }
 

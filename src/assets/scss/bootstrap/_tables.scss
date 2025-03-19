@@ -95,7 +95,7 @@ caption {
     @include tablecolor(var(--primary-rgb));
   }
   &.table-secondary {
-    @include tablecolor(var(--secondary-rgb));
+    @include tablecolor(var(#858481));
   }
   &.table-warning {
     @include tablecolor(var(--warning-rgb));
@@ -143,7 +143,7 @@ caption {
       th,
       thead,
       tr {
-        border-color: rgba(var(--secondary-rgb), 0.1);
+        border-color: rgba(var(#858481), 0.1);
       }
     }
     &.border-warning {
@@ -201,7 +201,7 @@ caption {
       @include tablehead(var(--primary-rgb));
     }
     &.table-secondary {
-      @include tablehead(var(--secondary-rgb));
+      @include tablehead(var(#858481));
     }
     &.table-warning {
       @include tablehead(var(--warning-rgb));
@@ -227,7 +227,7 @@ caption {
   @include table-color(var(--primary-rgb));
 }
 .table-secondary {
-  @include table-color(var(--secondary-rgb));
+  @include table-color(var(#858481));
 }
 .table-warning {
   @include table-color(var(--warning-rgb));

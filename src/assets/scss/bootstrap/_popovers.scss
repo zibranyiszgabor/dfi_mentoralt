@@ -194,15 +194,15 @@
 }
 .popover-secondary-light {
     &.popover {
-        border: 1px solid rgba(var(--secondary-rgb),0.1);
+        border: 1px solid rgba(var(#858481),0.1);
       .popover-header {
-        background-color: rgba(var(--secondary-rgb),0.1);
-        border-block-end: 1px solid rgba(var(--secondary-rgb),0.1);
+        background-color: rgba(var(#858481),0.1);
+        border-block-end: 1px solid rgba(var(#858481),0.1);
         color: variables.$secondary;
         border-radius: 0;
       }
       .popover-body {
-        background-color: rgba(var(--secondary-rgb),0.1);
+        background-color: rgba(var(#858481),0.1);
         color: variables.$secondary;
       }
     }
@@ -210,19 +210,19 @@
     &.bs-popover-top > .popover-arrow::after,
     &.bs-popover-auto[data-popper-placement^="top"] > .popover-arrow::before,
     &.bs-popover-top > .popover-arrow::before {
-      border-top-color: rgba(var(--secondary-rgb),0.1);
+      border-top-color: rgba(var(#858481),0.1);
     }
     &.bs-popover-auto[data-popper-placement^="right"] > .popover-arrow::after,
     &.bs-popover-end > .popover-arrow::after,
     &.bs-popover-auto[data-popper-placement^="right"] > .popover-arrow::before,
     &.bs-popover-end > .popover-arrow::before {
-      border-right-color: rgba(var(--secondary-rgb),0.1);
+      border-right-color: rgba(var(#858481),0.1);
     }
     &.bs-popover-auto[data-popper-placement^="left"] > .popover-arrow::after,
     &.bs-popover-start > .popover-arrow::after,
     &.bs-popover-auto[data-popper-placement^="left"] > .popover-arrow::before,
     &.bs-popover-start > .popover-arrow::before {
-      border-left-color: rgba(var(--secondary-rgb),0.1);
+      border-left-color: rgba(var(#858481),0.1);
     }
     &.bs-popover-auto[data-popper-placement^="bottom"] > .popover-arrow::after,
     &.bs-popover-bottom > .popover-arrow::after,
@@ -230,7 +230,7 @@
     &.bs-popover-bottom > .popover-arrow::before,
     &.bs-popover-auto[data-popper-placement^="bottom"] .popover-header::before,
     &.bs-popover-bottom .popover-header::before {
-      border-bottom-color: rgba(var(--secondary-rgb),0.1);
+      border-bottom-color: rgba(var(#858481),0.1);
     }
 }
 .popover-warning-light {

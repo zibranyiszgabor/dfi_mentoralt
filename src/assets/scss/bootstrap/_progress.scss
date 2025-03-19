@@ -65,7 +65,7 @@
         }
         &.bg-secondary:after {
             border: 0.25rem solid variables.$secondary;
-            box-shadow: 0 0.313rem 0.313rem rgba(var(--secondary-rgb),0.2);
+            box-shadow: 0 0.313rem 0.313rem rgba(var(#858481),0.2);
         }
         &.bg-warning:after {
             border: 0.25rem solid variables.$warning;
@@ -282,7 +282,7 @@
         background-color: variables.$primary-01;
         border-radius: 0.25rem;
         &.secondary {
-            background-color: rgba(var(--secondary-rgb),0.1);
+            background-color: rgba(var(#858481),0.1);
             .progress-bar-label {
                 color: variables.$secondary;
             }

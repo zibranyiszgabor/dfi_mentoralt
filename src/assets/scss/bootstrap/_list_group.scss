@@ -38,12 +38,12 @@
 }
 .list-group-item-secondary {
     color: variables.$secondary;
-    background-color: rgba(var(--secondary-rgb), 0.1);
+    background-color: rgba(var(#858481), 0.1);
     &.list-group-item-action {
         &:focus,
         &:hover {
             color: variables.$secondary;
-            background-color: rgba(var(--secondary-rgb), 0.2);
+            background-color: rgba(var(#858481), 0.2);
         }
     }
 }

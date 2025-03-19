@@ -62,7 +62,7 @@
   }
 }
 .navbar-secondary-transparent {
-  background-color: rgba(var(--secondary-rgb), 0.1);
+  background-color: rgba(var(#858481), 0.1);
   color: variables.$default-text-color;
   .nav-link {
     &.active {

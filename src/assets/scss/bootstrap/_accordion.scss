@@ -80,7 +80,7 @@
     }
     &.accordion-secondary {
         .accordion-button {
-            background-color: rgba(var(--secondary-rgb),0.1);
+            background-color: rgba(var(#858481),0.1);
             color: variables.$secondary;
             &:after { 
                 background-color: variables.$secondary;
@@ -458,17 +458,17 @@
         }
         &.custom-accordion-secondary {
             .accordion-button {
-                background-color: rgba(var(--secondary-rgb),0.1);
-                border-inline-start: 0.25rem solid rgba(var(--secondary-rgb),0.6);
+                background-color: rgba(var(#858481),0.1);
+                border-inline-start: 0.25rem solid rgba(var(#858481),0.6);
                 &:after {
-                    background-color: rgba(var(--secondary-rgb),0.6);
+                    background-color: rgba(var(#858481),0.6);
                     color: variables.$white;
                 }
             }
             .accordion-body {
-                background-color: rgba(var(--secondary-rgb),0.1);
+                background-color: rgba(var(#858481),0.1);
                 padding-block-start: 0;
-                border-inline-start: 0.25rem solid rgba(var(--secondary-rgb),0.6);
+                border-inline-start: 0.25rem solid rgba(var(#858481),0.6);
             }
         }
         &.custom-accordion-warning {

@@ -8,6 +8,9 @@ import { FormsModule } from '@angular/forms';
 import { CarouselModule} from 'ngx-owl-carousel-o';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../../auth/auth.service';
+
 
 @Component({
   selector: 'app-home',
@@ -24,9 +27,12 @@ export class HomeComponent {
   isYearly: boolean = false;
 
   thumbsSwiper: any;
-  constructor(
+    constructor(
     public renderer: Renderer2,
     private el: ElementRef,
+    private modalService: NgbModal,
+    private authService: AuthService,
+
     private elementRef: ElementRef,private sanitizer: DomSanitizer,   private viewScroller: ViewportScroller
   ){
     document.body.classList.add('landing-body');
@@ -376,270 +382,23 @@ isDataToggled = false;
   sanitizeIcon(svg: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(svg);
   }
-  testimonial = [
-    {
-      name: 'Json Taylor',
-      role: 'CEO OF NORJA',
-      image: './assets/images/faces/15.jpg',
-      rating: 4.5,
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio',
-      time: '12 days ago'
-    },
-    {
-      name: 'Melissa Blue',
-      role: 'MANAGER CHO',
-      image: './assets/images/faces/4.jpg',
-      rating: 4.5,
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio',
-      time: '7 days ago'
-    },
-    {
-      name: 'Kiara Advain',
-      role: 'CEO OF EMPIRO',
-      image: './assets/images/faces/2.jpg',
-      rating: 4.0,
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio',
-      time: '2 days ago'
-    },
-    {
-      name: 'Jhonson Smith',
-      role: 'CHIEF SECRETARY MBIO',
-      image: './assets/images/faces/10.jpg',
-      rating: 4.5,
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio',
-      time: '16 hrs ago'
-    },
-    {
-      name: 'Dwayne Stort',
-      role: 'CEO ARMEDILLO',
-      image: './assets/images/faces/12.jpg',
-      rating: 4.0,
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio',
-      time: '22 days ago'
-    },
-    {
-      name: 'Jasmine Kova',
-      role: 'AGGENT AMIO',
-      image: './assets/images/faces/3.jpg',
-      rating: 4.5,
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio',
-      time: '26 days ago'
-    },
-    {
-      name: 'Dolph MR',
-      role: 'CEO MR BRAND',
-      image: './assets/images/faces/16.jpg',
-      rating: 5.0,
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio',
-      time: '1 month ago'
-    },
-    {
-      name: 'Brenda Simpson',
-      role: 'CEO AIBMO',
-      image: './assets/images/faces/5.jpg',
-      rating: 4.5,
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio',
-      time: '1 month ago'
-    },
-    {
-      name: 'Julia Sams',
-      role: 'CHIEF SECRETARY BHOL',
-      image: './assets/images/faces/7.jpg',
-      rating: 5.0,
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum autem quaerat distinctio',
-      time: '2 months ago'
-    }
-  ];
-
-  technologies = [
-    {
-      name: 'Angular',
-      image: './assets/images/landing/web/1.png'
-    },
-    {
-      name: 'NgRx',
-      image: './assets/images/landing/web/2.png'
-    },
-    {
-      name: 'Sass',
-      image: './assets/images/landing/web/3.png'
-    },
-    {
-      name: 'TypeScript',
-      image: './assets/images/landing/web/4.png'
-    },
-    {
-      name: 'Ng-bootstrap',
-      image: './assets/images/landing/web/5.png'
-    },
-    {
-      name: 'NPM',
-      image: './assets/images/landing/web/6.png'
-    }
-  ];
-
-  basicAccordions=[
-    { 
-      title: 'Where can I subscribe to your newsletter?',
-      body: '<strong>This is the first item\'s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It\'s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.',  
-      headingId: 'headingOne',
-      collapseId: 'collapseOne', 
-      collapsed: false
-     },
-    {
-       title: 'Where can in edit my address?',
-       body: '<strong>This is the first item\'s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It\'s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.',  
-       headingId: 'headingTwo', 
-       collapseId: 'collapseTwo',
-       collapsed: true
-     },
-    {
-       title: 'What are your opening hours?', 
-       body: '<strong>This is the first item\'s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It\'s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.',  
-       headingId: 'headingThree', 
-       collapseId: 'collapseThree' ,
-       collapsed: true
-      },
-      {
-        title: 'Do I have the right to return an item?', 
-        body: '<strong>This is the first item\'s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It\'s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.',  
-        headingId: 'headingFour', 
-        collapseId: 'collapseFour' ,
-        collapsed: true
-       },
-       {
-        title: 'General Terms & Conditions (GTC)', 
-        body: '<strong>This is the first item\'s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It\'s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.',  
-        headingId: 'headingFive', 
-        collapseId: 'collapseFive' ,
-        collapsed: true
-       },
-       {
-        title: 'Do I need to create an account to make an order?', 
-        body: '<strong>This is the first item\'s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It\'s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.',  
-        headingId: 'headingSix', 
-        collapseId: 'collapseSix' ,
-        collapsed: true
-       }
-  ]
-  basicAccordions1=[
-    {
-      title: 'General Terms & Conditions (GTC)', 
-      body: '<strong>This is the first item\'s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It\'s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.',  
-      headingId: 'headingOne',
-      collapseId: 'collapseOne', 
-      collapsed: true
-     },
-     {
-      title: 'Do I need to create an account to make an order?', 
-      body: '<strong>This is the first item\'s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It\'s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.',  
-      headingId: 'headingTwo', 
-      collapseId: 'collapseTwo',
-      collapsed: true
-     },
-     { 
-      title: 'Where can I subscribe to your newsletter?',
-      body: '<strong>This is the first item\'s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It\'s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.',  
-      headingId: 'headingThree', 
-      collapseId: 'collapseThree' ,
-      collapsed: true
-     },
-    {
-       title: 'Where can in edit my address?',
-       body: '<strong>This is the first item\'s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It\'s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.',  
-       headingId: 'headingFour', 
-       collapseId: 'collapseFour' ,
-       collapsed: true
-     },
-    {
-       title: 'What are your opening hours?', 
-       body: '<strong>This is the first item\'s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It\'s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.',  
-       headingId: 'headingFive', 
-       collapseId: 'collapseFive' ,
-       collapsed: true
-      },
-      {
-        title: 'Do I have the right to return an item?', 
-        body: '<strong>This is the first item\'s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It\'s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.',  
-        headingId: 'headingSix', 
-        collapseId: 'collapseSix' ,
-        collapsed: false
-       },
-  ]
 
 
-  missions = [
-    {
-      iconClass: 'bx bx-badge-check',
-      title: 'Design Quality',
-      description: 'Lorem ipsum, dolor sit var ameto condesetrat aiatel varen or damsenlel verman code Lorem ipsum, dolor sit amet consectetur adipisicing elit.'
-    },
-    {
-      iconClass: 'bx bx-file',
-      title: 'Documentation',
-      description: 'Lorem ipsum, dolor sit var ameto condesetrat aiatel varen or damsenlel verman code Lorem ipsum, dolor sit amet consectetur adipisicing elit.'
-    },
-    {
-      iconClass: 'bx bx-cog',
-      title: 'Customization',
-      description: 'Lorem ipsum, dolor sit var ameto condesetrat aiatel varen or damsenlel verman code Lorem ipsum, dolor sit amet consectetur adipisicing elit.'
-    },
-    {
-      iconClass: 'bx bx-cloud-upload',
-      title: 'Regular Updates',
-      description: 'Lorem ipsum, dolor sit var ameto condesetrat aiatel varen or damsenlel verman code Lorem ipsum, dolor sit amet consectetur adipisicing elit.'
-    },
-    {
-      iconClass: 'bx bx-support',
-      title: '24/7 Support',
-      description: 'Lorem ipsum, dolor sit var ameto condesetrat aiatel varen or damsenlel verman code Lorem ipsum, dolor sit amet consectetur adipisicing elit.'
-    },
-    {
-      iconClass: 'bx bx-image',
-      title: 'Pre-Built Theme Styles',
-      description: 'Lorem ipsum, dolor sit var ameto condesetrat aiatel varen or damsenlel verman code Lorem ipsum, dolor sit amet consectetur adipisicing elit.'
-    },
-    {
-      iconClass: 'bx bx-compass',
-      title: 'Compatibility',
-      description: 'Lorem ipsum, dolor sit var ameto condesetrat aiatel varen or damsenlel verman code Lorem ipsum, dolor sit amet consectetur adipisicing elit.'
-    },
-    {
-      iconClass: 'bx bx-desktop',
-      title: 'Fully Responsive',
-      description: 'Lorem ipsum, dolor sit var ameto condesetrat aiatel varen or damsenlel verman code Lorem ipsum, dolor sit amet consectetur adipisicing elit.'
-    }
-  ]
   
-  counters = [
-    {
-      bgClass: 'bg-primary-transparent',
-      iconClass: 'icon-1',
-      icon: 'fe fe-layers',
-      count: 100,
-      label: 'Angular Component'
-    },
-    {
-      bgClass: 'bg-secondary-transparent',
-      iconClass: 'icon-2',
-      icon: 'fe fe-wind',
-      count: 60,
-      label: 'Integrated Plugins'
-    },
-    {
-      bgClass: 'bg-success-transparent',
-      iconClass: 'icon-3',
-      icon: 'fe fe-file-text',
-      count: 10,
-      label: 'Form Elements'
-    },
-    {
-      bgClass: 'bg-danger-transparent',
-      iconClass: 'icon-4',
-      icon: 'fe fe-grid',
-      count: 30,
-      label: 'Customize Widgets'
-    }
-  ];
+  
+
+  open(content: any) {
+    this.modalService.open(content, { centered: true });
+  }
+
+  loginAsEmployee(): void {
+    console.log('🔹 Dolgozóként történő bejelentkezés...');
+    this.authService.loginAsEmployee(); // 🔹 Dolgozói bejelentkezés
+  }
+
+  loginAsStudent(): void {
+    console.log('🔹 Diákként történő bejelentkezés...');
+    this.authService.loginAsStudent(); // 🔹 Diák bejelentkezés
+  }
 
 }

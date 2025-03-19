@@ -44,19 +44,19 @@
         border: 1px solid variables.$secondary !important;
         opacity: 1;
         &.border-opacity-10 {
-            border-color: rgba(var(--secondary-rgb),0.1) !important;
+            border-color: rgba(var(#858481),0.1) !important;
         }
         &.border-opacity-25 {
-            border-color: rgba(var(--secondary-rgb),0.25) !important;
+            border-color: rgba(var(#858481),0.25) !important;
         }
         &.border-opacity-50 {
-            border-color: rgba(var(--secondary-rgb),0.50) !important;
+            border-color: rgba(var(#858481),0.50) !important;
         }
         &.border-opacity-75 {
-            border-color: rgba(var(--secondary-rgb),0.75) !important;
+            border-color: rgba(var(#858481),0.75) !important;
         }
         &.border-opacity-100 {
-            border-color: rgba(var(--secondary-rgb),1) !important;
+            border-color: rgba(var(#858481),1) !important;
         }
     }
     &.border-info {

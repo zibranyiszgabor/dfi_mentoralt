@@ -68,9 +68,9 @@
   }
 }
 .alert-secondary {
-  background-color: rgba(var(--secondary-rgb), 0.1);
+  background-color: rgba(var(#858481), 0.1);
   color: variables.$secondary;
-  border-color: rgba(var(--secondary-rgb), 0.1);
+  border-color: rgba(var(#858481), 0.1);
   .alert-link {
     color: variables.$secondary;
   }
