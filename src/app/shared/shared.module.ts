@@ -8,7 +8,6 @@ import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 import { NotificationSidebarComponent } from './components/notification-sidebar/notification-sidebar.component';
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
 import { ContentLayoutComponent } from './layouts/content-layout/content-layout.component';
-import { CustomizerComponent } from './components/customizer/customizer.component';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 // DIRECTIVES 
 import { FullscreenDirective } from './directives/fullscreen-toggle.directive';
@@ -28,7 +27,7 @@ import { SwitcherComponent } from './components/switcher/switcher.component';
 import { OverlayscrollbarsModule } from "overlayscrollbars-ngx";
 
 @NgModule({
-  declarations: [ FooterComponent,SwitcherComponent, HeaderComponent,FullscreenDirective, TapToTopComponent, SidemenuComponent, NotificationSidebarComponent, FullLayoutComponent, ContentLayoutComponent, CustomizerComponent, HoverEffectSidebarDirective, ToggleThemeDirective, SidemenuToggleDirective, LandingpageLayoutComponent, PageHeaderComponent, LandingPageSidemenuToggleDirective, NgbdSortableHeader ],
+  declarations: [ FooterComponent,SwitcherComponent, HeaderComponent,FullscreenDirective, TapToTopComponent, SidemenuComponent, NotificationSidebarComponent, FullLayoutComponent, ContentLayoutComponent, HoverEffectSidebarDirective, ToggleThemeDirective, SidemenuToggleDirective, LandingpageLayoutComponent, PageHeaderComponent, LandingPageSidemenuToggleDirective, NgbdSortableHeader ],
   imports: [
     CommonModule,
     RouterModule,
@@ -46,7 +45,6 @@ import { OverlayscrollbarsModule } from "overlayscrollbars-ngx";
     FullLayoutComponent,
     ContentLayoutComponent,
     PageHeaderComponent,
-    LandingPageSidemenuToggleDirective,
     SwitcherComponent,
   ],
 })

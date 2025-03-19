@@ -8,11 +8,10 @@ import { SpkReusableTablesComponent } from '../../../@spk/reusable-tables/spk-re
 import { CommonModule } from '@angular/common';
 
 
-import { SpkLeafletMapComponent } from '../../../@spk/spk-leaflet-map/spk-leaflet-map.component';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [SharedModule,NgbModule,NgSelectModule,SpkDashboardComponent,SpkReusableTablesComponent,CommonModule,SpkLeafletMapComponent],
+  imports: [SharedModule,NgbModule,NgSelectModule,SpkDashboardComponent,SpkReusableTablesComponent,CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

@@ -1,3 +1,5 @@
+import { ApexOptions } from 'apexcharts';
+
 export class CryptoMarketData {
     id?: number;
     img?: string;
@@ -21,3 +23,196 @@ export const cryptoMarketData: CryptoMarketData[] = [
     { id: 10, img: './assets/img/svgs/crypto-currencies/dash.svg', name: 'Dash', coinName: 'DASH', lastPrice: 747.222, marketPrice: 5881413815, changes: +0.94 },
     { id: 11, img: './assets/img/svgs/crypto-currencies/waves.svg', name: 'Waves', coinName: 'NEM', lastPrice: 181.39, marketPrice: 3084108676, changes: -3.23 },
 ]
+
+
+
+export let lineApexChart: ApexOptions | any = {
+    chart: {
+        type: 'area',
+        height: 40,
+        width: 50,
+        sparkline: {
+            enabled: true
+        }
+    },
+    stroke: {
+        show: true,
+        curve: 'smooth',
+        lineCap: 'butt',
+        colors: undefined,
+        width: 2,
+        dashArray: 0,
+    },
+    fill: {
+        type: 'gradient',
+        gradient: {
+            opacityFrom: 0.8,
+            opacityTo: 0.05,
+            stops: [0, 98],
+        }
+    },
+    series: [{
+        name: 'Value',
+        data: [20, 14, 19, 10, 23, 20, 22, 9, 12]
+    }],
+    yaxis: {
+        min: 0,
+        show: false,
+        axisBorder: {
+            show: false
+        },
+    },
+    xaxis: {
+        show: false,
+        axisBorder: {
+            show: false
+        },
+    },
+  //   tooltip: {
+  //       enabled: false,
+  //   },
+    colors: ["rgb(98, 89, 202)"],
+}
+export let lineApexChart1: ApexOptions | any = {
+    chart: {
+        type: 'area',
+        height: 40,
+        width: 50,
+        sparkline: {
+            enabled: true
+        }
+    },
+    stroke: {
+        show: true,
+        curve: 'smooth',
+        lineCap: 'butt',
+        colors: undefined,
+        width: 2,
+        dashArray: 0,
+    },
+    fill: {
+        type: 'gradient',
+        gradient: {
+            opacityFrom: 0.8,
+            opacityTo: 0.1,
+            stops: [0, 98],
+        }
+    },
+    series: [{
+        name: 'Value',
+        data: [20, 20, 22, 9, 14, 19, 10, 25, 12]
+    }],
+    yaxis: {
+        min: 0,
+        show: false,
+        axisBorder: {
+            show: false
+        },
+    },
+    xaxis: {
+        show: false,
+        axisBorder: {
+            show: false
+        },
+    },
+  //   tooltip: {
+  //       enabled: false,
+  //   },
+    colors: ["rgb(98, 89, 202)"],
+}
+
+export let lineApexChart2: ApexOptions | any = {
+    chart: {
+        type: 'area',
+        height: 40,
+        width: 50,
+        sparkline: {
+            enabled: true
+        }
+    },
+    stroke: {
+        show: true,
+        curve: 'smooth',
+        lineCap: 'butt',
+        colors: undefined,
+        width: 2,
+        dashArray: 0,
+    },
+    fill: {
+        type: 'gradient',
+        gradient: {
+            opacityFrom: 0.8,
+            opacityTo: 0.1,
+            stops: [0, 98],
+        }
+    },
+    series: [{
+        name: 'Value',
+        data: [20, 14, 20, 22, 9, 12, 19, 10, 25]
+    }],
+    yaxis: {
+        min: 0,
+        show: false,
+        axisBorder: {
+            show: false
+        },
+    },
+    xaxis: {
+        show: false,
+        axisBorder: {
+            show: false
+        },
+    },
+  //   tooltip: {
+  //       enabled: false,
+  //   },
+    colors: ["rgb(98, 89, 202)"],
+}
+export let lineApexChart3: ApexOptions | any = {
+    chart: {
+        type: 'area',
+        height: 40,
+        width: 50,
+        sparkline: {
+            enabled: true
+        }
+    },
+    stroke: {
+        show: true,
+        curve: 'smooth',
+        lineCap: 'butt',
+        colors: undefined,
+        width: 2,
+        dashArray: 0,
+    },
+    fill: {
+        type: 'gradient',
+        gradient: {
+            opacityFrom: 0.8,
+            opacityTo: 0.1,
+            stops: [0, 98],
+        }
+    },
+    series: [{
+        name: 'Value',
+        data: [20, 20, 22, 9, 12, 14, 19, 10, 25]
+    }],
+    yaxis: {
+        min: 0,
+        show: false,
+        axisBorder: {
+            show: false
+        },
+    },
+    xaxis: {
+        show: false,
+        axisBorder: {
+            show: false
+        },
+    },
+  //   tooltip: {
+  //       enabled: false,
+  //   },
+    colors: ["rgb(98, 89, 202)"],
+  
+}

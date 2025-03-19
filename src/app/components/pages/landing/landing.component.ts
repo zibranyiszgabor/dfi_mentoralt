@@ -8,17 +8,11 @@ import { FormsModule } from '@angular/forms';
 import { CarouselModule} from 'ngx-owl-carousel-o';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { NgbAccordionComponent } from '../../../@spk/reusable-ui-elements/ngb-accordion/ngb-accordion.component';
-import { SpkPricing2Component } from '../../../@spk/reusable-pages/spk-pricing2/spk-pricing2.component';
-import { SpkLandingTeamCardComponent } from '../../../@spk/reusable-pages/spk-landing-team-card/spk-landing-team-card.component';
-import { SpkLandingMissionCardComponent } from '../../../@spk/reusable-pages/spk-landing-mission-card/spk-landing-mission-card.component';
-import { SpkLandingStatisticsCardComponent } from '../../../@spk/reusable-pages/spk-landing-statistics-card/spk-landing-statistics-card.component';
 
 @Component({
   selector: 'app-landing',
   standalone: true,  
-  imports: [CommonModule,RouterModule,MatIconModule,FormsModule ,NgbModule,NgbAccordionComponent,SpkPricing2Component,SpkLandingTeamCardComponent,SpkLandingMissionCardComponent,
-    NgxColorsModule,NgbAccordionModule ,SpkLandingStatisticsCardComponent,CarouselModule,ColorPickerModule,CommonModule],
+  imports: [CommonModule,RouterModule,MatIconModule,FormsModule ,NgbModule],
   providers:[NgbOffcanvas ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './landing.component.html',

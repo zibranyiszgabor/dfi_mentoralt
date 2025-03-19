@@ -114,9 +114,7 @@
                 </div>
             </div>
             <div class="card-body p-0 mt-2">
-                <div class="p-2">
-                    <spk-leaflet-map class="worldh world-map" [mapId]="'world-map'"></spk-leaflet-map>
-                </div>
+
                 <div class="table-responsive mt-2 text-center">
                     <spk-reusable-tables [columns]="BrowserTrafficColumn" [tableHead]="'text-uppercase'" tableClass="table text-nowrap border-dashed mb-0"  [showCheckbox]="false">
                        @for (item of salesData; track $index) {
