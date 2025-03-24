@@ -4,13 +4,13 @@ import { BehaviorSubject } from 'rxjs';
 interface StateType {
   direction: string;
   theme: string;
-  navigationStyles: string,   // vertical, horizontal
+  navigationStyles: string,           // vertical, horizontal
   menuStyles: string,                 // menu-click, menu-hover, icon-click, icon-hover
-  layoutStyles: string,   // double-menu, detached, icon-overlay, icontext-menu, closed-menu, default-menu
-  pageStyles: string,          // regular, classic, modern
-  widthStyles: string,       // fullwidth, boxed
-  menuPosition: string,          // fixed, scrollable
-  headerPosition: string,        // fixed, scrollable
+  layoutStyles: string,               // double-menu, detached, icon-overlay, icontext-menu, closed-menu, default-menu
+  pageStyles: string,                 // regular, classic, modern
+  widthStyles: string,                // fullwidth, boxed
+  menuPosition: string,               // fixed, scrollable
+  headerPosition: string,             // fixed, scrollable
   menuColor: string,                  // light, dark, color, gradient, transparent
   headerColor: string,                // light, dark, color, gradient, transparent
   themePrimary: string,               // '58, 88, 146', '92, 144, 163', '161, 90, 223', '78, 172, 76', '223, 90, 90'
@@ -23,17 +23,17 @@ interface StateType {
 export class AppStateService {
   private readonly localStorageKey = 'sash-ng'; // Customize this key
   private initialState: StateType = {
-    theme: 'light',            // light, dark
+    theme: 'light',                 // light, dark
     direction: 'ltr',               // ltr, rtl
-    navigationStyles: 'vertical',   // vertical, horizontal
+    navigationStyles: 'horizontal', // vertical, horizontal
     menuStyles: '',                 // menu-click, menu-hover, icon-click, icon-hover
-    layoutStyles: 'default',   // double-menu, detached, icon-overlay, icontext-menu, closed-menu, default-menu
+    layoutStyles: 'default',        // double-menu, detached, icon-overlay, icontext-menu, closed-menu, default-menu
     pageStyles: 'regular',          // regular, classic, modern
-    widthStyles: 'fullwidth',       // fullwidth, boxed
+    widthStyles: 'boxed',           // fullwidth, boxed
     menuPosition: 'fixed',          // fixed, scrollable
     headerPosition: 'fixed',        // fixed, scrollable
-    menuColor: 'light',                  // light, dark, color, gradient, transparent
-    headerColor: 'light',                // light, dark, color, gradient, transparent
+    menuColor: 'light',             // light, dark, color, gradient, transparent
+    headerColor: 'light',           // light, dark, color, gradient, transparent
     themePrimary: '',               // '58, 88, 146', '92, 144, 163', '161, 90, 223', '78, 172, 76', '223, 90, 90'
     themeBackground: '',
     backgroundImage: '',            // bgimg1, bgimg2, bgimg3, bgimg4, bgimg5
