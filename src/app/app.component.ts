@@ -1,21 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
+
 import { MsalService } from '@azure/msal-angular';
 import { AuthenticationResult } from '@azure/msal-browser';
-import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  standalone: false,
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  constructor(
-    private authService: AuthService,  // 🔹 Az AuthService helyesen injektálva
-    private msalService: MsalService,  // 🔹 Az MsalService külön kezelve
-    private router: Router
-  ) { }
+  private msalService = inject(MsalService);
+  private router = inject(Router);
+
+  title = 'dfi';
 
   ngOnInit(): void {
     console.log('🔹 handleRedirectPromise() meghívása...');
@@ -43,6 +42,4 @@ export class AppComponent implements OnInit {
 
     // 🔹 Ha az oldal újratöltése után elveszik a bejelentkezés
  }
-
-
 }

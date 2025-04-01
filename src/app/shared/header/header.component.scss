@@ -1,0 +1,12 @@
+.main-header-content {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  margin: 0 2rem;
+
+  .desktop-logo {
+    width: 100px;
+    height: auto;
+  }
+}

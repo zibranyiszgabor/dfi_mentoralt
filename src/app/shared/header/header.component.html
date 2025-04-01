@@ -1,0 +1,57 @@
+<header class="main-header-content">
+  <div class="left">
+    <a routerLink="" class="header-logo">
+      <img class="desktop-logo" src="./assets/images/bge-logo.png" />
+    </a>
+  </div>
+  <div class="center">
+    <nav></nav>
+  </div>
+  <div class="right">
+    <button class="btn btn-primary" (click)="open(content)">
+      Bejelentkezés
+    </button>
+
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Bejelentkezés</h4>
+        <button
+          type="button"
+          class="btn-close"
+          (click)="modal.dismiss('Cross click')"
+        ></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="btn-list d-lg-flex d-none mt-lg-2 mt-xl-0 mt-0 w-100">
+          <a
+            class="btn btn-w-sm btn-wave btn-primary w-100"
+            (click)="loginAsEmployee()"
+          >
+            Dolgozói fiók
+          </a>
+        </div>
+
+        <br />
+
+        <div class="btn-list d-lg-flex d-none mt-lg-2 mt-xl-0 mt-0 w-100">
+          <a
+            class="btn btn-w-sm btn-wave btn-primary w-100"
+            (click)="loginAsStudent()"
+          >
+            Hallgatói fiók
+          </a>
+        </div>
+      </div>
+      <div class="modal-footer w-100">
+        <button
+          type="button"
+          class="btn btn-secondary w-100"
+          (click)="modal.close('Bezárás')"
+        >
+          Bezárás
+        </button>
+      </div>
+    </ng-template>
+  </div>
+</header>
