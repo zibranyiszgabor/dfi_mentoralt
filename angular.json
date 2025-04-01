@@ -33,9 +33,27 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
+              "src/assets/css/bootstrap.css",
+              "src/assets/css/style.css",
+              "src/assets/css/responsive.css",
+               ],
+            "scripts": [
+              "src/assets/js/jquery.js",
+              "src/assets/js/popper.min.js",
+              "src/assets/js/chosen.min.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/jquery.fancybox.js",
+              "src/assets/js/jquery.modal.min.js",
+              "src/assets/js/mmenu.polyfills.js",
+              "src/assets/js/mmenu.js",
+              "src/assets/js/appear.js",
+              "src/assets/js/anm.min.js",
+              "src/assets/js/ScrollMagic.min.js",
+              "src/assets/js/rellax.min.js",
+              "src/assets/js/owl.js",
+              "src/assets/js/wow.js",
+              "src/assets/js/script.js"              
+            ]
           },
           "configurations": {
             "production": {
