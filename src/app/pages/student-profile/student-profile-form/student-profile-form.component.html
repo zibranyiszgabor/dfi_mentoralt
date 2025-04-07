@@ -1,1 +1,14 @@
-<p>student-profile-form works!</p>
+
+@if (formGroup) {
+
+    <form [formGroup]="formGroup">
+
+        <div>
+            <label>First Name</label>
+            <input formControlName="firstName" id="">
+
+        </div>
+
+
+    </form>
+}
