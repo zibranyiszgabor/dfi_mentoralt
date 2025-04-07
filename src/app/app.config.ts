@@ -40,8 +40,8 @@ export function MSALGuardConfigFactory() {
 export function MSALInstanceFactory(): PublicClientApplication {
   return new PublicClientApplication({
     auth: {
-      clientId: environment.azureAd.clientId_employee, // 🔹 A megfelelő clientId legyen itt!
-      authority: environment.azureAd.authority_employee,
+      clientId: environment.azureAd.clientId_student, // 🔹 A megfelelő clientId legyen itt!
+      authority: environment.azureAd.authority_student,
       redirectUri: environment.azureAd.redirectUri,
     },
     cache: {

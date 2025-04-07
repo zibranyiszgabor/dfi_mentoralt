@@ -2,7 +2,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 
 import { MsalService } from '@azure/msal-angular';
-import { AuthenticationResult } from '@azure/msal-browser';
+import { AuthenticationResult, PublicClientApplication } from '@azure/msal-browser';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -13,33 +14,56 @@ import { AuthenticationResult } from '@azure/msal-browser';
 export class AppComponent implements OnInit {
   private msalService = inject(MsalService);
   private router = inject(Router);
+  public isLoggedIn = false;
+
 
   title = 'dfi';
 
-  ngOnInit(): void {
-    console.log('🔹 handleRedirectPromise() meghívása...');
-
-    this.msalService.instance.initialize().then(() => {
-      return this.msalService.instance.handleRedirectPromise();
-    }).then((result: AuthenticationResult | null) => {
-      if (result !== null && result.account) {
-        console.log('✅ Bejelentkezés sikeres:', result);
-
-        // 🔹 Aktív fiók beállítása
-        this.msalService.instance.setActiveAccount(result.account);
-
-        // 🔹 Felhasználó állapot frissítése az AuthService-ben
-       // this.authService.updateLoginStatus(true);
-
-        // 🔹 Navigálás a megfelelő oldalra
-        this.router.navigate(['/dashboard']);
-      } else {
-        console.log('⚠️ Nincs aktív bejelentkezés.');
-      }
-    }).catch(error => {
-      console.error('🚨 Hiba a bejelentkezés visszaállításakor:', error);
+  async ngOnInit(): Promise<void> {
+    const mode = localStorage.getItem('loginMode');
+  
+    const msal = new PublicClientApplication({
+      auth: {
+        clientId: mode === 'student'
+          ? environment.azureAd.clientId_student
+          : environment.azureAd.clientId_employee,
+        authority: mode === 'student'
+          ? environment.azureAd.authority_student
+          : environment.azureAd.authority_employee,
+        redirectUri: environment.azureAd.redirectUri,
+      },
+      cache: {
+        cacheLocation: 'localStorage',
+        storeAuthStateInCookie: true,
+      },
     });
+  
+    await msal.initialize();
+  
+    const result = await msal.handleRedirectPromise();
+    if (result?.account) {
+      msal.setActiveAccount(result.account);
+      localStorage.setItem('userAccount', JSON.stringify(result.account)); // ✅ Mentés
+      
+      console.log('✅ Bejelentkezett:', result.account);
 
-    // 🔹 Ha az oldal újratöltése után elveszik a bejelentkezés
- }
+      this.isLoggedIn = true;
+  
+      this.router.navigate(['/main/dashboard']);
+    } else {
+      // 🔁 Visszatöltés, ha újratöltött az oldal
+      const savedAccount = localStorage.getItem('userAccount');
+      if (savedAccount) {
+
+        console.log('✅ Bejelentkezett:', savedAccount);
+
+
+        msal.setActiveAccount(JSON.parse(savedAccount));
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+      }
+    }
+  }
+  
 }
