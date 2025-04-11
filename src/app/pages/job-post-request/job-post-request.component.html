@@ -1,0 +1,364 @@
+  <form [formGroup]="jobPostRequest" class="form-container job-post-request">
+    <div class="form-row">
+      <h2>Álláshirdetés regisztrációs kérelem</h2>
+      <h4>Ügyfél azonosító: {{ jobPostRequest.get('uniqueCode')?.value }}</h4>
+    </div>
+
+    <table class="companyInfo">
+      <tr>
+        <td><b>Cégnév:</b></td>
+        <td>{{ jobPostRequest.get('firmName')?.value }}</td>
+      </tr>
+      <tr>
+        <td><b>Email:</b></td>
+        <td>{{ jobPostRequest.get('emailAddress')?.value }}</td>
+      </tr>
+      <tr>
+    </table>
+
+     <div class="form-row">
+      <div class="form-group">
+        <label for="positionName">Pozíció neve</label>
+        <input type="text" id="positionName" class="form-control" formControlName="positionName"
+               name="positionName"
+               maxlength="255" required = "true">
+               <div *ngIf="jobPostRequest.get('positionName')?.invalid && jobPostRequest.get('positionName')?.touched" class="text-danger">
+                A pozíció neve kötelező és nem lehet hosszabb 255 karakternél.
+              </div>
+      </div>
+      
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="jobAppDeadline">Jelentkezési határidő</label>
+        <input type="date" id="jobAppDeadline" class="form-control" formControlName="jobAppDeadline"
+               name="jobAppDeadline">
+               <div *ngIf="jobPostRequest.get('jobAppDeadline')?.invalid && jobPostRequest.get('jobAppDeadline')?.touched" class="text-danger">
+                A Jelentkezési határidő megadása kötelező.
+              </div>
+      </div>
+
+      <div class="form-group">
+        <label for="expectedNumberOfApplicants">Igényelt jelentkezői létszám</label>
+        <input type="number" id="expectedNumberOfApplicants" class="form-control min" min="1" max="20" value="1"
+               formControlName="expectedNumberOfApplicants" name="expectedNumberOfApplicants">
+               <div *ngIf="jobPostRequest.get('expectedNumberOfApplicants')?.invalid && jobPostRequest.get('expectedNumberOfApplicants')?.touched" class="text-danger">
+                A létszám megadása kötelező.
+              </div>
+      </div>
+    </div>
+
+    <hr class="separator">
+
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="specialityCategory">Szakterületi kategória</label>
+        <select id="specialityCategory" class="form-control" formControlName="specialityCategory"
+                name="specialityCategory"
+                required="true">               
+          <option *ngFor="let option of specialityCategories" [value]="option">{{ option }}</option>   
+        </select>
+        <div *ngIf="jobPostRequest.get('specialityCategory')?.invalid && jobPostRequest.get('specialityCategory')?.touched" class="text-danger">
+          A szakterületi kategória határidő megadása kötelező.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="plannedStartOfEmployment">Foglalkoztatás tervezett kezdete</label>
+        <input type="date" id="plannedStartOfEmployment" class="form-control"
+               formControlName="plannedStartOfEmployment" 
+               name="plannedStartOfEmployment">
+               <div *ngIf="jobPostRequest.get('plannedStartOfEmployment')?.invalid && jobPostRequest.get('plannedStartOfEmployment')?.touched" class="text-danger">
+                A foglalkoztatás tervezett kezdetének megadása kötelező.
+              </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="workLocation">Munkavégzés helye</label>
+        <select id="workLocation" class="form-control" formControlName="workLocation"
+                name="workLocation"
+                maxlength="255" required="true">
+          <option *ngFor="let option of workLocations" [value]="option">{{ option }}</option>
+        </select>
+        <div *ngIf="jobPostRequest.get('workLocation')?.invalid && jobPostRequest.get('workLocation')?.touched" class="text-danger">
+          A munkavégzés helyének megadása kötelező.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="natureOfEmployment">Foglalkoztatás jellege</label>
+        <select id="natureOfEmployment" class="form-control" formControlName="natureOfEmployment"
+                name="natureOfEmployment">
+          <option *ngFor="let option of natureOfEmployments" [value]="option">{{ option }}</option>
+        </select>
+        <div *ngIf="jobPostRequest.get('natureOfEmployment')?.invalid && jobPostRequest.get('natureOfEmployment')?.touched" class="text-danger">
+          A foglalkoztatás jellegének megadása kötelező.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="workLanguage">Munkavégzés nyelve</label>
+        <select id="workLanguage" class="form-control" formControlName="workLanguage"
+                name="workLanguage">
+          <option *ngFor="let option of workLanguages" [value]="option">{{ option }}</option>
+        </select>
+        <div *ngIf="jobPostRequest.get('workLanguage')?.invalid && jobPostRequest.get('workLanguage')?.touched" class="text-danger">
+          A munkavégzés nyelvének megadása kötelező.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="workSchedule">Foglalkoztatási forma</label>
+        <select id="workSchedule" class="form-control" formControlName="workSchedule"
+                name="workSchedule">
+          <option *ngFor="let option of workSchedules" [value]="option">{{ option }}</option>
+        </select>
+        <div *ngIf="jobPostRequest.get('workSchedule')?.invalid && jobPostRequest.get('workSchedule')?.touched" class="text-danger">
+          A foglalkoztatási forma megadása kötelező.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="workingType">Munkavégzés ideje</label>
+        <select id="workingType" class="form-control" formControlName="workingType"
+                name="workingType">
+          <option *ngFor="let option of workingTypes" [value]="option">{{ option }}</option>
+        </select>
+        <div *ngIf="jobPostRequest.get('workingType')?.invalid && jobPostRequest.get('workingType')?.touched" class="text-danger">
+          A munkavégzés idejének megadása kötelező.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="workOrder">Munkarend</label>
+        <select id="workOrder" class="form-control" formControlName="workOrder" name="workOrder">
+          <option *ngFor="let option of workOrders" [value]="option">{{ option }}</option>
+        </select>
+        <div *ngIf="jobPostRequest.get('workOrder')?.invalid && jobPostRequest.get('workOrder')?.touched" class="text-danger">
+          A munkarend megadása kötelező.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group" *ngIf="jobPostRequest.get('workingType')?.value === 'heti napszám'">
+        <label for="workingHoursWeekdays">Heti minimum munkanapok száma</label>
+        <input type="number" id="workingHoursWeekdays" class="form-control" min="1" max="7"
+               formControlName="workingHoursWeekdays" name="workingHoursWeekdays">
+               <div *ngIf="jobPostRequest.get('workingHoursWeekdays')?.invalid && jobPostRequest.get('workingHoursWeekdays')?.touched" class="text-danger">
+                A heti minimum munkanapok számának megadása kötelező.
+              </div>
+      </div>
+
+      <div class="form-group">
+        <label for="typeOfEmploymentDuration">Foglalkoztatás időtartam típusa</label>
+        <select id="typeOfEmploymentDuration" class="form-control"
+                formControlName="typeOfEmploymentDuration" name="typeOfEmploymentDuration">
+          <option *ngFor="let option of typeOfEmploymentDurations" [value]="option">{{ option }}</option>
+        </select>
+        <div *ngIf="jobPostRequest.get('typeOfEmploymentDuration')?.invalid && jobPostRequest.get('typeOfEmploymentDuration')?.touched" class="text-danger">
+          A foglalkoztatás időtartam típusának megadása kötelező.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group" *ngIf="jobPostRequest.get('workingType')?.value === 'heti óraszám'">
+        <label for="workingHoursWeekHours">Heti minimum munkaórák száma</label>
+        <input type="number" id="workingHoursWeekHours" class="form-control" min="1" max="12"
+               formControlName="workingHoursWeekHours" name="workingHoursWeekHours">
+               <div *ngIf="jobPostRequest.get('workingHoursWeekHours')?.invalid && jobPostRequest.get('workingHoursWeekHours')?.touched" class="text-danger">
+                A  heti minimum munkaórák megadása kötelező.
+              </div>
+      </div>
+
+      <div class="form-group" *ngIf="jobPostRequest.get('typeOfEmploymentDuration')?.value === 'nap'">
+        <label for="employmentDurationDay">Foglalkoztatás időtartama (nap)</label>
+        <input type="number" id="employmentDurationDay" class="form-control" min="1" max="31"
+               formControlName="employmentDurationDay" name="employmentDurationDay">
+               <div *ngIf="jobPostRequest.get('employmentDurationDay')?.invalid && jobPostRequest.get('employmentDurationDay')?.touched" class="text-danger">
+                A foglalkoztatás időtartamának megadása kötelező.
+              </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="typeOfCompensation">Javadalmazás típusa</label>
+        <select id="typeOfCompensation" class="form-control" formControlName="typeOfCompensation"
+                name="typeOfCompensation">
+          <option *ngFor="let option of typeOfCompensations" [value]="option">{{ option }}</option>
+        </select>
+        <div *ngIf="jobPostRequest.get('typeOfCompensation')?.invalid && jobPostRequest.get('typeOfCompensation')?.touched" class="text-danger">
+          A javadalmazás típusának megadása kötelező.
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="jobPostRequest.get('typeOfEmploymentDuration')?.value === 'hét'">
+        <label for="employmentDurationWeek">Foglalkoztatás időtartama (hét)</label>
+        <input type="number" id="employmentDurationWeek" class="form-control" min="0" max="4"
+               formControlName="employmentDurationWeek" name="employmentDurationWeek">
+               <div *ngIf="jobPostRequest.get('employmentDurationWeek')?.invalid && jobPostRequest.get('employmentDurationWeek')?.touched" class="text-danger">
+                A foglalkoztatás típusának megadása kötelező.
+              </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="compensationValue">Javadalmazás értéke</label>
+        <input type="text" id="compensationValue" class="form-control"
+               formControlName="compensationValue" name="compensationValue">
+               <div *ngIf="jobPostRequest.get('compensationValue')?.invalid && jobPostRequest.get('compensationValue')?.touched" class="text-danger">
+                A javadalmazás értékének megadása kötelező.
+              </div>
+      </div>
+
+
+      <div class="form-group" *ngIf="jobPostRequest.get('typeOfEmploymentDuration')?.value === 'hónap' ">
+        <label for="employmentDurationMonth">Foglalkoztatás időtartama (hónap)</label>
+        <input type="number" id="employmentDurationMonth" class="form-control" min="0" max="12"
+               formControlName="employmentDurationMonth" name="employmentDurationMonth">
+               <div *ngIf="jobPostRequest.get('employmentDurationMonth')?.invalid && jobPostRequest.get('employmentDurationMonth')?.touched" class="text-danger">
+                A foglalkoztatás időtartamának megadása kötelező.
+              </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="otherBenefit">Egyéb juttatás</label>
+        <select id="otherBenefit" class="form-control" formControlName="otherBenefit"
+                name="otherBenefit">
+          <option *ngFor="let option of otherBenefits" [value]="option">{{ option }}</option>
+        </select>
+        <div *ngIf="jobPostRequest.get('otherBenefit')?.invalid && jobPostRequest.get('otherBenefit')?.touched" class="text-danger">
+          Az egyéb juttatások megadása kötelező.
+        </div>
+      </div>
+
+
+      <div class="form-group" *ngIf="jobPostRequest.get('typeOfEmploymentDuration')?.value === 'dátum'">
+        <label for="startOfEmployment">Foglalkoztatás kezdete</label>
+        <input type="date" id="startOfEmployment" class="form-control"
+               formControlName="startOfEmployment" name="startOfEmployment">
+               <div *ngIf="jobPostRequest.get('startOfEmployment')?.invalid && jobPostRequest.get('startOfEmployment')?.touched" class="text-danger">
+                A foglalkoztatás kezdeti idejének megadása kötelező.
+              </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group" >
+        <label for="otherBenefitOther">Egyéb juttatás (egyéb)</label>
+        <textarea id="otherBenefitOther" class="form-control" formControlName="otherBenefitOther"
+                  name="otherBenefitOther"></textarea>
+                  <div *ngIf="jobPostRequest.get('otherBenefitOther')?.invalid && jobPostRequest.get('otherBenefitOther')?.touched" class="text-danger">
+                    Az egyéb juttatások (egyéb) megadása kötelező.
+                  </div>
+      </div>
+
+      <div class="form-group" *ngIf="jobPostRequest.get('typeOfEmploymentDuration')?.value === 'dátum' ">
+        <label for="endOfEmployment">Foglalkoztatás vége</label>
+        <input type="date" id="endOfEmployment" class="form-control"
+               formControlName="endOfEmployment" name="endOfEmployment">
+               <div *ngIf="jobPostRequest.get('endOfEmployment')?.invalid && jobPostRequest.get('endOfEmployment')?.touched" class="text-danger">
+                A foglalkoztatás végének megadása kötelező.
+              </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="otherInformation">Egyéb infók</label>
+        <textarea id="otherInformation" class="form-control" formControlName="otherInformation"
+                  name="otherInformation"></textarea>
+                  <div *ngIf="jobPostRequest.get('otherInformation')?.invalid && jobPostRequest.get('otherInformation')?.touched" class="text-danger">
+                    Az egyéb infók megadása kötelező.
+                  </div>
+      </div>
+    </div>
+
+    <hr class="separator">
+
+    <div formArrayName="tasks">
+      <label for="text">Feladatok:</label>
+      <div *ngFor="let task of tasks.controls; let i = index" [formGroupName]="i" class="form-group">
+        <div class="d-flex align-items-center form-row">
+          <input
+            type="text"
+            id="task-{{ i }}"
+            formControlName="control"
+            class="form-control me-2"
+            placeholder="Írja be a feladatot"
+          />
+          <button type="button" class="btn btn-danger" (click)="removeControl(tasks, i)" [disabled]="tasks.length <= 1">Eltávolítás</button>
+        </div>
+        <div *ngIf="jobPostRequest.get(['tasks', i, 'control'])?.invalid && jobPostRequest.get(['tasks', i, 'control'])?.touched" class="text-danger mt-1">
+          A feladatokat kötelező megadni
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-secondary mt-3" (click)="addControl(tasks,  defaultValidator)" [disabled]="tasks.length >= 20">+ Új Feladat</button>
+    
+
+
+     <div formArrayName="hardSkillReqs">
+      <label for="text"> Hard skill követelmények:</label>
+      <div *ngFor="let hardSkillReq of hardSkillReqs.controls let i = index" [formGroupName]="i" class="form-group d-flex align-items-center form-row">
+        <input
+          type="text"
+          id="hardSkillReq-{{ i }}"
+          formControlName="control"
+          class="form-control me-2"
+          placeholder="Írja be a hard skill követelményt"
+        />
+        <button  type="button" class="btn btn-danger" (click)="removeControl(hardSkillReqs, i)">Eltávolítás</button>
+      </div>
+    </div>
+    <button  type="button" class="btn btn-secondary mt-3" (click)="addControl(hardSkillReqs, defaultValidator)" [disabled]="hardSkillReqs.length >= 10">+ Új követelmény</button> 
+
+    <div formArrayName="softSkills">
+      <label for="text"> Soft skillek:</label>
+      <div *ngFor="let softSkill of softSkills.controls let i = index" [formGroupName]="i" class="form-group d-flex align-items-center form-row">
+        <input
+          type="text"
+          id="softSkill-{{ i }}"
+          formControlName="control"
+          class="form-control me-2"
+          placeholder="Írja be a soft skilleket"
+        />
+        <button  type="button" class="btn btn-danger" (click)="removeControl(softSkills, i)">Eltávolítás</button>
+      </div>
+    </div>
+    <button  type="button" class="btn btn-secondary mt-3" (click)="addControl(softSkills, defaultValidator)" [disabled]="softSkills.length >= 10">+ Új soft skill</button> 
+
+    <div formArrayName="hardSkillAdvs">
+      <label for="text"> Hard skill előnyök:</label>
+      <div *ngFor="let hardSkillAdv of hardSkillAdvs.controls let i = index" [formGroupName]="i" class="form-group d-flex align-items-center form-row">
+        <input
+          type="text"
+          id="hardSkillAdv-{{ i }}"
+          formControlName="control"
+          class="form-control me-2"
+          placeholder="Írja be a hard skill előnyt"
+        />
+        <button  type="button" class="btn btn-danger" (click)="removeControl(hardSkillAdvs, i)">Eltávolítás</button>
+      </div>
+    </div>
+    <button  type="button" class="btn btn-secondary mt-3" (click)="addControl(hardSkillAdvs, hardSkillValidator)" [disabled]="hardSkillAdvs.length >= 10">+ Új előny</button> 
+
+    <hr class="separator">
+
+    <div class="form-row">
+      <button type="submit" class="btn btn-primary">Mentés</button>
+    </div> 
+  </form>

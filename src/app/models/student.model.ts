@@ -1,4 +1,6 @@
 import { StudentSkill } from "./studentSkill.model";
+import { StudentPreviousStudies } from "./studentPreviousStudies.model";
+
 
 export interface Student {
     neptunHash: string;
@@ -26,7 +28,7 @@ export interface Student {
     languageExamId?: number;
     matches?: any[]; 
     studentStudyPrograms?: any[];
-    studentPreviousStudies?: any[];
+    studentPreviousStudies?: StudentPreviousStudies[];
     studentSkills?: StudentSkill[];
     studentPreferences?: any[];
   }

@@ -11,7 +11,7 @@
             <div class="inner-box">
               <div class="content">
                 <figure class="image"><img src="images/icons/user.svg" alt=""></figure>
-                <h1 class="name"><a href="#">Teszt Elek</a></h1>
+                <h1 class="name"><a href="#">{{ student()?.lastName }} {{ student()?.firstName }}</a></h1>
                 <ul class="candidate-info">
                   <!--<li class="designation">UI Designer at Invision</li>
                   <li><span class="icon flaticon-map-locator"></span> London, UK</li>
@@ -49,12 +49,13 @@
                       <li>
                         <i class="icon fad fa-mail-bulk"></i>
                         <h5>E-mailcím:</h5>
+                        <span>{{ student()?.emailAddress }}</span>
                       </li>
 
                       <li>
                         <i class="icon fa fa-phone-office"></i>
                         <h5>Telefonszám:</h5>
-                        <span>(+36) 88 888-8888</span>
+                        <span>{{ student()?.phoneNumber }}</span>
                       </li>
                     </ul>
                   </div>
@@ -64,24 +65,15 @@
                   <div class="widget-content">
                     <ul class="job-overview">
                       
-
                       <li>
                         <i class="icon icon-language"></i>
                         <h5>Nyelvismeret:</h5>
                         <table style="padding-top: 10px;">
                           <tr>
-                            <td style="width: 33%;">Angol</td><td style="width: 10%;">|</td><td style="width: 33%;">C1</td>
+                            <td style="width: 33%;">{{ student()?.languageExamLanguage }}</td><td style="width: 10%;">|</td><td style="width: 33%;">{{ student()?.languageExamLevel }}</td><td style="width: 10%;">|</td><td style="width: 33%;">{{ student()?.languageExamType }}</td>
                           </tr>
-                          <tr>
-                            <td style="width: 33%;">Német</td><td style="width: 10%;">|</td><td>B2</td>
-                          </tr>
-                          <tr>
-                            <td style="width: 33%;">Spanyol</td><td style="width: 10%;">|</td><td>A1</td>
-                          </tr>                                                    
                         </table>
                       </li>
-
-
 
                     </ul>
                   </div>
@@ -111,7 +103,7 @@
                   <div class="resume-block">
                     <div class="inner">
                       <div class="btn-box">
-                        <a href="candidate-dashboard-profile.html" class="theme-btn btn-style-one">Szerkesztés</a>
+                        <a href="main/profile-student-edit" class="theme-btn btn-style-one">Szerkesztés</a>
                         <a href="candidate-dashboard-profile.html" class="theme-btn btn-style-one">CV letöltés</a>
                         <a href="candidate-dashboard-profile.html" class="theme-btn btn-style-one">CV megtekintése</a>
                         <!--<button class="bookmark-btn"><i class="flaticon-bookmark"></i></button>-->
@@ -127,33 +119,18 @@
                     <h4>Tanulmányok</h4>
                   </div>
                   <!-- Resume BLock -->
-                  <div class="resume-block">
-                    <div class="inner">
-                      <span class="name">B</span>
-                      <div class="title-box">
-                        <div class="info-box">
-                          <h3>Gazdasági Informatika</h3>
-                          <span>Budapesti Gazdaságtudományi Egyetem</span>
-                        </div>
-                        <div class="edit-box">
-                          <span class="year">2024 - </span>
-                        </div>
-                      </div>
-                      <div class="text"></div>
-                    </div>
-                  </div>
 
-                  <!-- Resume BLock -->
-                  <div class="resume-block">
+                  <div class="resume-block" *ngFor="let edu of student()?.studentPreviousStudies">
                     <div class="inner">
-                      <span class="name">C</span>
+                      <span class="name"></span>
                       <div class="title-box">
                         <div class="info-box">
-                          <h3>Nemzetközi gazdálkodás</h3>
-                          <span>Corvinus Egyetem</span>
+                          <h3>{{ edu.previousStudyName }}</h3>
                         </div>
                         <div class="edit-box">
-                          <span class="year">2018 - 2022</span>
+                          <span class="year">
+                            {{ edu.previousStudyFinishedAt || '' }}
+                          </span>
                         </div>
                       </div>
                       <div class="text"></div>
@@ -161,7 +138,8 @@
                   </div>
                 </div>
 
-                <!-- Resume / Work & Experience -->
+
+                  <!-- Resume / Work & Experience -->
                 <div class="resume-outer theme-blue">
                   <div class="upper-title">
                     <h4>Munka és tapasztalat</h4>

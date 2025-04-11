@@ -7,6 +7,7 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { StudentProfileEditComponent } from './pages/student-profile-edit/student-profile-edit.component';
 import { StudentProfileViewComponent } from './pages/student-profile-view/student-profile-view.component';
+import { JobPostRequestComponent } from './pages/job-post-request/job-post-request.component';
 
 
 export const routes: Routes = [
@@ -39,5 +40,9 @@ export const routes: Routes = [
         component: ProfileComponent,
       },
     ],
+  },
+  {
+    path: 'job-post-request',
+    component: JobPostRequestComponent
   },
 ];
