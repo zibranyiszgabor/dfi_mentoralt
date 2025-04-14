@@ -1,46 +1,130 @@
 <!-- Feltételezett Angular ngIf helyett *ngIf -->
-<form *ngIf="formGroup" [formGroup]!="formGroup">
-    <div>
-      <label>First Name</label>
-      <input formControlName="firstName" id="">
-    </div>
-  </form>
-  
-  <!-- A teljes dashboard szekció már nem kell, hogy egyetlen <form>-ban legyen -->
-  
-  <!-- Dashboard -->
-  <section class="page-title style-two at-jlv16 before_none bg-white">
-    <div class="auto-container">
-      <div class="dashboard-outer">
-        <div class="upper-title-box">
-          <h3>Profilom</h3>
-          <div class="text"></div>
-        </div>
-  
-        <div class="row">
-          <div class="col-lg-12">
-            <!-- Itt a további widgetek formjai megtarthatók, ha önállóan használjuk őket -->
-            <!-- Érdemes lehet összevonni, ha egyben akarjuk kezelni a mentést, de jelenleg nem muszáj őket egy form-ban tartani -->
-            
-            <!-- Például a profilkép feltöltése formban maradhat: -->
-            <form class="default-form">
-              <div class="row">
-                <div class="uploading-outer">
-                  <div class="uploadButton">
-                    <input class="uploadButton-input" type="file" name="attachments[]" accept="image/*, application/pdf" id="upload" multiple />
-                    <label class="uploadButton-button ripple-effect" for="upload">Browse Logo</label>
-                    <span class="uploadButton-file-name"></span>
-                  </div>
-                  <div class="text">Maximális fájlméret 1MB, Minimum felbontás: 330x300 és a fájl formátuma .jpg vagy .png</div>
-                </div>
+
+<section class="page-title style-two at-jlv16 before_none bg-white">
+  <div class="auto-container">
+    <div class="dashboard-outer">
+      <div class="upper-title-box">
+        <h3>Profilom</h3>
+        <div class="text"></div>
+      </div>
+
+      <div>
+        <input formControlName="firstName" id="firstName">
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="uploading-outer">
+              <div class="uploadButton">
+                <input class="uploadButton-input" type="file" name="attachments[]" accept="image/*, application/pdf"
+                  id="upload" multiple />
+                <label class="uploadButton-button ripple-effect" for="upload">Browse Logo</label>
+                <span class="uploadButton-file-name"></span>
               </div>
-            </form>
-  
-            <!-- További form szekciók megtarthatók hasonlóan, vagy kiemelhetők -->
-  
+              <div class="text">Maximális fájlméret 1MB, Minimum felbontás: 330x300 és a fájl formátuma .jpg vagy .png
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="ls-widget">
+        <div class="tabs-box">
+          <div class="widget-title">
+            <h4>Tanulmányok</h4>
+          </div>
+
+
+          <form *ngIf="formGroup" [formGroup]="formGroup" class="default-form"
+            style="border-radius: 10px; padding: 20px;">
+
+            <div formArrayName="studentPreviousStudies">
+
+
+                    @for(study of getStudentPreviousStudiesFormArray().controls; track study; let i = $index)
+                    {
+                    <div [formGroup]="getStudyFormGroup(i)" style="width: 100%;">
+
+                      <div class="row">
+                        <div class="form-group col-lg-4 col-md-12">
+                          <label>Képzési intézmény neve</label>
+                          <input type="text" formControlName="previousStudyName" id="previousStudyName">
+                        </div>
+
+                        <!-- Input -->
+                        <div class="form-group col-lg-4 col-md-12">
+                          <label>Képzés neve</label>
+                          <input type="text" name="name" placeholder="">
+                        </div>
+
+                        <!-- Input -->
+                        <div class="form-group col-lg-3 col-md-12">
+                          <label>Képzési szint</label>
+                          <select class="chosen-select">
+                            <option>alapfokú szakképzés</option>
+                            <option>felsőfokú szakképzés</option>
+                            <option>mesterképzés (MA/MSc)</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group col-lg-1 col-md-12">
+                          <br><br>
+                          <span class="fa fa-trash" (click)="removeStudentPreviousStudy(i)"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+
+                    }
+
+                    <div class="form-group col-lg-12 col-md-12">
+
+                      <button id="addStudentPreviousStudy" (click)="addStudentPreviousStudy()" class="theme-btn" style="    font-size: 20px;
+      font-weight: 500;
+      background-color: rgb(231,231,230);
+      border-radius: 10px;
+      width: 50px !important;
+      min-width: 30px;
+      min-height: 30px;
+      padding: 5px;">+</button>
+                    </div>
+
+                 
+                  </div>
+
+
+                  <app-student-language-skills></app-student-language-skills>
+
+                  <app-student-licences></app-student-licences>
+
+                  <app-student-preferences></app-student-preferences>
+
+
+                  <div style="margin-top: 10px">
+                    <button type="button" (click)="save()" class="theme-btn btn-style-one" >Mentés</button>
+                    &NonBreakingSpace;
+                    <button type="button" (click)="cancel()" class="theme-btn btn-style-one">Mégsem</button>
+                  </div>
+
+
+
+
+          </form>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
     </div>
-  </section>
-  <!-- End Dashboard -->
+  </div>
+</section>
+<!-- End Dashboard -->

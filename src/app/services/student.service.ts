@@ -4,9 +4,11 @@ import { Student } from '../models/student.model';
 import { environment } from '../../environments/environment';
 import { PublicClientApplication } from '@azure/msal-browser';
 
+// alkalmazás szintű service példány
 @Injectable({
   providedIn: 'root'
 })
+
 export class StudentService {
   private _student = signal<Student | null>(null);
   public student = this._student;
@@ -27,6 +29,9 @@ export class StudentService {
 
   constructor(private http: HttpClient) {}
 
+
+// http client mock -> kérés
+
   public fetchStudentProfile(): void {
     this.msal.acquireTokenSilent({
       account: this.msal.getAllAccounts()[0], // vagy amit használtok
@@ -41,7 +46,7 @@ export class StudentService {
         .subscribe({
           next: (profile) => {
             console.log('🎓 Student profil lekérve:', profile);
-            sessionStorage.setItem('student_profile', JSON.stringify(profile));
+            //sessionStorage.setItem('student_profile', JSON.stringify(profile));
             this._student.set(profile); // 🔁 signal frissítés
           },
           error: (err) => {

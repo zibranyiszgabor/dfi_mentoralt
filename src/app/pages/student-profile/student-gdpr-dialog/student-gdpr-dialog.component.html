@@ -1,0 +1,23 @@
+<!-- Overlay háttér -->
+<div style="position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1040;"></div>
+
+<!-- Modal középen, kattintható gombbal -->
+<div style="position: fixed; inset: 0; z-index: 1050; display: flex; align-items: center; justify-content: center;">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Adatkezelési Nyilatkozat</h5>
+      </div>
+
+      <div class="modal-body">
+        <p>Kérjük, fogadd el az adatkezelési nyilatkozatot a folytatáshoz.</p>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-primary" (click)="accept()">Elfogadom</button>
+      </div>
+
+    </div>
+  </div>
+</div>
