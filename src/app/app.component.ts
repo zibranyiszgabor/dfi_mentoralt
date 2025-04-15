@@ -6,6 +6,7 @@ import { AuthenticationResult, PublicClientApplication } from '@azure/msal-brows
 import { environment } from '../environments/environment';
 import { GdprModalComponent } from './pages/student-profile/student-gdpr-dialog/student-gdpr-dialog.component';
 import { NgIf } from '@angular/common';
+import { AuthService } from './auth/auth.service';
 
 
 @Component({
@@ -22,60 +23,29 @@ export class AppComponent implements OnInit {
 
   title = 'dfi';
 
+  constructor(private authService: AuthService) {
+  }
+
+
   async ngOnInit(): Promise<void> {
     const mode = localStorage.getItem('loginMode');
 
-    const msal = new PublicClientApplication({
-      auth: {
-        clientId: mode === 'student'
-          ? environment.azureAd.clientId_student
-          : environment.azureAd.clientId_employee,
-        authority: mode === 'student'
-          ? environment.azureAd.authority_student
-          : environment.azureAd.authority_employee,
-        redirectUri: environment.azureAd.redirectUri,
-      },
-      cache: {
-        cacheLocation: 'localStorage',
-        storeAuthStateInCookie: true,
-      },
-    });
+console.log('hívás: app.component');
 
-    await msal.initialize();
+    if (mode == 'student') {
+      console.log('hívás: student login');
 
-    const result = await msal.handleRedirectPromise();
-    if (result?.account) {
-      msal.setActiveAccount(result.account);
-      localStorage.setItem('userAccount', JSON.stringify(result.account)); // ✅ Mentés
-
-      console.log('✅ Bejelentkezett:', result.account);
-
-      this.isLoggedIn = true;
-
-      console.log(localStorage.getItem('showGdprModal'));
-
-      if (mode === 'student' && localStorage.getItem('showGdprModal') != 'false') {
-
-        console.log('Student Bejelentkezett:');
-        this.showGdprModal = true;
-      }
-
-
-      //  this.router.navigate(['/main/dashboard']);
+      this.authService.createStudentMsal();
     } else {
-      // 🔁 Visszatöltés, ha újratöltött az oldal
-      const savedAccount = localStorage.getItem('userAccount');
-      if (savedAccount) {
+      this.authService.createEmployeeMsal();
 
-        console.log('✅ Bejelentkezett:', savedAccount);
-
-
-        msal.setActiveAccount(JSON.parse(savedAccount));
-        this.isLoggedIn = true;
-      } else {
-        this.isLoggedIn = false;
-      }
     }
+
+
+
+
+    
+    
   }
 
   public onGdprAccepted() {

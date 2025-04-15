@@ -3,9 +3,10 @@ import { StudentPreviousStudies } from '../../../models/studentPreviousStudies.m
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-student-previous-studies',
-  imports: [],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './student-previous-studies.component.html',
   styleUrl: './student-previous-studies.component.scss'
 })

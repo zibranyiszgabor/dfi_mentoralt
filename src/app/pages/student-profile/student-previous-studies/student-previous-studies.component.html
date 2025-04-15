@@ -1,1 +1,53 @@
-<p>student-previous-studies works!</p>
+<div formArrayName="studentPreviousStudies">
+
+
+    @for(study of getStudentPreviousStudiesFormArray().controls; track study; let i = $index)
+    {
+    <div [formGroup]="getStudyFormGroup(i)" style="width: 100%;">
+
+      <div class="row">
+        <div class="form-group col-lg-4 col-md-12">
+          <label>Képzési intézmény neve</label>
+          <input type="text" formControlName="previousStudyName" id="previousStudyName">
+        </div>
+
+        <!-- Input -->
+        <div class="form-group col-lg-4 col-md-12">
+          <label>Képzés neve</label>
+          <input type="text" name="name" placeholder="">
+        </div>
+
+        <!-- Input -->
+        <div class="form-group col-lg-3 col-md-12">
+          <label>Képzési szint</label>
+          <select class="chosen-select">
+            <option>alapfokú szakképzés</option>
+            <option>felsőfokú szakképzés</option>
+            <option>mesterképzés (MA/MSc)</option>
+          </select>
+        </div>
+
+        <div class="form-group col-lg-1 col-md-12">
+          <br><br>
+          <span class="fa fa-trash" (click)="removeStudentPreviousStudy(i)"></span>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    }
+
+    <div class="form-group col-lg-12 col-md-12">
+
+      <button id="addStudentPreviousStudy" (click)="addStudentPreviousStudy()" class="theme-btn" style="    font-size: 20px;
+font-weight: 500;
+background-color: rgb(231,231,230);
+border-radius: 10px;
+width: 50px !important;
+min-width: 30px;
+min-height: 30px;
+padding: 5px;">+</button>
+    </div>
+
+ 
+  </div>

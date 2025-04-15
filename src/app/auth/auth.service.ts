@@ -13,13 +13,15 @@ import { PublicClientApplication, AuthenticationResult } from '@azure/msal-brows
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService {
   private backendUrl = environment.backendUrl; // 🔹 Backend API URL
   private apiBaseUrl = environment.apiBaseUrl; // 🔹 Backend API URL
-
   private userSubject = new BehaviorSubject<any>(null);
 
-  constructor(private msalService: MsalService, private http: HttpClient) {}
+  public msal!: PublicClientApplication;
+
+  constructor(private msalService: MsalService, private http: HttpClient) { }
 
   public get isLoggedIn(): boolean {
     const account = this.msalService.instance.getActiveAccount();
@@ -46,7 +48,7 @@ export class AuthService {
 
   public async initAndCheckLogin(): Promise<boolean> {
     const mode = localStorage.getItem('loginMode') ?? 'employee';
-  
+
     const msal = new PublicClientApplication({
       auth: {
         clientId: mode === 'student'
@@ -62,22 +64,22 @@ export class AuthService {
         storeAuthStateInCookie: true,
       },
     });
-  
+
     await msal.initialize();
-  
+
     const result = await msal.handleRedirectPromise();
     if (result?.account) {
       msal.setActiveAccount(result.account);
       localStorage.setItem('userAccount', JSON.stringify(result.account));
     }
-  
+
     const savedAccount = localStorage.getItem('userAccount');
     if (savedAccount) {
       msal.setActiveAccount(JSON.parse(savedAccount));
       sessionStorage.setItem('isLoggedIn', 'true');
       return true;
     }
-  
+
     return false;
   }
 
@@ -90,32 +92,6 @@ export class AuthService {
     );
   }
 
-  /** 🔹 Diák profil lekérése tokennel */
-  public fetchStudentProfile(): void {
-    this.msalService.acquireTokenSilent({
-      scopes: ['api://API_CLIENT_ID/.default']
-    }).subscribe({
-      next: (result) => {
-        const token = result.accessToken;
-        const headers = new HttpHeaders({
-          Authorization: `Bearer ${token}`
-        });
-
-        this.http.get<Student>(`${this.apiBaseUrl}/api/student/me`, { headers })
-          .subscribe({
-            next: (profile) => {
-              console.log('🎓 Student profil lekérve:', profile);
-              sessionStorage.setItem('student_profile', JSON.stringify(profile));
-              //this.studentSubject.next(profile);
-            },
-            error: (err) => {
-              console.error('❌ Student profil lekérési hiba:', err);
-            }
-          });
-      },
-      error: (err) => console.error('❌ Token lekérési hiba:', err)
-    });
-  }
 
   public getUserFromStorage(): any {
     const userData = sessionStorage.getItem('user_data');
@@ -125,38 +101,29 @@ export class AuthService {
   public async loginAsEmployee(): Promise<void> {
     console.log('🔹 Dolgozói bejelentkezés...');
     localStorage.setItem('loginMode', 'employee');
-  
-   
+
+
     try {
-      const msal = new PublicClientApplication({
-        auth: {
-          clientId: environment.azureAd.clientId_employee,
-          authority: environment.azureAd.authority_employee,
-          redirectUri: environment.azureAd.redirectUri,
-        },
-        cache: {
-          cacheLocation: 'localStorage',
-          storeAuthStateInCookie: true,
-        },
-      });
-  
-      await msal.initialize();
-  
+
+      await this.createEmployeeMsal();
+
+      await this.msal.initialize();
+
       // 🔐 Dolgozói clientId-re nézünk!
       const existingInteraction = localStorage.getItem(`msal.${environment.azureAd.clientId_employee}.interaction.status`);
-      
+
       if (existingInteraction === 'inProgress') {
         console.warn('⚠️ Bejelentkezés már folyamatban, nem indítjuk újra.');
         return;
       }
 
-       await msal.loginRedirect({
-        authority: environment.azureAd.authority_employee,        
+      await this.msal.loginRedirect({
+        authority: environment.azureAd.authority_employee,
         scopes: ['user.read'],
         prompt: 'select_account',
       });
-  
-      
+
+
     } catch (err: any) {
       if (err.errorCode === 'interaction_in_progress') {
         console.warn('⚠️ Már zajlik bejelentkezés, várakozás...');
@@ -167,13 +134,37 @@ export class AuthService {
   }
 
 
-  
-
   public async loginAsStudent(): Promise<void> {
     console.log('🔹 Diák bejelentkezés...');
     localStorage.setItem('loginMode', 'student');
-  
-    const msal = new PublicClientApplication({
+
+    await this.createStudentMsal();
+
+    try {
+
+      // Ellenőrzés: ne próbálkozz újra, ha interakció folyamatban
+      const existingInteraction = localStorage.getItem(`msal.${environment.azureAd.clientId_student}.interaction.status`);
+      if (existingInteraction === 'inProgress') {
+        console.warn('⚠️ Bejelentkezés már folyamatban, nem indítjuk újra.');
+        return;
+      }
+
+      await this.msal.loginRedirect({
+        scopes: ['user.read'],
+        prompt: 'select_account',
+      });
+    } catch (err: any) {
+      if (err.errorCode === 'interaction_in_progress') {
+        console.warn('⚠️ Már zajlik bejelentkezés, várakozás...');
+      } else {
+        console.error('❌ Login hiba:', err);
+      }
+    }
+  }
+
+  public async createStudentMsal() {
+
+    this.msal = new PublicClientApplication({
       auth: {
         clientId: environment.azureAd.clientId_student,
         authority: environment.azureAd.authority_student,
@@ -184,37 +175,37 @@ export class AuthService {
         storeAuthStateInCookie: true,
       },
     });
-  
-    try {
-      await msal.initialize();
-  
-      // Ellenőrzés: ne próbálkozz újra, ha interakció folyamatban
-      const existingInteraction = localStorage.getItem(`msal.${environment.azureAd.clientId_student}.interaction.status`);
-      if (existingInteraction === 'inProgress') {
-        console.warn('⚠️ Bejelentkezés már folyamatban, nem indítjuk újra.');
-        return;
-      }
-  
-      await msal.loginRedirect({
-        scopes: ['user.read'],
-        prompt: 'select_account',
-      });
-    } catch (err: any) {
-      if (err.errorCode === 'interaction_in_progress') {
-        console.warn('⚠️ Már zajlik bejelentkezés, várakozás...');
-      } else {
-        console.error('❌ Login hiba:', err);
-      }
-    }
+
+    await this.msal.initialize();
+
+    console.log(this.msal.getAllAccounts()[0]);
   }
-  
+
+public async createEmployeeMsal() {
+
+  this.msal = new PublicClientApplication({
+    auth: {
+      clientId: environment.azureAd.clientId_employee,
+      authority: environment.azureAd.authority_employee,
+      redirectUri: environment.azureAd.redirectUri,
+    },
+    cache: {
+      cacheLocation: 'localStorage',
+      storeAuthStateInCookie: true,
+    },
+  });
+
+  await this.msal.initialize();
+
+}
+
   public async logout(): Promise<void> {
     localStorage.removeItem('userAccount');
     localStorage.removeItem('loginMode');
     //this.isLoggedInSubject.next(false);
-  
+
     const mode = localStorage.getItem('loginMode') ?? 'employee';
-  
+
     const msal = new PublicClientApplication({
       auth: {
         clientId: mode === 'student'
@@ -230,12 +221,12 @@ export class AuthService {
         storeAuthStateInCookie: true,
       },
     });
-  
-    await msal.initialize(); 
-  
-    await msal.logoutRedirect(); 
+
+    await msal.initialize();
+
+    await msal.logoutRedirect();
   }
-  
+
 
   public storeToken(): void {
     const account = this.msalService.instance.getActiveAccount();
@@ -246,4 +237,7 @@ export class AuthService {
       }
     }
   }
+
+
+
 }

@@ -39,76 +39,20 @@
           <form *ngIf="formGroup" [formGroup]="formGroup" class="default-form"
             style="border-radius: 10px; padding: 20px;">
 
-            <div formArrayName="studentPreviousStudies">
+            <app-student-previous-studies></app-student-previous-studies>
+
+            <app-student-language-skills></app-student-language-skills>
+
+            <app-student-licences></app-student-licences>
+
+            <app-student-preferences></app-student-preferences>
 
 
-                    @for(study of getStudentPreviousStudiesFormArray().controls; track study; let i = $index)
-                    {
-                    <div [formGroup]="getStudyFormGroup(i)" style="width: 100%;">
-
-                      <div class="row">
-                        <div class="form-group col-lg-4 col-md-12">
-                          <label>Képzési intézmény neve</label>
-                          <input type="text" formControlName="previousStudyName" id="previousStudyName">
-                        </div>
-
-                        <!-- Input -->
-                        <div class="form-group col-lg-4 col-md-12">
-                          <label>Képzés neve</label>
-                          <input type="text" name="name" placeholder="">
-                        </div>
-
-                        <!-- Input -->
-                        <div class="form-group col-lg-3 col-md-12">
-                          <label>Képzési szint</label>
-                          <select class="chosen-select">
-                            <option>alapfokú szakképzés</option>
-                            <option>felsőfokú szakképzés</option>
-                            <option>mesterképzés (MA/MSc)</option>
-                          </select>
-                        </div>
-
-                        <div class="form-group col-lg-1 col-md-12">
-                          <br><br>
-                          <span class="fa fa-trash" (click)="removeStudentPreviousStudy(i)"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <hr>
-
-                    }
-
-                    <div class="form-group col-lg-12 col-md-12">
-
-                      <button id="addStudentPreviousStudy" (click)="addStudentPreviousStudy()" class="theme-btn" style="    font-size: 20px;
-      font-weight: 500;
-      background-color: rgb(231,231,230);
-      border-radius: 10px;
-      width: 50px !important;
-      min-width: 30px;
-      min-height: 30px;
-      padding: 5px;">+</button>
-                    </div>
-
-                 
-                  </div>
-
-
-                  <app-student-language-skills></app-student-language-skills>
-
-                  <app-student-licences></app-student-licences>
-
-                  <app-student-preferences></app-student-preferences>
-
-
-                  <div style="margin-top: 10px">
-                    <button type="button" (click)="save()" class="theme-btn btn-style-one" >Mentés</button>
-                    &NonBreakingSpace;
-                    <button type="button" (click)="cancel()" class="theme-btn btn-style-one">Mégsem</button>
-                  </div>
-
-
-
+            <div style="margin-top: 10px">
+              <button type="button" (click)="save()" class="theme-btn btn-style-one">Mentés</button>
+              &NonBreakingSpace;
+              <button type="button" (click)="cancel()" class="theme-btn btn-style-one">Mégsem</button>
+            </div>
 
           </form>
         </div>

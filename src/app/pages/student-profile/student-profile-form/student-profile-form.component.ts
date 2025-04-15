@@ -7,11 +7,12 @@ import { Router } from '@angular/router';
 import { StudentLanguageSkillsComponent } from "../student-language-skills/student-language-skills.component";
 import { StudentLicencesComponent } from "../student-licences/student-licences.component";
 import { StudentPreferencesComponent } from "../student-preferences/student-preferences.component";
+import { StudentPreviousStudiesComponent } from "../student-previous-studies/student-previous-studies.component";
 
 
 @Component({
   selector: 'app-student-profile-form',
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, StudentLanguageSkillsComponent, StudentLicencesComponent, StudentPreferencesComponent],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, StudentLanguageSkillsComponent, StudentLicencesComponent, StudentPreferencesComponent, StudentPreviousStudiesComponent],
   templateUrl: './student-profile-form.component.html',
   styleUrl: './student-profile-form.component.scss'
 })
@@ -23,21 +24,13 @@ export class StudentProfileFormComponent implements OnInit {
   formBuilder = inject(FormBuilder);
   formGroup: FormGroup | undefined = undefined;
 
-
-
   ngOnInit(): void {
-    //this.student = JSON.parse(sessionStorage.getItem('student_profile'));
 
     this.formGroup = this.createFormGroup(this.student);
 
   }
 
-
-  // ngOnInit -> komponens konstruktora után fut le, pl: observable feliratkozás
-
-  // @Input() student! : Student; // ! -> majd inicializálni kell valahol
   @Input() student: Student | undefined = undefined; // ! -> majd inicializálni kell valahol
-
 
   createPreviewStudy(studentPreviousStudies?: StudentPreviousStudies): FormGroup {
     return this.formBuilder.group(
@@ -81,11 +74,6 @@ export class StudentProfileFormComponent implements OnInit {
 
     return formGroup; //formcontroll
 
-
-
-
-    //angular reactive form formarray
-
   }
 
   public cancel(): void {
@@ -93,15 +81,15 @@ export class StudentProfileFormComponent implements OnInit {
   }
 
   public save(): void {
-      //this.updateEntity(this.formGroup().value);
-  console.log(this.formGroup?.value);
+    //this.updateEntity(this.formGroup().value);
+    console.log(this.formGroup?.value);
 
-      // dataservice.update
+    // dataservice.update
 
- //   this.router.navigate(['../../list'], {
- //     relativeTo: this.activatedRoute,
- //   });
+    //   this.router.navigate(['../../list'], {
+    //     relativeTo: this.activatedRoute,
+    //   });
 
   }
-  
+
 }

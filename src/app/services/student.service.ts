@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Student } from '../models/student.model';
 import { environment } from '../../environments/environment';
 import { PublicClientApplication } from '@azure/msal-browser';
+import { AuthService } from '../auth/auth.service';
 
 // alkalmazás szintű service példány
 @Injectable({
@@ -10,39 +11,36 @@ import { PublicClientApplication } from '@azure/msal-browser';
 })
 
 export class StudentService {
+
+  public isLoggedIn = false;
+
   private _student = signal<Student | null>(null);
   public student = this._student;
+  private apiBaseUrl = 'https://localhost:3000'; // állítsd be
+  private msal!: PublicClientApplication;
 
-  private apiBaseUrl = 'https://your-api-url'; // állítsd be
+  constructor(private http: HttpClient, private authService: AuthService) {
 
-  private msal = new PublicClientApplication({
-    auth: {
-      clientId: environment.azureAd.clientId_student,
-      authority: environment.azureAd.authority_student,
-      redirectUri: environment.azureAd.redirectUri,
-    },
-    cache: {
-      cacheLocation: 'localStorage',
-      storeAuthStateInCookie: true,
-    },
-  });
+    this.msal = authService.msal;
+    console.log("account:" + this.msal.getAllAccounts()[0]);
 
-  constructor(private http: HttpClient) {}
+  }
 
 
-// http client mock -> kérés
+  // http client mock -> kérés
+  // promise -> await (megvárjuk a választ, szinkronizált lesz), csak async 
 
   public fetchStudentProfile(): void {
+
     this.msal.acquireTokenSilent({
       account: this.msal.getAllAccounts()[0], // vagy amit használtok
-      scopes: ['api://API_CLIENT_ID/.default']
+      scopes: ['api://5a68a69c-7d32-4322-b4f2-f8e2cf36738f/.default']
     }).then(result => {
       const token = result.accessToken;
       const headers = new HttpHeaders({
         Authorization: `Bearer ${token}`
       });
-
-      this.http.get<Student>(`${this.apiBaseUrl}/api/student/me`, { headers })
+      this.http.get<Student>(`${this.apiBaseUrl}/api/student/email`, { headers })
         .subscribe({
           next: (profile) => {
             console.log('🎓 Student profil lekérve:', profile);
