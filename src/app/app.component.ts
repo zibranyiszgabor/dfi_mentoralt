@@ -26,32 +26,35 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService) {
   }
 
-
   async ngOnInit(): Promise<void> {
     const mode = localStorage.getItem('loginMode');
+    const savedAccount = localStorage.getItem('userAccount');
 
-console.log('hívás: app.component');
+    console.log('hívás: app.component');
 
-    if (mode == 'student') {
-      console.log('hívás: student login');
-
-      this.authService.createStudentMsal();
+    if (mode === 'student') {
+      await this.authService.createStudentMsal();
     } else {
-      this.authService.createEmployeeMsal();
-
+      await this.authService.createEmployeeMsal();
     }
-
-
-
-
+    
+    const msal = this.authService.msalInstance;
     
     
+
+
+    //    console.log('🎫 Token újratöltés után:', result.accessToken);
+    //console.log('✅ mentett account :',  localStorage.getItem('userAccount'));
+    console.log('✅ visszaállitott account :', msal.getActiveAccount());
+
+
+
   }
 
   public onGdprAccepted() {
 
     this.showGdprModal = false;
-    localStorage.setItem('showGdprModal','false');
+    localStorage.setItem('showGdprModal', 'false');
     this.router.navigate(['/main/dashboard']);
   }
 

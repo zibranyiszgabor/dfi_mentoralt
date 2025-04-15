@@ -98,6 +98,10 @@ export class AuthService {
     return userData ? JSON.parse(userData) : null;
   }
 
+  public get msalInstance(): PublicClientApplication {
+    return this.msal;
+  }
+
   public async loginAsEmployee(): Promise<void> {
     console.log('🔹 Dolgozói bejelentkezés...');
     localStorage.setItem('loginMode', 'employee');
@@ -178,7 +182,6 @@ export class AuthService {
 
     await this.msal.initialize();
 
-    console.log(this.msal.getAllAccounts()[0]);
   }
 
 public async createEmployeeMsal() {
@@ -226,7 +229,6 @@ public async createEmployeeMsal() {
 
     await msal.logoutRedirect();
   }
-
 
   public storeToken(): void {
     const account = this.msalService.instance.getActiveAccount();
