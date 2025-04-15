@@ -1,9 +1,11 @@
-import { Injectable, signal } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Inject, Injectable, Injector, signal } from '@angular/core';
+import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Student } from '../models/student.model';
 import { environment } from '../../environments/environment';
 import { PublicClientApplication } from '@azure/msal-browser';
 import { AuthService } from '../auth/auth.service';
+import { tap, finalize } from 'rxjs/operators';
+
 
 // alkalmazás szintű service példány
 @Injectable({
@@ -18,19 +20,52 @@ export class StudentService {
   public student = this._student;
   private apiBaseUrl = 'https://localhost:3000'; // állítsd be
   private msal!: PublicClientApplication;
+  private defaultHttp: HttpClient;
+  private secureHttp: HttpClient;
 
-  constructor(private http: HttpClient, private authService: AuthService) {
+  constructor(private http: HttpClient,
+              private authService: AuthService,
+              httpBackend: HttpBackend,
+              private injector: Injector 
+            ) {
+              this.defaultHttp = new HttpClient(httpBackend); 
+              this.secureHttp = this.injector.get(HttpClient);    
+
 
     this.msal = authService.msal;
     console.log("account:" + this.msal.getAllAccounts()[0]);
 
   }
 
-
-  // http client mock -> kérés
-  // promise -> await (megvárjuk a választ, szinkronizált lesz), csak async 
-
   public fetchStudentProfile(): void {
+    const accountStr = localStorage.getItem('userAccount');
+  
+    if (!accountStr) {
+      console.warn('⚠️ Nincs mentett felhasználói fiók.');
+      return;
+    }
+  
+    const account = JSON.parse(accountStr);
+    const email = account.username;
+    console.log("email:" + email);
+  
+    const url = `${this.apiBaseUrl}/api/student/email?email=${encodeURIComponent(email)}`;
+    console.log('📡 Hívott URL:', url);
+  
+    this.defaultHttp.get<Student>(url).subscribe({
+      next: (profile) => {
+        console.log('🎓 Student profil lekérve:', profile); // Látod ezt?
+        this._student.set(profile); // Ha itt a hiba, ez nem látszik!
+      },
+      error: (err) => {
+        console.error('❌ HTTP hiba:', err);
+      }
+    });
+  }
+  
+  
+
+  public fetchStudentProfile_msal(): void {
 
     this.msal.acquireTokenSilent({
       account: this.msal.getAllAccounts()[0], // vagy amit használtok
@@ -55,4 +90,5 @@ export class StudentService {
       console.error('❌ Token hiba:', err);
     });
   }
+
 }

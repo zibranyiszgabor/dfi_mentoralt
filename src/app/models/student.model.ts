@@ -2,34 +2,36 @@ import { StudentSkill } from "./studentSkill.model";
 import { StudentPreviousStudies } from "./studentPreviousStudies.model";
 
 
-export interface Student {
-    neptunHash: string;
-    firstName: string;
-    lastName: string;
-    title: string;
-    emailAddress: string;
-    phoneNumber: string;
-    recStat: boolean;
-    createdAt?: string;
-    createdBy: number;
-    changedAt?: string;
-    changedBy: number;
-    startDateOfLegalRelationship?: string;
-    endDateOfLegalRelationship?: string;
-    expectedCompletion?: string;
-    modulName: string;
-    trainingLevel: string;
-    languageExamLanguage: string;
-    languageExamLevel: string;
-    languageExamType: string;
-    studentTrainingId?: number;
-    trainingId?: number;
-    emailId?: number;
-    languageExamId?: number;
-    matches?: any[]; 
-    studentStudyPrograms?: any[];
+  export interface Student {
+    studentId: number;
+    neptunHash?: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
+    title?: string | null;
+    emailAddress?: string | null;
+    phoneNumber?: string | null;
+    recStat?: boolean | null;
+    startDateOfLegalRelationship?: string | null;
+    endDateOfLegalRelationship?: string | null;
+    expectedCompletion?: string | null;
+    modulName?: string | null;
+    trainingLevel?: string | null;
+    languageExamLanguage?: string | null;
+    languageExamLevel?: string | null;
+    languageExamType?: string | null;
+    studentTrainingId?: number | null;
+    trainingId?: number | null;
+    emailId?: number | null;
+    languageExamId?: number | null;
+    isServiceInterested?: boolean | null;
+    isDataProtDeclAccepted?: boolean | null;
+    createdAt?: string | null;
+    createdBy?: number | null;
+    changedAt?: string | null;
+    changedBy?: number | null;
+    matches?: any[] | null;
+    studentStudyPrograms?: any[] | null;
     studentPreviousStudies?: StudentPreviousStudies[];
-    studentSkills?: StudentSkill[];
+    studentSkills?: any[] | null;
     studentPreferences?: any[];
   }
-  

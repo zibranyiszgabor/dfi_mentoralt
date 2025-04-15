@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { MsalService } from '@azure/msal-angular';
 
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -21,7 +21,11 @@ export class AuthService {
 
   public msal!: PublicClientApplication;
 
-  constructor(private msalService: MsalService, private http: HttpClient) { }
+  constructor(
+    private msalService: MsalService,
+    private http: HttpClient,
+    private defaultHttp: HttpClient,
+    @Inject(HttpClient) private secureHttp: HttpClient) { }
 
   public get isLoggedIn(): boolean {
     const account = this.msalService.instance.getActiveAccount();
@@ -102,6 +106,22 @@ export class AuthService {
     return this.msal;
   }
 
+  public async initMsalForMode(mode: 'student' | 'employee'): Promise<void> {
+    this.msal = new PublicClientApplication({
+      auth: {
+        clientId: mode === 'student' ? environment.azureAd.clientId_student : environment.azureAd.clientId_employee,
+        authority: mode === 'student' ? environment.azureAd.authority_student : environment.azureAd.authority_employee,
+        redirectUri: environment.azureAd.redirectUri,
+      },
+      cache: {
+        cacheLocation: 'localStorage',
+        storeAuthStateInCookie: true,
+      },
+    });
+  
+    await this.msal.initialize();
+  }
+
   public async loginAsEmployee(): Promise<void> {
     console.log('🔹 Dolgozói bejelentkezés...');
     localStorage.setItem('loginMode', 'employee');
@@ -145,7 +165,6 @@ export class AuthService {
     await this.createStudentMsal();
 
     try {
-
       // Ellenőrzés: ne próbálkozz újra, ha interakció folyamatban
       const existingInteraction = localStorage.getItem(`msal.${environment.azureAd.clientId_student}.interaction.status`);
       if (existingInteraction === 'inProgress') {

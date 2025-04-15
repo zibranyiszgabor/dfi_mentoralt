@@ -17,7 +17,7 @@ export class StudentProfileViewComponent implements OnInit {
   student! : Signal<Student | null>;
 
 ngOnInit() {
-  //this.studentService.fetchStudentProfile();
+  this.studentService.fetchStudentProfile();
   this.student = this.studentService.student;
 }
 

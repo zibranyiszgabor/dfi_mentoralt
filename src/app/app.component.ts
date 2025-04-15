@@ -27,24 +27,32 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    const mode = localStorage.getItem('loginMode');
-    const savedAccount = localStorage.getItem('userAccount');
 
-    console.log('hívás: app.component');
-
-    if (mode === 'student') {
-      await this.authService.createStudentMsal();
-    } else {
-      await this.authService.createEmployeeMsal();
-    }
+    const mode = localStorage.getItem('loginMode') as 'student' | 'employee';
+    await this.authService.initMsalForMode(mode);
     
     const msal = this.authService.msalInstance;
     
+    // 🛡️ Redirect válasz feldolgozása (csak egyszer!)
+    const redirectResult = await msal.handleRedirectPromise();
+    
+    if (redirectResult?.account) {
+      msal.setActiveAccount(redirectResult.account);
+      localStorage.setItem('userAccount', JSON.stringify(redirectResult.account));
+      console.log('✅ Redirectből jött account:', redirectResult.account);
+    } else {
+      // ♻️ Próbáljuk visszatölteni az accountot cache-ből
+      const accounts = msal.getAllAccounts();
+    
+      if (accounts.length > 0) {
+        msal.setActiveAccount(accounts[0]);
+        console.log('♻️ Account visszatöltve MSAL cache-ből:', accounts[0]);
+      } 
+    }
     
 
 
-    //    console.log('🎫 Token újratöltés után:', result.accessToken);
-    //console.log('✅ mentett account :',  localStorage.getItem('userAccount'));
+
     console.log('✅ visszaállitott account :', msal.getActiveAccount());
 
 
