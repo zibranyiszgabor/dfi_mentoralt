@@ -10,7 +10,7 @@
 
 .form-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .form-group {
@@ -39,7 +39,8 @@ button {
 
 select {
   appearance: auto;
-  -webkit-appearance: auto; /* Safari támogatás */
+  -webkit-appearance: auto;
+  /* Safari támogatás */
 }
 
 button.btn-danger {
@@ -47,18 +48,45 @@ button.btn-danger {
 }
 
 .form-control {
-  height: 38px; /* Fix magasság a mezőkhöz */
-  font-size: 14px; /* Azonos betűméret minden mezőben */
-  box-sizing: border-box; /* Helyes méretezés biztosítása */
+  height: 38px;
+  /* Fix magasság a mezőkhöz */
+  font-size: 14px;
+  /* Azonos betűméret minden mezőben */
+  box-sizing: border-box;
+  /* Helyes méretezés biztosítása */
   display: inline-block;
-  vertical-align: middle; /* Függőleges igazítás azonos szinten */
+  vertical-align: middle;
+  /* Függőleges igazítás azonos szinten */
 }
 
 .form-group.d-flex {
-  align-items: center; /* A mező és a gomb egy szintre kerül */
-  margin-bottom: 10px; /* Távolság a sorok között */
+  align-items: center;
+  /* A mező és a gomb egy szintre kerül */
+  margin-bottom: 10px;
+  /* Távolság a sorok között */
 }
 
-.form-control{
-  
+
+.separator {
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+.fieldSet {
+  padding: 1rem;
+  padding-top: 0;
+  padding-bottom: .5rem;
+  border: grey;
+  border-width: 1px;
+  border-radius: 5px;
+  border-style: solid;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.fieldSet>label {
+  margin-bottom: 1rem;
+  font-weight: bold;
 }

@@ -68,27 +68,49 @@
                       <li>
                         <i class="icon icon-language"></i>
                         <h5>Nyelvismeret:</h5>
-                        <table style="padding-top: 10px;">
-                          <tr>
-                            <td style="width: 33%;">{{ student()?.languageExamLanguage }}</td><td style="width: 10%;">|</td><td style="width: 33%;">{{ student()?.languageExamLevel }}</td><td style="width: 10%;">|</td><td style="width: 33%;">{{ student()?.languageExamType }}</td>
-                          </tr>
-                        </table>
-                      </li>
+                    
+                        <ng-container *ngIf="student() as s">
+                       
+                          <table style="margin-top: 20px; width: 100%;">
+                            <thead>
+                              <tr>
+                                <td colspan="2" style="text-align: center; font-weight: 600;">Nyelv</td>
+                                <td colspan="2" style="text-align: center; font-weight: 600;">Típus</td>
+                                <td style="text-align: center; font-weight: 600;">Szint</td>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let skill of s.languageSkills; let i = index">
+                                <td [id]="'stdLang' + (i + 1)" style="width: 15%; text-align: center;">
+                                  {{ skill.languageExamLangDict?.name_HU || '-' }}
+                                </td>
+                                <td style="width: 2%; text-align: center;">|</td>
+                                <td [id]="'stdLangType' + (i + 1)" style="width: 20%; text-align: center;">
+                                  {{ skill.languageExamTypeDict?.name_HU || '-' }}
+                                </td>
+                                <td style="width: 5%; text-align: center;">|</td>
+                                <td [id]="'stdLangLvl' + (i + 1)" style="width: 20%; text-align: center;">
+                                  {{ skill.languageExamLevelDict?.name_HU || '-' }}
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+
+                        </ng-container>
+                        
+                        <ng-template #noLangs>
+                          <p>❗ Nincs nyelvismereti adat.</p>
+                        </ng-template>
 
                     </ul>
+
                   </div>
                 </div>
 
                 <div class="sidebar-widget social-media-widget">
                   <h4 class="widget-title">
-                    Linked<a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    Linked<a href="{{ student()?.linkedIn }}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                   </h4>
-                  <div class="widget-content">
-                    <div class="social-links">
-
-                      <a id="aLinkedIn" href=""></a>
-                    </div>
-                  </div>
                 </div>
 
 
@@ -98,7 +120,8 @@
             <div class="content-column col-lg-8 col-md-12 col-sm-12">
               <div class="job-detail">
 
-                <!-- Resume / Education -->
+
+               <!-- Resume / Navi -->
                 <div class="Resume-outer">
                   <div class="resume-block">
                     <div class="inner">
@@ -109,80 +132,156 @@
                         <!--<button class="bookmark-btn"><i class="flaticon-bookmark"></i></button>-->
                       </div>
                     </div>
-
                   </div>
                 </div>
 
-
-                <div class="resume-outer">
+                <!-- Resume / Rólam -->
+                <div class="resume-outer theme-gray">
                   <div class="upper-title">
-                    <h4>Tanulmányok</h4>
+                    <h4>Rólam</h4>
                   </div>
-                  <!-- Resume BLock -->
-
-                  <div class="resume-block" *ngFor="let edu of student()?.studentPreviousStudies">
+                  <div class="resume-block">
                     <div class="inner">
-                      <span class="name"></span>
-                      <div class="title-box">
-                        <div class="info-box">
-                          <h3>{{ edu.previousStudyName }}</h3>
-                        </div>
-                        <div class="edit-box">
-                          <span class="year">
-                            {{ edu.previousStudyFinishedAt || '' }}
-                          </span>
-                        </div>
-                      </div>
-                      <div class="text"></div>
-                    </div>
+                      <h4></h4>
+                      <p>{{ student()?.aboutMe }}</p> 
+                    </div>  
                   </div>
                 </div>
+
+
+                  <!-- Resume / Tanulmányok -->
+                  <div class="resume-outer theme-gray">
+                    <div class="upper-title">
+                      <h4>Tanulmányok</h4>
+                    </div>
+  
+                    <ng-container *ngIf="student() as s">
+                      <div *ngFor="let edu of s.studentStudies" class="resume-block">
+                          <div class="inner">
+                            <span class="name"></span>
+                            <div class="title-box">
+                              <div class="info-box">
+                                <h3>{{ edu.nameOfInstitution }}</h3>
+                                <span>{{ edu.nameOfTraining }}</span>
+                              </div>
+                              <div class="edit-box">
+                                <span class="year">
+                                  {{ edu.startDateOfLegalRelationship| date:'yyyy.MM.' }} -
+                                  {{ edu.endDateOfLegalRelationship ? (edu.endDateOfLegalRelationship | date:'yyyy.MM.') : 'jelenleg is' }}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </ng-container>
+                  </div>
 
 
                   <!-- Resume / Work & Experience -->
-                <div class="resume-outer theme-blue">
+                <div class="resume-outer theme-gray">
                   <div class="upper-title">
-                    <h4>Munka és tapasztalat</h4>
-                  </div>
-                  <!-- Resume BLock -->
-                  <div class="resume-block">
-                    <div class="inner">
-                      <span class="name">S</span>
-                      <div class="title-box">
-                        <div class="info-box">
-                          <h3>Product Designer</h3>
-                          <span>Spotify Inc.</span>
-                        </div>
-                        <div class="edit-box">
-                          <span class="year">2020 - 2022</span>
-                        </div>
-                      </div>
-                      <div class="text"></div>
-                    </div>
+                    <h4>Munkatapasztalat</h4>
                   </div>
 
-                  <!-- Resume BLock -->
-                  <div class="resume-block">
-                    <div class="inner">
-                      <span class="name">D</span>
-                      <div class="title-box">
-                        <div class="info-box">
-                          <h3>Sr UX Engineer</h3>
-                          <span>Dropbox Inc.</span>
+                  <ng-container *ngIf="student() as s">
+                    <div *ngFor="let experience of s.workExperiences" class="resume-block">
+                        <div class="inner">
+                          <span class="name"></span>
+                          <div class="title-box">
+                            <div class="info-box">
+                              <h3>{{ experience.positionTitle || 'Pozíció megnevezés nélkül' }}</h3>
+                              <span>{{ experience.workplaceName || 'Munkahely neve nélkül' }}</span>
+                            </div>
+                            <div class="edit-box">
+                              <span class="year">
+                                {{ experience.workStartDate | date:'yyyy.MM.' }} -
+                                {{ experience.workEndDate ? (experience.workEndDate | date:'yyyy.MM.') : 'jelenleg is' }}
+                              </span>
+                            </div>
+                          </div>
+                          <div class="text">
+                            {{ experience.positionTasks || 'Feladatok nem megadva' }}
+                          </div>
                         </div>
-                        <div class="edit-box">
-                          <span class="year">2018 - 2020</span>
-                        </div>
-                      </div>
-                      <div class="text"></div>
                     </div>
-                  </div>
+                  </ng-container>
                 </div>
 
-              </div>
+                <div class="resume-outer theme-gray">
+                  <div class="upper-title">
+                    <h4>Egyéb képzettségek</h4>
+                  </div>
+
+                  <ng-container *ngIf="student() as s">
+                    <div *ngFor="let skills of s.studentSkills" class="resume-block">
+                        <div class="resume-block">
+                          <div *ngIf="skills.dictionary?.dictionaryCode?.trim() === 'DrivingLicenseCategory'">
+                            <p>Jogosítvány: {{ skills.dictionary?.name_HU }}</p>
+                          </div>
+                          <div *ngIf="skills.dictionary?.dictionaryCode?.trim() === 'DrivenKilometers'">
+                            <p>Vezetett km: {{ skills.dictionary?.name_HU }}</p>
+                          </div>
+                        </div>
+                    </div>
+                  </ng-container>
+                </div>
+
+                <div class="resume-outer theme-gray">
+                  <div class="upper-title">
+                    <h4>Egyéb készségek</h4>
+                  </div>
+
+                  <div class="resume-block">
+                    <h4></h4>
+                    <p>{{ student()?.otherSkills }}</p> 
+                  </div>
+
+                </div>
+                
+                
+                <div class="resume-outer theme-gray">
+                  <div class="upper-title">
+                    <h4>Személyes érdeklődés</h4>
+                  </div>
+                  <div class="resume-block">
+                    <h4></h4>
+                    <p>{{ student()?.personalInterest }}</p> 
+                  </div>
+                </div>
+                
+                
+                <div class="resume-outer theme-gray">
+                  <div class="upper-title">
+                    <h4>Preferenciák</h4>
+                  </div>
+
+                  <ng-container *ngIf="student() as s">
+                    <div *ngFor="let pref of s.studentPreferences" class="resume-block">
+                        <div class="resume-block">
+                          <div *ngIf="pref.dictionary?.dictionaryCode?.trim() === 'NatureOfWorks'">
+                            <p>Munka jellege: {{ pref.dictionary?.name_HU }}</p>
+                          </div>
+                          <div *ngIf="pref.dictionary?.dictionaryCode?.trim() === 'EmploymentTypes'">
+                            <p>Foglalkoztatás jellege: {{ pref.dictionary?.name_HU }}</p>
+                          </div>
+                          <div *ngIf="pref.dictionary?.dictionaryCode?.trim() === 'TimeOfWorks'">
+                            <p>Munkarend: {{ pref.dictionary?.name_HU }}</p>
+                          </div>
+                          <div *ngIf="pref.dictionary?.dictionaryCode?.trim() === 'PlaceOfWorks'">
+                            <p>Munkavégzés helye: {{ pref.dictionary?.name_HU }}</p>
+                          </div>
+                          <div *ngIf="pref.dictionary?.dictionaryCode?.trim() === 'LanguageOfWorks'">
+                            <p>Foglalkoztatás nyelve: {{ pref.dictionary?.name_HU }}</p>
+                          </div>
+                        </div>
+                    </div>
+                  </ng-container>
+                </div>
+    
+
+
+             </div>
             </div>
-
-
           </div>
         </div>
       </div>

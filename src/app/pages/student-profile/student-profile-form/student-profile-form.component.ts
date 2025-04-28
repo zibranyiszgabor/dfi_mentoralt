@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit, Signal } from '@angular/core';
 import { Student } from '../../../models/student.model';
 import { CommonModule } from '@angular/common';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -8,7 +8,7 @@ import { StudentLanguageSkillsComponent } from "../student-language-skills/stude
 import { StudentLicencesComponent } from "../student-licences/student-licences.component";
 import { StudentPreferencesComponent } from "../student-preferences/student-preferences.component";
 import { StudentPreviousStudiesComponent } from "../student-previous-studies/student-previous-studies.component";
-
+import { StudentService } from '../../../services/student.service';
 
 @Component({
   selector: 'app-student-profile-form',
@@ -20,17 +20,22 @@ import { StudentPreviousStudiesComponent } from "../student-previous-studies/stu
 //smart komponens(hasznalhat serviceket)/prezentation komponens nincsenek service hivások, signalok
 export class StudentProfileFormComponent implements OnInit {
 
+  studentService = inject(StudentService);
+  student! : Signal<Student | null>;
+
   router = inject(Router);
   formBuilder = inject(FormBuilder);
   formGroup: FormGroup | undefined = undefined;
 
   ngOnInit(): void {
+    this.studentService.fetchStudentProfile();
+    this.student = this.studentService.student;
 
-    this.formGroup = this.createFormGroup(this.student);
+    this.formGroup = this.createFormGroup(this.student?.() ?? undefined);
 
   }
 
-  @Input() student: Student | undefined = undefined; // ! -> majd inicializálni kell valahol
+  //@Input() student: Student | undefined = undefined; // ! -> majd inicializálni kell valahol
 
   createPreviewStudy(studentPreviousStudies?: StudentPreviousStudies): FormGroup {
     return this.formBuilder.group(
@@ -70,7 +75,7 @@ export class StudentProfileFormComponent implements OnInit {
       }
     );
 
-    console.log(formGroup);
+//    console.log(formGroup);
 
     return formGroup; //formcontroll
 

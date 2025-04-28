@@ -1,0 +1,483 @@
+<div class="page-wrapper">
+
+    <!-- Header Span -->
+    <span class="header-span"></span>
+
+    <!-- Main Header-->
+    <header class="main-header header-style-four -type-16 header-shaddow">
+      <div class="container-fluid">
+        <!-- Main box -->
+        <div class="main-box">
+          <!--Nav Outer -->
+          <div class="nav-outer">
+            <div class="logo-box">
+              <div class="logo"><a href="index.html"><img src="/assets/images/bge-logo-black.png" alt="" title="" ></a></div>
+            </div>
+
+            <nav class="nav main-menu">
+              <ul class="navigation" id="navbar">
+                <li class="">
+                    <a routerLink="/"><span>Főoldal</span></a>
+                  </li>
+  
+                  <li class="current">
+                    <a routerLink="/aboutus"><span>Rólunk</span></a>
+                  </li>
+  
+                  <li class="">
+                    <a routerLink="/forcompany"><span>Cégeknek</span></a>
+                  </li>                
+  
+                  <li class="">
+                    <a routerLink="/contact"><span>Kapcsolat</span></a>
+                  </li>
+
+                <!-- Only for Mobile View -->
+                <li class="mm-add-listing">
+                  <span>
+                    <span class="contact-info">
+                      <span class="phone-num"><span>Telefon</span><a href="tel:1234567890">123 456 7890</a></span>
+                      <span class="address">Markó utca 29-31<br>1055 Budapest</span>
+                      <a href="mailto:support@uni-bge.hu" class="email">support&#64;uni-bge.hu</a>
+                    </span>
+                    <span class="social-links">
+                      <a href="#"><span class="fab fa-facebook-f"></span></a>
+                      <a href="#"><span class="fab fa-twitter"></span></a>
+                      <a href="#"><span class="fab fa-instagram"></span></a>
+                      <a href="#"><span class="fab fa-linkedin-in"></span></a>
+                    </span>
+                  </span>
+                </li>
+              </ul>
+            </nav>
+            <!-- Main Menu End-->
+          </div>
+
+          <div class="outer-box">
+            <!-- Login/Register -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Sticky Header  -->
+      <div class="sticky-header">
+        <div class="auto-container">
+
+          <div class="main-box">
+            <div class="logo-box">
+              <div class="sticky-logo"><a href="index.html"><img src="images/bge-logo-black.png" alt="" title=""></a></div>
+            </div>
+
+            <!--Keep This Empty / Menu will come through Javascript-->
+          </div>
+        </div>
+      </div>
+      <!-- End Sticky Menu -->
+
+      <!-- Mobile Header -->
+      <div class="mobile-header">
+        <div class="logo"><a href="index.html"><img src="images/bge-logo-black.png" alt="" title=""></a></div>
+
+        <!--Nav Box-->
+        <div class="nav-outer clearfix">
+
+          <div class="outer-box">
+            <!-- Login/Register -->
+            <div class="login-box">
+              <a href="login-popup.html" class="call-modal"><span class="icon-user"></span></a>
+            </div>
+
+            <a href="#nav-mobile" class="mobile-nav-toggler navbar-trigger"><span class="flaticon-menu-1"></span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Nav -->
+      <div id="nav-mobile"></div>
+    </header>
+    <!--End Main Header -->   
+
+    <!--Page Title-->
+    <section class="page-title">
+      <div class="auto-container">
+        <div class="title-outer">
+          <h1>Rólunk</h1>
+          <ul class="page-breadcrumb">
+            <li><a href="index.html">Főoldal</a></li>
+            <li>Rólunk</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!--End Page Title-->
+
+    <!-- About Section Three -->
+    <section class="about-section-three">
+      <div class="auto-container">
+        <!--<div class="images-box">
+          <div class="row">
+            <div class="column col-lg-3 col-md-6 col-sm-6">
+              <figure class="image"><img src="images/resource/about-img-1.jpg" alt=""></figure>
+            </div>
+            <div class="column col-lg-3 col-md-6 col-sm-6">
+              <figure class="image"><img src="images/resource/about-img-2.jpg" alt=""></figure>
+              <figure class="image"><img src="images/resource/about-img-3.jpg" alt=""></figure>
+            </div>
+            <div class="column col-lg-3 col-md-6 col-sm-6">
+              <figure class="image"><img src="images/resource/about-img-4.jpg" alt=""></figure>
+              <figure class="image"><img src="images/resource/about-img-5.jpg" alt=""></figure>
+            </div>
+            <div class="column col-lg-3 col-md-6 col-sm-6">
+              <figure class="image"><img src="images/resource/about-img-6.jpg" alt=""></figure>
+            </div>
+          </div>
+        </div>-->
+
+    <!-- Fun Fact Section -->
+    <div class="fun-fact-section">
+      <div class="row">
+        <!--Column-->
+        <div class="counter-column col-lg-4 col-md-4 col-sm-12 wow fadeInUp">
+          <div class="count-box">
+            <span class="count-text" [attr.data-speed]="speedStud" [attr.data-stop]="stopStud">{{ countStud }}</span>k
+          </div>
+          <h4 class="counter-title">Közel 20 ezer hallgató</h4>
+        </div>
+
+        <!--Column-->
+        <div
+          class="counter-column col-lg-4 col-md-4 col-sm-12 wow fadeInUp"
+          data-wow-delay="800ms"
+        >
+          <div class="count-box">
+            <span class="count-text" [attr.data-speed]="speedDef" [attr.data-stop]="stopDef">{{ countDef }}</span>
+          </div>
+          <h4 class="counter-title">Alapképzési szak (6 angol nyelven is)</h4>
+        </div>
+
+        <!--Column-->
+        <div
+          class="counter-column col-lg-4 col-md-4 col-sm-12 wow fadeInUp"
+          data-wow-delay="400ms"
+        >
+          <div class="count-box" data-wow-delay="400ms">
+            <span class="count-text" [attr.data-speed]="speedMaster" [attr.data-stop]="stopMaster">{{ countMaster }}</span>
+          </div>
+          <h4 class="counter-title">Mesterképzési szak (3 angol nyelven is)</h4>
+        </div>
+
+        <!--Column-->
+        <div class="counter-column col-lg-4 col-md-4 col-sm-12 wow fadeInUp">
+          <div class="count-box">
+            <span class="count-text" [attr.data-speed]="speedNat" [attr.data-stop]="stopNat">{{ countNat }}</span
+            >+
+          </div>
+          <h4 class="counter-title">Nemzetközi hallgató</h4>
+        </div>
+
+        <!--Column-->
+        <div class="counter-column col-lg-4 col-md-4 col-sm-12 wow fadeInUp">
+          <div class="count-box">
+            <span class="count-text" [attr.data-speed]="speedPart" [attr.data-stop]="stopPart">{{ countPart }}</span>+
+          </div>
+          <h4 class="counter-title">Partneregyetem</h4>
+        </div>
+      </div>
+    </div>
+    <!-- Fun Fact Section -->
+
+        <div class="text-box">
+          <!-- <h4>Rólunk</h4>
+          <p>A BGE Job&Future egy újonnan induló munkaerőközvetítő oldal, mely a hallgatók segítségére lesz abban, hogy valós kompetenciáik alapján kapjanak állásajánlatokat, ezzel támogatva megélhetésüket és szakmai útjuk megkezdését.  
+            Olyan BGE által fejlesztett és üzemeltetett – teljesen önkéntes hallgatói részvételre alapozott – alkalmazás készül, amely a hallgatói álláskeresési szándékot és a vállalati munkaerőkeresést rögzíti, a hallgatók és az állást kínáló cégek között hídként szolgál, elősegítve a hallgatói munkavállalást. 
+            </p> -->
+          <p>Tudtad, hogy a Budapesti Gazdasági Egyetem hallgatóinak 60%-a már az egyetemi tanulmányai alatt munkát vállal? Az BGE hallgatóinak jelentős része tehát nem az iskolapadból kerül ki a munkaerőpiacra, hanem jóval korábban. Ezt felismerve hozta létre az Egyetem saját fejlesztésű munkaközvetítő platformját, a Job&Future-t, melynek célja, hogy segítse a hallgatókat a valós kompetenciáiknak megfelelő állásajánlatok megtalálásában, ezzel támogatva megélhetésüket és szakmai útjuk megkezdését.
+          </p>
+        </div>
+
+        <div class="text-box">
+          <!-- <h4>Hallgatóknak - A jövőd itt kezdődik!</h4> -->
+          <!-- <p>A BGE Job&Future az Egyetem saját munkaerőközvetítő platformja, amely segít, hogy valódi kompetenciáid alapján kapj állásajánlatokat. Legyen szó diákmunkáról vagy pályakezdő pozícióról, mi összekötünk a legjobb lehetőségekkel! </p> -->
+          <h4>A Job&Future működése</h4>
+          <p>Az egyetem szakmai támogatásával működő rendszer segít a regisztrált hallgatóknak önéletrajzuk elkészítésében, a megfelelő kompetenciák feltöltésében, valamint munkavállalási preferenciáik rögzítésében. Az így elkészült hallgatói profilokat között a rendszer algoritmusa folyamatos szűréséket végez és csak a releváns állásajánlatokat juttatja el a hallgató felé. 
+          </p>
+        </div>
+
+      <div class="text-box">
+        <!-- <h4>Munkaadóknak – Találjátok meg a legjobb jelölteket!</h4>
+        <p>A BGE Job&Future egy olyan intelligens rendszer, amely az egyetem szakmai hátterére építve előszűrt, releváns jelölteket biztosít a vállalatok számára. </p> -->
+        <h4>Miért jó a Job&Future?</h4>
+        <p>A Job&Future egyszerre rögzíti a hallgatói álláskeresési szándékot és a vállalati munkaerőkeresést. A rendszer hídként szolgál hallgatók és az állást kínáló cégek között, elősegítve a hallgatói munkavállalást. A platformon egyaránt megtalálható alkalmi, diákmunka vagy akár gyakornoki és pályakezdő pozíciók is, így a Job&Future a mindennapi megélhetés mellett a szakmai elhelyezkedést is támogatja. A BGE hallgatói így könnyebben elindulhatnak szakmai útjukon, a cégek pedig gyorsabban találhatják meg az ideális munkatársakat.
+        </p>
+      </div>
+
+      <div class="text-box">
+        <!-- <h4>Miért érdemes csatlakozni?</h4>
+
+        <p>✔ <b>Minimális adminisztráció</b> – Nem kérünk mást, csak az álláshirdetés feltöltését.</p>
+        <p>✔ <b>Előszűrt pályázók</b> – A rendszer különböző szűrők segítségével előszűri a jelentkezőket, így csak releváns önéletrajzokat kaptok.</p>
+        <p>✔ <b>Automatikus párosítás, szakértői támogatással</b> – Az Egyetem szakértői a hallgatók tanulmányi adatai és készségeik alapján segítenek a megfelelő jelöltek kiválasztásában.</p>
+        <p>✔ <b>Közvetlen kapcsolat a hallgatókkal</b> – A kiválasztott hallgatók önéletrajzait a rendszer automatikusan továbbítja nektek, onnantól pedig rajtatok áll, hogyan folytatjátok a kiválasztást.</p> -->
+
+        <h4>Csatlakozz most, és építsd a jövőd velünk! </h4>
+      </div>
+
+  </div>
+    </section>
+    <!-- End About Section Three -->
+
+    <!-- Call To Action Two -->
+    <section class="call-to-action-two" style="background-image: url(images/index-16/cta/bg.png);"> <!--images/index-16/cta/bg.png images/background/1.jpg-->
+      <div class="auto-container">
+        <div class="sec-title light text-center">
+          <h1>Találd meg az álommelód!</h1>
+          <!--<div class="text">Over 1 million interactions, 50,000 success stories Make yours now.</div>--->
+        </div>
+
+      </div>
+    </section>
+    <!-- End Call To Action -->
+
+    <!-- Testimonial Section Two -->
+    <!--<section class="testimonial-section-two">
+      <div class="container-fluid">
+        <div class="testimonial-left"><img src="images/resource/testimonial-left.png" alt=""></div>
+        <div class="testimonial-right"><img src="images/resource/testimonial-right.png" alt=""></div>
+        <!-- Sec Title -->
+        <!--<div class="sec-title text-center">
+          <h2>Testimonials From Our Customers</h2>
+          <div class="text">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor</div>
+        </div>
+
+        <!--<div class="carousel-outer">
+          <!-- Testimonial Carousel -->
+          <!--<div class="testimonial-carousel owl-carousel owl-theme">
+
+            <!--Testimonial Block -->
+            <!--<div class="testimonial-block-two">
+              <div class="inner-box">
+                <div class="thumb"><img src="images/resource/testi-thumb-1.png" alt=""></div>
+                <h4 class="title">Great quality!</h4>
+                <div class="text">Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything! Can’t quite… The Mitech team works really hard to ensure high level of quality</div>
+                <div class="info-box">
+                  <h4 class="name">Brooklyn Simmons</h4>
+                  <span class="designation">Web Developer</span>
+                </div>
+              </div>
+            </div>
+
+            <!--Testimonial Block -->
+            <!--<div class="testimonial-block-two">
+              <div class="inner-box">
+                <div class="thumb"><img src="images/resource/testi-thumb-1.png" alt=""></div>
+                <h4 class="title">Great quality!</h4>
+                <div class="text">Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything! Can’t quite… The Mitech team works really hard to ensure high level of quality</div>
+                <div class="info-box">
+                  <h4 class="name">Brooklyn Simmons</h4>
+                  <span class="designation">Web Developer</span>
+                </div>
+              </div>
+            </div>
+
+            <!--Testimonial Block -->
+            <!--<div class="testimonial-block-two">
+              <div class="inner-box">
+                <div class="thumb"><img src="images/resource/testi-thumb-1.png" alt=""></div>
+                <h4 class="title">Great quality!</h4>
+                <div class="text">Without JobHunt i’d be homeless, they found me a job and got me sorted out quickly with everything! Can’t quite… The Mitech team works really hard to ensure high level of quality</div>
+                <div class="info-box">
+                  <h4 class="name">Brooklyn Simmons</h4>
+                  <span class="designation">Web Developer</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>-->
+    <!-- End Testimonial Section -->
+
+    <!-- Work Section -->
+    <section class="work-section style-two">
+      <div class="auto-container">
+
+        <div class="sec-title text-center">
+          <h2>Hogyan működik a BGE Job&Future?</h2>
+          <div class="text">Job for anyone, anywhere</div>
+        </div>
+
+        <div class="row">
+
+
+          <!-- Work Block -->
+          <div class="work-block col-lg-4 col-md-6 col-sm-12">
+            <div class="inner-box">
+              <h5>1.	Jelentkezz be a BGE-s belépési adataiddal! </h5>
+            </div>
+          </div>
+
+          <!-- Work Block -->
+          <div class="work-block col-lg-4 col-md-6 col-sm-12">
+            <div class="inner-box">
+              <h5>2.	Töltsd ki a profilod az önéletrajz generáláshoz!</h5>
+              <p>A profilodban automatikusan megjelennek egyetemi tanulmányaid során keletkezett adatok*, így Neked csak azt szükséges hozzáadnod, ami nem szerepel a Neptunban, például: korábbi munkahelyek, készségek és érdeklődés, profilkép, LinkedIn profil.</p>
+            </div>
+          </div>
+
+                    <!-- Work Block -->
+          <div class="work-block col-lg-4 col-md-6 col-sm-12">
+            <div class="inner-box">
+              <h5>3.	Párosítás</h5>
+              <p>A megadott preferenciáid és az önéletrajzod alapján az algoritmus leszűri az állásajánlatokat és összepárosít a számodra leginkább megfelelő álláslehetőségekkel. </p>
+            </div>
+          </div>
+
+          <!-- Work Block -->
+          <div class="work-block col-lg-4 col-md-6 col-sm-12">
+            <div class="inner-box">
+              <h5>4.	Válassz az ajánlott állásokból, </h5>
+              <p>jelentkezz egy kattintással és mi elküldjük önéletrajzodat az álláshirdetőnek. </p>
+            </div>
+          </div>   
+          
+          <!-- Work Block -->
+          <div class="work-block col-lg-4 col-md-6 col-sm-12">
+            <div class="inner-box">
+              <!--<figure class="image"><img src="images/resource/work-1.png" alt=""></figure>-->
+              <h5>5.	Dőlj hátra! </h5>
+              <p>Ha kiválasztásra kerülsz, az álláshirdető felveszi veled a kapcsolatot. </p>
+            </div>
+          </div>          
+          <!-- Work Block -->
+          <!--<div class="work-block col-lg-4 col-md-6 col-sm-12">
+            <div class="inner-box">
+              <figure class="image"><img src="images/resource/work-3.png" alt=""></figure>
+              <h5>Help Every Step of the Way</h5>
+              <p>Employers on average spend 31 seconds scanning resumes to identify potential matches.</p>
+            </div>
+          </div>-->
+
+        </div>
+      </div>
+    </section>
+    <!-- End Work Section -->
+
+    <!--Clients Section-->
+    <!--<section class="clients-section">
+      <div class="sponsors-outer">
+        <!--Sponsors Carousel-->
+        <!--<ul class="sponsors-carousel owl-carousel owl-theme">
+          <li class="slide-item">
+            <figure class="image-box"><a href="#"><img src="images/clients/1-1.png" alt=""></a></figure>
+          </li>
+          <li class="slide-item">
+            <figure class="image-box"><a href="#"><img src="images/clients/1-2.png" alt=""></a></figure>
+          </li>
+          <li class="slide-item">
+            <figure class="image-box"><a href="#"><img src="images/clients/1-3.png" alt=""></a></figure>
+          </li>
+          <li class="slide-item">
+            <figure class="image-box"><a href="#"><img src="images/clients/1-4.png" alt=""></a></figure>
+          </li>
+          <li class="slide-item">
+            <figure class="image-box"><a href="#"><img src="images/clients/1-5.png" alt=""></a></figure>
+          </li>
+          <li class="slide-item">
+            <figure class="image-box"><a href="#"><img src="images/clients/1-6.png" alt=""></a></figure>
+          </li>
+          <li class="slide-item">
+            <figure class="image-box"><a href="#"><img src="images/clients/1-7.png" alt=""></a></figure>
+          </li>
+        </ul>
+      </div>
+    </section>-->
+    <!-- End Clients Section-->
+
+    <!-- Main Footer -->
+    <footer class="main-footer style-five">
+      <!--Widgets Section-->
+      <div class="widgets-section">
+        <div class="auto-container">
+
+          <div class="row">
+            <div class="big-column col-xl-3 col-lg-3 col-md-12">
+              <div class="footer-column about-widget">
+                <div class="logo"><a href="#"><img src="images/bge-logo-black.png" alt=""></a></div>
+                <p class="phone-num"><span>Hívj minket </span><a href="thebeehost@support.com">123 456 7890</a></p>
+                <p class="address">1055 Budapest Markó utca 29-31 <br><a href="mailto:support@superio.com" class="email">support&#64;uni-bge.hu</a>
+                </p>
+              </div>
+            </div>
+            
+            <div class="big-column col-xl-9 col-lg-9 col-md-12">
+              <div class="row">
+                <div class="footer-column col-lg-3 col-md-6 col-sm-12">
+                  <div class="footer-widget links-widget">
+                    <h4 class="widget-title">Hallgatóknak</h4>
+                    <div class="widget-content">
+                      <ul class="list">
+                        <li><a href="#">Browse Jobs</a></li>
+                        <li><a href="#">Browse Categories</a></li>
+                        <li><a href="#">Candidate Dashboard</a></li>
+                        <li><a href="#">Job Alerts</a></li>
+                        <li><a href="#">My Bookmarks</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="footer-column col-lg-3 col-md-6 col-sm-12">
+                  <div class="footer-widget links-widget">
+                    <h4 class="widget-title">Partnereknek</h4>
+                    <div class="widget-content">
+                      <ul class="list">
+                        <li><a href="#">Browse Candidates</a></li>
+                        <li><a href="#">Employer Dashboard</a></li>
+                        <li><a href="#">Add Job</a></li>
+                        <li><a href="#">Job Packages</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="footer-column col-lg-3 col-md-6 col-sm-12">
+                  <div class="footer-widget links-widget">
+                    <h4 class="widget-title">Rólunk</h4>
+                    <div class="widget-content">
+                      <ul class="list">
+                        <li><a href="#">Job Page</a></li>
+                        <li><a href="#">Job Page Alternative</a></li>
+                        <li><a href="#">Resume Page</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Bottom-->
+      <div class="footer-bottom">
+        <div class="auto-container">
+          <div class="outer-box">
+            <div class="copyright-text">© 2025 <a href="#">BGE</a> Minden jog fenntartva</div>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
+    </footer>
+    <!-- End Main Footer -->
+
+
+  </div><!-- End Page Wrapper -->

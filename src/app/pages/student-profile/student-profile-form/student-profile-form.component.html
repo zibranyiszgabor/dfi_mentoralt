@@ -1,15 +1,13 @@
-<!-- Feltételezett Angular ngIf helyett *ngIf -->
 
-<section class="page-title style-two at-jlv16 before_none bg-white">
+<form *ngIf="formGroup" [formGroup]="formGroup" class="default-form"
+style="border-radius: 10px; padding: 20px;">
+
+<section class="candidate-detail-section">
   <div class="auto-container">
     <div class="dashboard-outer">
       <div class="upper-title-box">
         <h3>Profilom</h3>
         <div class="text"></div>
-      </div>
-
-      <div>
-        <input formControlName="firstName" id="firstName">
       </div>
 
       <div class="row">
@@ -35,11 +33,11 @@
             <h4>Tanulmányok</h4>
           </div>
 
+            <div>
+              <input formControlName="firstName" id="firstName">
+            </div>
 
-          <form *ngIf="formGroup" [formGroup]="formGroup" class="default-form"
-            style="border-radius: 10px; padding: 20px;">
-
-            <app-student-previous-studies></app-student-previous-studies>
+            <app-student-previous-studies [formGroup]="formGroup?.controls['studentStudies']"></app-student-previous-studies>
 
             <app-student-language-skills></app-student-language-skills>
 
@@ -54,7 +52,6 @@
               <button type="button" (click)="cancel()" class="theme-btn btn-style-one">Mégsem</button>
             </div>
 
-          </form>
         </div>
       </div>
 
@@ -72,3 +69,5 @@
   </div>
 </section>
 <!-- End Dashboard -->
+
+</form>

@@ -1,19 +1,23 @@
 import { Dictionary } from "./dictionary.model";
+import { Student } from "./student.model";
 
-export interface StudentSkill {
-    studentSkillId: number;
+export interface StudentPreference {
+    studentPreferenceId: number;
     studentId: number;
-    dictionaryId: number;
+    dictionaryId?: number;
+  
     valueBoolean?: boolean;
     valueDecimal?: number;
     valueDateTime?: Date;
     valueString?: string;
-    isHardOrSoft?: string; // char(1)
-    recStat?: boolean;
+  
+    isDeleted?: boolean;
     createdAt?: Date;
     createdBy?: number;
     changedAt?: Date;
     changedBy?: number;
+  
+    student?: Student;
     dictionary?: Dictionary;
   }
   

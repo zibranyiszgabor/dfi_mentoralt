@@ -85,10 +85,7 @@ Fonts
 @import url("mmenu.css");
 @import url("jquery.fancybox.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@font-face {
-  font-family: 'Kievit';
-  src: url('/fonts/Kievit\ Medium.ttf');
-}
+
 
 /*** 
 
@@ -740,7 +737,8 @@ Checkbox
   color: #202124;
 }
 .checkboxes.at-jlv16 label:before{
-  border: 1px solid #1967D2;
+  /* border: 1px solid #1967D2; */
+  border: 1px solid #000000;
 }
 .checkboxes label span {
   color: #909090;
@@ -774,8 +772,11 @@ Checkbox
 
 .checkboxes input[type="checkbox"]:checked + label:before {
   content: "\f00c";
-  background-color: #1967D2;
-  border: 1px solid #1967D2;
+  /* background-color: #1967D2;
+  border: 1px solid #1967D2; */
+  background-color: rgb(255,229,31);
+  border: 1px solid rgb(255,229,31);
+  color: #000000;
 }
 
 .checkboxes.square label:before {
@@ -926,14 +927,17 @@ Switches
   line-height: 40px;
 }
 .switchbox.at-jlv16 .slider{
-  border: 1px solid #1967D2;
+  /* border: 1px solid #1967D2; */
+  border: 1px solid #000000;
 }
 .switchbox.at-jlv16 .slider:before{
-  background-color: #1967D2;
+  /* background-color: #1967D2; */
+  background-color: #000000;
   bottom: 4px;
 }
 .switchbox.at-jlv16 input:checked + .switchbox.at-jlv16 .slider:before{
-  background: #fff;
+  /* background: #fff; */
+  background: #000000;
 }
 .switch {
   position: relative;
@@ -971,12 +975,15 @@ Switches
 }
 
 input:checked + .slider {
-  background-color: #1967D2;
-  border: 2px solid #1967D2;
+  /* background-color: #1967D2;
+  border: 2px solid #1967D2; */
+  background-color: rgb(255,229,31);
+  border: rgb(255,229,31);
 }
 
 input:checked + .slider:before {
-  background: #ffffff !important;
+  /* background: #ffffff !important; */
+  background: #000000 !important;
   transform: translateX(19px);
 }
 
@@ -1007,6 +1014,7 @@ input:checked + .slider:before {
 .default-form .form-group input[type="number"],
 .default-form .form-group input[type="email"],
 .default-form .form-group input[type="url"],
+.default-form .form-group input[type="date"],
 .default-form .form-group textarea,
 .default-form .form-group select {
   position: relative;
@@ -2379,7 +2387,7 @@ Buttons Styles
   font-size: 15px;
   line-height: 20px;
   /*border-radius: 8px;*/
-  border-radius: 2px;
+  border-radius: 10px;
   font-weight: 400;
   padding: 18px 35px 15px 35px;
 }
@@ -5186,6 +5194,7 @@ Main Footer
 
 .main-footer .logo img {
   display: block;
+  max-width: 125px;
 }
 
 .main-footer .phone-num {
@@ -5935,6 +5944,7 @@ Main Header
   align-items: center;
   padding: 0 60px;
   max-width: 1920px;
+  max-height: 100px;
   margin: 0 auto;
 }
 
@@ -5948,6 +5958,7 @@ Main Header
   position: relative;
   display: flex;
   align-items: center;
+  top: 21px;
 }
 
 .main-header .logo {
@@ -5956,6 +5967,11 @@ Main Header
   padding: 25px 0;
   margin-right: 100px;
   transition: all 300ms ease;
+  width: 120px;
+}
+
+.main-header .logo-box .logo img {
+  max-width: 120px !important;
 }
 
 .main-header .menu-box {
@@ -6006,7 +6022,36 @@ Main Header
 
 .main-menu .navigation > li.current > a,
 .main-menu .navigation > li.current > span {
-  color: #1967D2 !important;
+  /* color: #1967D2 !important; */
+  font-weight: 600;
+}
+
+.main-menu .navigation > li > a.current::after{  
+  content: '';
+  display: block;
+  position: relative;
+  width: 50%;
+  border: 2px solid rgb(255,229,31);
+  /* margin-top: 4px; */
+}
+
+
+.main-menu .navigation > li.current > span::after {
+  content: '';
+  display: block;
+  position: relative;
+  width: 50%;
+  border: 2px solid rgb(255,229,31);
+  /* margin-top: 4px; */
+}
+
+.main-menu .navigation > li.current > a > span::after {
+  content: '';
+  display: block;
+  position: relative;
+  width: 50%;
+  border: 2px solid rgb(255,229,31);
+  /* margin-top: 4px; */
 }
 
 .main-menu .navigation > li.dropdown > span {
@@ -7265,8 +7310,10 @@ Job Section
 }
 
 .job-other-info li.time {
-  background: rgba(25, 103, 210, 0.15);
-  color: #1967D2;
+  /* background: rgba(25, 103, 210, 0.15);
+  color: #1967D2; */
+  background: rgba(210, 211, 212, 0.5);
+  color: #000000;
 }
 
 .job-other-info li.green,
@@ -8045,6 +8092,25 @@ Job Detail Section
 .job-block.at-jlv17 .tags a:hover{
   border: 1px solid #ECEDF2;
 }
+
+.job-block.at-jsv6 .tags .accept:hover,
+.job-block-seven.style-two.at-jsv6 .tags .accept:hover,
+.job-block.at-jlv16 .tags .accept:hover,
+.job-block.at-jlv17 .tags .accept:hover{
+  border: 1px solid #ECEDF2;
+  background: green;
+  color: white;
+}
+
+.job-block.at-jsv6 .tags .decline:hover,
+.job-block-seven.style-two.at-jsv6 .tags .decline:hover,
+.job-block.at-jlv16 .tags .decline:hover,
+.job-block.at-jlv17 .tags .decline:hover{
+  border: 1px solid #ECEDF2;
+  background: red;
+  color: white;
+}
+
 .job-block.at-jlv17.at-home20:hover .inner-box{
   background-color: #EBF7FE;
 }
@@ -8900,6 +8966,19 @@ Login Popup
 
 .login-from.register .checkbox-wrap label a:hover {
   text-decoration: underline;
+}
+
+.modal__title {
+  text-align: left;
+}
+
+.modal__title::after {
+  content: '';
+  display: block;
+  position: relative;
+  width: 45%;
+  border: 2px solid rgb(255,229,31);
+  margin-top: 4px; 
 }
 
 #login-modal .login-form h3 {
@@ -9768,16 +9847,17 @@ Page Title
 ***/
 .page-title {
   position: relative;
-  background-repeat: no-repeat;
+  background-image: url(../images/icons/bg-4.png) !important;
+  background-repeat: no-repeat !important;
   background-position: center;
-  background-size: cover;
+  background-size: cover !important;
   text-align: center;
   padding: 50px 0 40px;
   background: #F5F7FC;
 }
 
 .page-title:before {
-  position: absolute;
+  /* position: absolute;
   left: 0;
   top: 0;
   height: 100%;
@@ -9786,7 +9866,19 @@ Page Title
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  content: "";
+  content: ""; */
+
+  
+  position: relative;
+  display: block;
+  /* height: 100vh; */
+  min-height: 200px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 120px 0;
 }
 
 .page-title h1 {
@@ -9843,7 +9935,7 @@ Page Title
 
 /* Style Two */
 .page-title.style-two {
-  padding: 100px 0;
+  padding: 50px 0 50px 0;
 }
 .page-title.style-two.at-jlv17{
   background-image: url(../images/background/job-list-17.jpg);
@@ -10614,6 +10706,25 @@ Registeration Banners
   color: #1967d2;
 }
 
+.resume-outer.theme-gray .resume-block .edit-box .year,
+.resume-outer.theme-gray .resume-block .name {
+  background: rgb(210,211,212);
+  color: #000000;
+}
+
+.resume-outer.theme-gray .resume-block .info-box span {
+  color: #000000;
+}
+
+.resume-block.theme-yellow .edit-box .year{
+  background: rgb(255,229,31) !important; 
+  color: #f9ab00; 
+}
+
+.resume-block.theme-yellow .name{
+  background-color: rgb(255,229,31) !important ;
+}
+
 .resume-outer.theme-yellow .resume-block .edit-box .year,
 .resume-outer.theme-yellow .resume-block .name {
   background: #fef2d9;
@@ -11107,6 +11218,79 @@ Job Detail Section / Style two
 }
 
 /* Range Slider widget */
+
+input[type="range"]{
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: block;
+  width: 80%;
+  height: 5px;
+  background-color: #d5d5d5;
+  border-radius: 8px;
+  outline: none;
+  padding: 5px;
+  margin: 5px;
+}
+input[type="range"]::-webkit-slider-runnable-track{
+  -webkit-appearance: none;
+  height: 8px;
+}
+input[type="range"]::-moz-track{
+  -moz-appearance: none;
+  height: 8px;
+}
+input[type="range"]::-ms-track{
+  appearance: none;
+  height: 8px;
+}
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  border: 1px solid #d5d5d5 !important;
+  cursor: pointer;
+  margin-top: -6px;
+  border: none;
+}
+input[type="range"]::-moz-range-thumb{
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  background-color: #d5d5d5;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -6px;
+  border: none;
+}
+input[type="range"]::-ms-thumb{
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  background-color: #d5d5d5;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -6px;
+  border: none;
+}
+input[type="range"]:active::-webkit-slider-thumb{
+  background-color: #ffffff;
+  border: 3px solid #d5d5d5;
+}
+#slider-value{
+  width: 13%;
+  position: relative;
+  background-color: #d5d5d5;
+  color: #ffffff;
+  text-align: center;
+  font-family: "Kievit",monospace;
+  padding: 10px 0;
+  border-radius: 5px;
+}
+
+
 .rangeslider-widget {
   position: relative;
 }
@@ -11128,7 +11312,8 @@ Job Detail Section / Style two
 .range-slider-one .ui-slider .ui-slider-range {
   top: 0px;
   height: 5px;
-  background: #1967D2;
+  background: #1967D2; 
+  background: #000000;
 }
 
 .range-slider-one .ui-state-default,
@@ -12314,6 +12499,104 @@ Browse Jobs
 /*** 
 
 ====================================================================
+Company Section
+====================================================================
+
+***/
+
+.companys-section {
+  position: relative;
+  padding: 100px 0;
+  border-bottom: 1px solid #ECEDF2;
+}
+
+.companys-section .carousel-outer {
+  margin: 0 -15px;
+}
+
+.companys-carousel .owl-dots {
+  margin-top: 20px;
+}
+
+.company-block {
+  position: relative;
+  padding: 0 15px;
+  margin-bottom: 30px;
+}
+
+.company-block .inner-box {
+  position: relative;
+  padding: 30px 30px;
+  background: #FFFFFF;
+  border: 1px solid #ECEDF2;
+  box-sizing: border-box;
+  border-radius: 8px;
+  transition: all 300ms ease;
+  text-align: center;
+}
+
+.company-block .inner-box:hover {
+  box-shadow: 0px 6px 15px rgba(64, 79, 104, 0.05);
+}
+
+.company-block .image {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 0 auto 14px;
+}
+
+.company-block .image img {
+  width: 100%;
+}
+
+.company-block .name {
+  position: relative;
+  display: block;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #202124;
+  margin-bottom: 5px;
+}
+
+.company-block .designation {
+  display: block;
+  font-size: 14px;
+  color: #1967D2;
+  line-height: 19px;
+  margin-bottom: 10px;
+}
+
+.company-block .location {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #696969;
+  margin-bottom: 25px;
+}
+
+.company-block .location i {
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.company-block .theme-btn {
+  max-width: 240px;
+  width: 100%;
+}
+
+.companys-section.alternate .company-block .designation {
+  color: #202124;
+}
+
+/*** 
+
+====================================================================
 Candidates Section
 ====================================================================
 
@@ -12536,6 +12819,12 @@ Candidates Section Two
   height: 90px;
   overflow: hidden;
   border-radius: 50%;
+  margin: 0 auto 14px;
+}
+
+.company-block-three .image {
+  position: absolute;
+  left: 0;
   margin: 0 auto 14px;
 }
 
@@ -12957,7 +13246,7 @@ Candidate Detail Section
   background-position: center;
   background-size: cover;
   background-size: cover;
-  padding: 80px 0 30px;
+  padding: 40px 0 30px 10px;
 }
 .page-title.style-two.at-slv7,
 .candidate-detail-section .upper-box.ub1-v4{
@@ -12983,7 +13272,7 @@ Candidate Detail Section
 /* Candidate block Five */
 .candidate-block-five {
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 .candidate-block-five .inner-box {
@@ -14295,7 +14584,8 @@ Listing Show More
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
-  color: #1967D2;
+  /* color: #1967D2; */
+  color: #000000;
   padding-bottom: 5px;
 }
 
@@ -14306,6 +14596,7 @@ Listing Show More
   width: 60px;
   height: 2px;
   background: #1967D2;
+  background: rgb(255,229,31);
   content: "";
 }
 
@@ -22489,3 +22780,4 @@ Work Section
 .overflow-hidden {
   overflow: hidden;
 }
+

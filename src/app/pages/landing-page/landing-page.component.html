@@ -16,15 +16,19 @@
             <nav class="nav main-menu">
               <ul class="navigation" id="navbar">
                 <li class="current">
-                  <span>Főoldal</span>
+                  <a routerLink="/"><span>Főoldal</span></a>
                 </li>
 
                 <li class="">
-                  <a href="about.html"><span>Rólunk</span></a>
+                  <a routerLink="/aboutus"><span>Rólunk</span></a>
                 </li>
 
                 <li class="">
-                  <a href="contact.html"><span>Kapcsolat</span></a>
+                  <a routerLink="/forcompany"><span>Cégeknek</span></a>
+                </li>                
+
+                <li class="">
+                  <a routerLink="/contact"><span>Kapcsolat</span></a>
                 </li>
 
                 <!-- Only for Mobile View -->
@@ -50,10 +54,6 @@
 
           <div class="outer-box">
             <!-- Login/Register -->
-
-            <div class="btn-box" *ngIf="!isLoggedIn">
-                <button class="theme-btn btn-style-five" (click)="showLogin = true">Belépés</button>
-            </div>
 
             <div class="dropdown dashboard-option" *ngIf="isLoggedIn">
               <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
@@ -147,10 +147,10 @@
           <div class="title-box wow fadeInUp" data-wow-delay="500ms">
             <h3>JOB & FUTURE</h3>
             <p>Tanulás mellett dolgoznál, vagy a legjobb fiatal tehetségeket keresed? A Job&Future összeköti a BGE hallgatóit és a vállalatokat, hogy mindenki magabiztosan építhesse a jövőjét</p>
-          </div>
-
-
-
+            <div class="btn-box" style="margin-top: 20px !important;" *ngIf="!isLoggedIn">
+              <a (click)="showLogin = true" style="font-size: 20px; width: 175px; height: 60px !important;" class="theme-btn btn-style-five call-modal">Belépés</a>
+            </div>
+           </div>
 
         </div>
       </div>
@@ -162,32 +162,48 @@
       <div class="auto-container">
         <div class="row grid-base justify-content-between">
 
-          <div class="col-lg-6 col-md-6">
+          <div class="col-lg-12 col-md-12">
             <div class="cta-item">
               <div class="icon-wrap">
-                <div class="icon icon-contact"></div>
+                <!-- <div class="icon icon-contact"></div> -->
               </div>
               <div class="content">
-                <div class="title">Hallgató vagyok</div>
-                <div class="text">Add meg preferenciáid és generálj önéletrajzot, lépésről lépésre.
+                <div class="title">Lehetőséget biztosítunk a jövőd építésére,  kötöttségek nélkül!</div>
+                <div class="text">
+                  <br/>
+                  <h5>Teljes adatbiztonság</h5>
+                  <br/>
+                  <p>
+                      ✔ Nem adjuk ki az adataidat harmadik fél számára – a tanulmányi eredményeid, önéletrajzod és minden személyes információd nálunk marad, amíg másként nem döntesz.
+                  </p>
+                  <br/>
+                  <h5>Partnerként tekintünk rád</h5>
+                  <br/>
+                   <p>
+                      ✔ Mi nem csak összekötünk cégekkel –a feltöltött állásokat előszűrjűk, így támogatunk abban, hogy megtaláld a hozzád illő lehetőségeket.
+                  </p>
+                  <p>
+                      ✔ Célunk, hogy biztonságban és magabiztosan építhesd a karriered már az egyetem alatt is.
+                  </p>
+                  <p>
+                      ✔ Nem spammelünk! Csak arról küldünk értesítést, ami számodra releváns lehet.
+                  </p>
+                  <br/>
+                  <h5>Te döntesz mindenről!</h5>
+                  <br/>
+                  <p>
+                      ✔ Csak akkor közvetítünk ki, ha te jelentkezel egy állásra.
+                  </p>
+                  <p>
+                      ✔ Semmit sem osztunk meg rólad a cégekkel a beleegyezésed nélkül.
+                  </p>
+                  <p>
+                      ✔ Bármikor leiratkozhatsz a platformról, nincs rejtett kötelezettség.
+                  </p>                    
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="col-lg-6 col-md-6">
-            <div class="cta-item">
-              <div class="icon-wrap">
-                <div class="icon icon-case"></div>
-              </div>
-              <div class="content">
-                <div class="title">Partner vagyok</div>
-                <div class="text">Adj fel álláshirdetést néhány kattintással, regisztráció nélkül.
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>

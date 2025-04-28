@@ -28,6 +28,7 @@ export class AuthService {
     @Inject(HttpClient) private secureHttp: HttpClient) { }
 
   public get isLoggedIn(): boolean {
+    
     const account = this.msalService.instance.getActiveAccount();
     console.log('Aktív fiók:', account);
 
@@ -72,12 +73,14 @@ export class AuthService {
     await msal.initialize();
 
     const result = await msal.handleRedirectPromise();
+    
     if (result?.account) {
       msal.setActiveAccount(result.account);
       localStorage.setItem('userAccount', JSON.stringify(result.account));
     }
 
     const savedAccount = localStorage.getItem('userAccount');
+    
     if (savedAccount) {
       msal.setActiveAccount(JSON.parse(savedAccount));
       sessionStorage.setItem('isLoggedIn', 'true');
@@ -87,20 +90,6 @@ export class AuthService {
     return false;
   }
 
-  public getUserData(): Observable<any> {
-    return this.http.get<any>(this.backendUrl).pipe(
-      tap((userData) => {
-        sessionStorage.setItem('user_data', JSON.stringify(userData)); // 🔹 Mentés sessionStorage-ba
-        this.userSubject.next(userData);                               // 🔹 Frissítés a komponensek számára
-      })
-    );
-  }
-
-
-  public getUserFromStorage(): any {
-    const userData = sessionStorage.getItem('user_data');
-    return userData ? JSON.parse(userData) : null;
-  }
 
   public get msalInstance(): PublicClientApplication {
     return this.msal;
@@ -122,10 +111,10 @@ export class AuthService {
     await this.msal.initialize();
   }
 
+
   public async loginAsEmployee(): Promise<void> {
     console.log('🔹 Dolgozói bejelentkezés...');
     localStorage.setItem('loginMode', 'employee');
-
 
     try {
 
