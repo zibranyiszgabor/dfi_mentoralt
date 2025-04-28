@@ -1,43 +1,64 @@
+<form
+  *ngIf="formGroup"
+  [formGroup]="formGroup"
+  class="default-form"
+  style="border-radius: 10px; padding: 20px"
+>
+  <section class="candidate-detail-section">
+    <div class="auto-container">
+      <div class="dashboard-outer">
+        <div class="upper-title-box">
+          <h3>Profilom</h3>
+          <div class="text"></div>
+        </div>
 
-<form *ngIf="formGroup" [formGroup]="formGroup" class="default-form"
-style="border-radius: 10px; padding: 20px;">
-
-<section class="candidate-detail-section">
-  <div class="auto-container">
-    <div class="dashboard-outer">
-      <div class="upper-title-box">
-        <h3>Profilom</h3>
-        <div class="text"></div>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="row">
-            <div class="uploading-outer">
-              <div class="uploadButton">
-                <input class="uploadButton-input" type="file" name="attachments[]" accept="image/*, application/pdf"
-                  id="upload" multiple />
-                <label class="uploadButton-button ripple-effect" for="upload">Browse Logo</label>
-                <span class="uploadButton-file-name"></span>
-              </div>
-              <div class="text">Maximális fájlméret 1MB, Minimum felbontás: 330x300 és a fájl formátuma .jpg vagy .png
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="uploading-outer">
+                <div class="uploadButton">
+                  <input
+                    class="uploadButton-input"
+                    type="file"
+                    name="attachments[]"
+                    accept="image/*, application/pdf"
+                    id="upload"
+                    multiple
+                  />
+                  <label class="uploadButton-button ripple-effect" for="upload"
+                    >Browse Logo</label
+                  >
+                  <span class="uploadButton-file-name"></span>
+                </div>
+                <div class="text">
+                  Maximális fájlméret 1MB, Minimum felbontás: 330x300 és a fájl
+                  formátuma .jpg vagy .png
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="ls-widget">
-        <div class="tabs-box">
-          <div class="widget-title">
-            <h4>Tanulmányok</h4>
-          </div>
-
-            <div>
-              <input formControlName="firstName" id="firstName">
+        <div class="ls-widget">
+          <div class="tabs-box">
+            <div class="widget-title">
+              <h4>Tanulmányok</h4>
             </div>
 
-            <app-student-previous-studies [formGroup]="formGroup?.controls['studentStudies']"></app-student-previous-studies>
+            <div>
+              <input formControlName="firstName" id="firstName" />
+            </div>
+
+            <div class="sections" formArrayName="studentPreviousStudies">
+              @for(previousStudy of
+              getFormArray('studentPreviousStudies').controls; track
+              previousStudy; let i = $index) {
+
+              <app-student-previous-studies
+                [formGroup]="getFormGroup(previousStudy)"
+              ></app-student-previous-studies>
+              }
+            </div>
 
             <app-student-language-skills></app-student-language-skills>
 
@@ -45,29 +66,27 @@ style="border-radius: 10px; padding: 20px;">
 
             <app-student-preferences></app-student-preferences>
 
-
             <div style="margin-top: 10px">
-              <button type="button" (click)="save()" class="theme-btn btn-style-one">Mentés</button>
+              <button
+                type="button"
+                (click)="save()"
+                class="theme-btn btn-style-one"
+              >
+                Mentés
+              </button>
               &NonBreakingSpace;
-              <button type="button" (click)="cancel()" class="theme-btn btn-style-one">Mégsem</button>
+              <button
+                type="button"
+                (click)="cancel()"
+                class="theme-btn btn-style-one"
+              >
+                Mégsem
+              </button>
             </div>
-
+          </div>
         </div>
       </div>
-
-
-
-
-
-
-
-
-
-
-
     </div>
-  </div>
-</section>
-<!-- End Dashboard -->
-
+  </section>
+  <!-- End Dashboard -->
 </form>

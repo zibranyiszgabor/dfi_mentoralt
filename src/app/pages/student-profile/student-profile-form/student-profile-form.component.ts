@@ -1,7 +1,7 @@
 import { Component, inject, Input, OnInit, Signal } from '@angular/core';
 import { Student } from '../../../models/student.model';
 import { CommonModule } from '@angular/common';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StudentPreviousStudies } from '../../../models/studentPreviousStudies.model';
 import { Router } from '@angular/router';
 import { StudentLanguageSkillsComponent } from "../student-language-skills/student-language-skills.component";
@@ -79,6 +79,14 @@ export class StudentProfileFormComponent implements OnInit {
 
     return formGroup; //formcontroll
 
+  }
+
+  getFormGroup(formGroupControl: AbstractControl): FormGroup {
+    return formGroupControl as FormGroup;
+  }
+
+  getFormArray(controlName: string): FormArray {
+    return this.formGroup?.controls[controlName] as FormArray;
   }
 
   public cancel(): void {
