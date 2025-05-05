@@ -9,6 +9,7 @@ import { StudentLicencesComponent } from "../student-licences/student-licences.c
 import { StudentPreferencesComponent } from "../student-preferences/student-preferences.component";
 import { StudentPreviousStudiesComponent } from "../student-previous-studies/student-previous-studies.component";
 import { StudentService } from '../../../services/student.service';
+import { StudentStudy } from 'models/studentStudy.model';
 
 @Component({
   selector: 'app-student-profile-form',
@@ -21,7 +22,7 @@ import { StudentService } from '../../../services/student.service';
 export class StudentProfileFormComponent implements OnInit {
 
   studentService = inject(StudentService);
-  student! : Signal<Student | null>;
+  student!: Signal<Student | null>;
 
   router = inject(Router);
   formBuilder = inject(FormBuilder);
@@ -36,50 +37,69 @@ export class StudentProfileFormComponent implements OnInit {
   }
 
   //@Input() student: Student | undefined = undefined; // ! -> majd inicializálni kell valahol
+  //FormGroup -> FormArray -> FormGroup
 
-  createPreviewStudy(studentPreviousStudies?: StudentPreviousStudies): FormGroup {
+
+
+
+  // Tanulmányok
+
+  createStudentStudy(studentStudy?: StudentStudy): FormGroup {
     return this.formBuilder.group(
       {
-        //previousStudyLevel: [studentPreviousStudies?.previousStudyLevel, Validators.required],
-        previousStudyName: [studentPreviousStudies?.previousStudyName, Validators.required],
-        previousStudyFinishedAt: [studentPreviousStudies?.previousStudyFinishedAt]
-      })
+        nameOfDegree: [studentStudy?.nameOfDegree, Validators.required],
+        nameOfInstitution: [studentStudy?.nameOfInstitution, Validators.required],
+        nameOfTraining: [studentStudy?.nameOfTraining, Validators.required],
+      }
+    )
   }
 
-  createStudentPreviousStudies(studentPreviousStudies?: StudentPreviousStudies[]): FormArray {
-    return this.formBuilder.array(studentPreviousStudies ? studentPreviousStudies.map(study => this.createPreviewStudy(study)) : [this.createPreviewStudy()]);
+  createStudentStudies(studentStudy?: StudentStudy[]): FormArray {
+    return this.formBuilder.array(studentStudy ? studentStudy.map(study => this.createStudentStudy(study)) : [this.createStudentStudy()]);
   }
 
-  getStudentPreviousStudiesFormArray(): FormArray {
-    return this.formGroup?.get('studentPreviousStudies') as FormArray;
+  getStudentStudyFormArray(): FormArray {
+    return this.formGroup?.get('studentStudy') as FormArray;
   }
 
   getStudyFormGroup(i: number): FormGroup {
-    return this.getStudentPreviousStudiesFormArray().controls[i] as FormGroup;
+    return this.getStudentStudyFormArray().controls[i] as FormGroup;
   }
 
-  addStudentPreviousStudy() {
-    this.getStudentPreviousStudiesFormArray().controls.push(this.createPreviewStudy());
+  addStudentStudy() {
+    this.getStudentStudyFormArray().controls.push(this.createStudentStudy());
   }
 
-  removeStudentPreviousStudy(i: number) {
-    this.getStudentPreviousStudiesFormArray().removeAt(i);
+  removeStudentStudy(i: number) {
+    this.getStudentStudyFormArray().removeAt(i);
   }
+
+
+
+
 
   createFormGroup(student: Student | undefined): FormGroup {
 
     const formGroup = this.formBuilder.group(
       {
         firstName: [student?.firstName, Validators.required],
-        studentPreviousStudies: this.createStudentPreviousStudies(student?.studentPreviousStudies)
+        studentStudy: this.createStudentStudies(student?.studentStudies)
+        //studentPreviousStudies: this.createStudentPreviousStudies(student?.studentPreviousStudies)
       }
     );
 
-//    console.log(formGroup);
+    //    console.log(formGroup);
 
     return formGroup; //formcontroll
 
   }
+
+
+
+
+
+
+
 
   getFormGroup(formGroupControl: AbstractControl): FormGroup {
     return formGroupControl as FormGroup;

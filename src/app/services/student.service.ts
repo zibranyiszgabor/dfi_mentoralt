@@ -18,7 +18,7 @@ export class StudentService {
 
   private _student = signal<Student | null>(null);
   public student = this._student;
-  private apiBaseUrl = 'https://localhost:3000'; // állítsd be
+  private apiBaseUrl = environment.apiBaseUrl; // állítsd be
   private msal!: PublicClientApplication;
   private defaultHttp: HttpClient;
   private secureHttp: HttpClient;

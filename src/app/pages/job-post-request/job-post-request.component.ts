@@ -7,10 +7,7 @@ import { JobPostRequestService } from 'services/job-post-request.service';
 import { BaseService } from 'services/baseService';
 import { Dictionary } from 'models/dictionary.model';
 import { Observable } from 'rxjs';
-
-interface GroupedDictionaries {
-  [key: string]: Dictionary[]; // key lehet 'root' vagy egy szám (parentDictId)
-}
+import { GroupedDictionaries } from 'models/groupedDictionaries';
 
 
 @Component({
@@ -23,36 +20,34 @@ interface GroupedDictionaries {
 export class JobPostRequestComponent {
   httpBackend: HttpClient;
   form: FormGroup = new FormGroup([]);
-  dictionaries$: Observable<Dictionary[]>; // <--- EZ A SOR KELL!$
-  groupedDictionaries: GroupedDictionaries = {}; // Most már biztosítva van a típus
+  lang: string = "hu";
+  private _requiredField: string  | undefined;
 
-  sectors = ["Adatmenedzsment (adatgyűjtés és -elemzés)", "Adminisztráció, asszisztensi feladatok", "Adózás", "Számvitel, könyvelés", "Pénzügy", "Bank, pénzintézet", "Biztosítás", "Beszerzés", "Értékesítés", "Fizikai, betanított munka", "Gazdasági elemzés és tanácsadás", "Gazdaságpszichológia", "Szervezetszichológia", "Gyártás, termelés", "HR", "Munkaügy és adminisztráció", "Bérszámfejtés és TB ügyintézés", "Innováció, kutatás, fejlesztés", "Gazdasági, üzleti IT", "IT üzemeltetés és support", "IT fejlesztés", "Jog", "Közigazgatás", "Kreatív és Design", "Kereskedelem", "E-kereskedelem", "Digitális marketing", "Marketing", "Média", "Kommunikáció", "PR", "Nemzetközi kapcsolatok, külgazdaság", "Oktatás", "Logisztika", "Projektmenedzsment", "Turizmus", "Sport és rekreáció", "Vendéglátás", "Ügyfélszolgálat"];
-  natureOfWorks = ["szellemi munka", "könnyű fizikai munka", "nehéz fizikai munka", "nyári munka", "gyakornok / demonstrátor", "szakmai gyakorlat", "önkéntes munka", "délutáni munka", "éjszakai munka", "hétvégi munka", "otthon végezhető", "utazással járó"];
-  placeOfWorks = ["Bács-Kiskun vármegye", "Baranya vármegye", "Békés vármegye", "Békéscsaba", "Borsod-Abaúj-Zemplén vármegye", "Budapest", "Budapest, I.kerület", "Budapest, II.kerület", "Budapest, III.kerület", "Budapest, IV.kerület", "Budapest, V.kerület", "Budapest, VI.kerület", "Budapest, VII.kerület", "Budapest, VIII.kerület", "Budapest, IX.kerület", "Budapest, X.kerület", "Budapest, XI.kerület", "Budapest, XII.kerület", "Budapest, XIII.kerület", "Budapest, XIV.kerület", "Budapest, XV.kerület", "Budapest, XVI.kerület", "Budapest, XVII.kerület", "Budapest, XVIII.kerület", "Budapest, XIX.kerület", "Budapest, XX.kerület", "Budapest, XXI.kerület", "Budapest, XXII.kerület", "Budapest, XXIII.kerület", "Csongrád-Csanád vármegye", "Debrecen", "Eger", "Fejér vármegye", "Győr", "Győr-Moson-Sopron vármegye", "Hajdú-Bihar vármegye", "Heves vármegye", "Jász-Nagykun-Szolnok vármegye", "Kaposvár", "Kecskemét", "Komárom-Esztergom vármegye", "Miskolc", "Nógrád vármegye", "Nyíregyháza", "Pécs", "Pest vármegye", "Buda környéke (agglomeráció)", "Pest környéke (agglomeráció)", "Salgótarján", "Somogy vármegye", "Szabolcs-Szatmár-Bereg vármegye", "Szeged", "Székesfehérvár", "Szekszárd", "Szolnok", "Szombathely", "Tatabánya", "Tolna vármegye", "Vas vármegye", "Veszprém", "Veszprém vármegye", "Zala vármegye", "Zalaegerszeg"];
-  timeOfWorks = ["home office", "rugalmas", "heti óraszám", "heti napszám"];
-  languageOfWorks = ['Magyar', 'Angol'];
-  employmentTypes = ["hosszú távú munka - határozott időtartam", "hosszú távú munka - határozatlan időtartam", "alkalmi munka"];
-  employmentForms = ["iskolaszövetkezeten keresztül", "megbízási szerződéssel", "munkaszerződéssel", "vállalkozói igazolvánnyal", "egyszerűsített bejelentéssel"];
-  employmentDurationTypes = ["dátum", "nap", "hét", "hónap"];
-  compensationTypes = ["bruttó óradíj forintban", "bruttó napidíj forintban", "bruttó havidíj forintban"];
-  additionalBenefits = ["cafeteria", "céges eszközök", "home office", "teljesítmény alapon plusz egyösszegű ösztönző", "műszakpótlék", "vállalati kedvezmény", "dolgozói élet- és balesetbiztosítás", "egészségügyi csomag", "képzési paletta", "munkábajárási támogatás", "egyéb"];
-  langs = ["angol", "német", "spanyol", "francia", "olasz", "portugál", "japán", "orosz"]
-  langLevels = ["Alapfok", "Középfok", "Felsőfok"]
-  langTypes = ["Szóbeli", "Írásbeli", "Komplex", "Nyelvvizsga megszerzése folyamatban"]
+  hoursWorkedPerWeekId = 174;
+  daysWorkedPerWeekId = 175;
+  employmentDurationDateId = 83;
+  employmentDurationInDaysId = 84;
+  employmentDurationInWeeksId = 85;
+  employmentDurationInMonthsId = 86;
+  additionalBenefitOtherId = 209;
 
 
   constructor(private fb: FormBuilder, private http: HttpClient, private handler: HttpBackend, private route: ActivatedRoute, private jobPostRequestService: JobPostRequestService, private baseService: BaseService) {
     this.httpBackend = new HttpClient(handler);
-    this.dictionaries$ = this.baseService.langDictionaries$; // itt hozzuk létre!
-    console.log(this.dictionaries$);
-    this.dictionaries$.subscribe((data) => {
-      this.groupedDictionaries = this.groupDataByParentId(data);
-      console.log(this.groupedDictionaries);
-    });
+    // Előfizetés az Observable-re
     
   }
 
-
+  
+  public get requiredField() : string | undefined {
+    return this._requiredField;
+  }
+  
+  
+  public get groupedDictionary() : GroupedDictionaries {
+    return this.baseService.groupedDictionary;
+  }
+  
   get tasks() {
     return this.form.get('tasks') as FormArray
   }
@@ -117,6 +112,7 @@ export class JobPostRequestComponent {
     this.addInput(this.requiredQualifications);
     this.getFirmcodeFromURL();
     this.jobPostRequestService.fetchCompanyData(this.form.get('firmCode')?.value, this.form);
+    this._requiredField = this.getParentNameByDictCode("RequiredField");
     
     //this.fetchCompanyData(this.form.get('firmCode')?.value);
   }
@@ -132,7 +128,7 @@ export class JobPostRequestComponent {
 
   addInput(array: FormArray) {
     array.push(this.fb.group({
-      input: ['', Validators.required]
+      value: ['', Validators.required]
     }));
   }
 
@@ -164,15 +160,26 @@ export class JobPostRequestComponent {
     this.jobPostRequestService.saveFormData(this.form);
   }
 
-  private groupDataByParentId(data: Dictionary[]): GroupedDictionaries {
-    return data.reduce((groups, item) => {
-      const parentId = item.parentDictId ?? 'root'; // Ha nincs parentDictId, akkor root
-      if (!groups[parentId]) {
-        groups[parentId] = [];
-      }
-      groups[parentId].push(item);
-      return groups;
-    }, {} as GroupedDictionaries); // Explicit típus a reduce kezdetén
+
+  public getParentName(dictionaryId: number): string | null {
+    return this.baseService.getParentName(dictionaryId, this.lang);
+  }
+
+  public getParentNameByDictCode(dictionaryCode: string): string | undefined {
+    return this.baseService.getParentNameByDictCode(dictionaryCode, this.lang);
+  }
+
+  public getChildsName(dictionaryCode: string): Dictionary[] {
+    return this.baseService.getChildsName(dictionaryCode);
+  }
+
+  public getChildDictionaryIdByChildDictionaryCode(childDictionaryCode: string): number | undefined {
+    return this.baseService.getChildDictionaryIdByChildDictionaryCode(childDictionaryCode);
+  }
+
+
+  switchLanguage(): void {
+    this.lang = this.lang === 'hu' ? 'en' : 'hu';
   }
 
 }

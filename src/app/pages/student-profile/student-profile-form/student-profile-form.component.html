@@ -1,9 +1,4 @@
-<form
-  *ngIf="formGroup"
-  [formGroup]="formGroup"
-  class="default-form"
-  style="border-radius: 10px; padding: 20px"
->
+<form *ngIf="formGroup" [formGroup]="formGroup" class="default-form" style="border-radius: 10px; padding: 20px">
   <section class="candidate-detail-section">
     <div class="auto-container">
       <div class="dashboard-outer">
@@ -17,17 +12,9 @@
             <div class="row">
               <div class="uploading-outer">
                 <div class="uploadButton">
-                  <input
-                    class="uploadButton-input"
-                    type="file"
-                    name="attachments[]"
-                    accept="image/*, application/pdf"
-                    id="upload"
-                    multiple
-                  />
-                  <label class="uploadButton-button ripple-effect" for="upload"
-                    >Browse Logo</label
-                  >
+                  <input class="uploadButton-input" type="file" name="attachments[]" accept="image/*, application/pdf"
+                    id="upload" multiple />
+                  <label class="uploadButton-button ripple-effect" for="upload">Browse Logo</label>
                   <span class="uploadButton-file-name"></span>
                 </div>
                 <div class="text">
@@ -49,16 +36,37 @@
               <input formControlName="firstName" id="firstName" />
             </div>
 
-            <div class="sections" formArrayName="studentPreviousStudies">
-              @for(previousStudy of
-              getFormArray('studentPreviousStudies').controls; track
-              previousStudy; let i = $index) {
+            <div class="sections" formArrayName="studentStudy">
+              @for(studentStudy of
+              getFormArray('studentStudy').controls; track
+              studentStudy; let i = $index) {
 
-              <app-student-previous-studies
-                [formGroup]="getFormGroup(previousStudy)"
-              ></app-student-previous-studies>
+              <app-student-study [formGroup]="getFormGroup(studentStudy)"></app-student-study>
+
+              <div class="form-group col-lg-1 col-md-12">
+                <br><br>
+                <span class="fa fa-trash" (click)="removeStudentStudy(i)"></span>
+              </div>
+
+              <div class="form-group col-lg-12 col-md-12">
+
+                <button id="addStudentStudy" (click)="addStudentStudy()" class="theme-btn" style="    font-size: 20px;
+                  font-weight: 500;
+          background-color: rgb(231,231,230);
+          border-radius: 10px;
+          width: 50px !important;
+          min-width: 30px;
+          min-height: 30px;
+          padding: 5px;">+</button>
+              </div>
+
+
               }
+
             </div>
+
+
+
 
             <app-student-language-skills></app-student-language-skills>
 
@@ -66,20 +74,13 @@
 
             <app-student-preferences></app-student-preferences>
 
+
             <div style="margin-top: 10px">
-              <button
-                type="button"
-                (click)="save()"
-                class="theme-btn btn-style-one"
-              >
+              <button type="button" (click)="save()" class="theme-btn btn-style-one">
                 Mentés
               </button>
               &NonBreakingSpace;
-              <button
-                type="button"
-                (click)="cancel()"
-                class="theme-btn btn-style-one"
-              >
+              <button type="button" (click)="cancel()" class="theme-btn btn-style-one">
                 Mégsem
               </button>
             </div>

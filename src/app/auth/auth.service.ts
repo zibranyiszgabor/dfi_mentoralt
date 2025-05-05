@@ -53,7 +53,7 @@ export class AuthService {
 
   public async initAndCheckLogin(): Promise<boolean> {
     const mode = localStorage.getItem('loginMode') ?? 'employee';
-
+  
     const msal = new PublicClientApplication({
       auth: {
         clientId: mode === 'student'
@@ -69,26 +69,30 @@ export class AuthService {
         storeAuthStateInCookie: true,
       },
     });
-
+  
     await msal.initialize();
-
+  
     const result = await msal.handleRedirectPromise();
-    
+  
     if (result?.account) {
       msal.setActiveAccount(result.account);
       localStorage.setItem('userAccount', JSON.stringify(result.account));
+      sessionStorage.setItem('isLoggedIn', 'true');
+      return true;
     }
-
+  
     const savedAccount = localStorage.getItem('userAccount');
-    
     if (savedAccount) {
       msal.setActiveAccount(JSON.parse(savedAccount));
       sessionStorage.setItem('isLoggedIn', 'true');
       return true;
     }
-
+  
+    // Ha nincs account, akkor false
+    sessionStorage.removeItem('isLoggedIn');
     return false;
   }
+  
 
 
   public get msalInstance(): PublicClientApplication {
@@ -151,16 +155,23 @@ export class AuthService {
     console.log('🔹 Diák bejelentkezés...');
     localStorage.setItem('loginMode', 'student');
 
+    localStorage.removeItem(`msal.${environment.azureAd.clientId_student}.interaction.status`);
+    localStorage.removeItem(`msal.${environment.azureAd.clientId_student}.idtoken`);
+    localStorage.removeItem(`msal.${environment.azureAd.clientId_student}.accesstoken`);   
+
+
     await this.createStudentMsal();
-
+  
     try {
-      // Ellenőrzés: ne próbálkozz újra, ha interakció folyamatban
-      const existingInteraction = localStorage.getItem(`msal.${environment.azureAd.clientId_student}.interaction.status`);
+      // Mindig biztosítsuk, hogy nincs beragadt interakció
+      const interactionKey = `msal.${environment.azureAd.clientId_student}.interaction.status`;
+      const existingInteraction = localStorage.getItem(interactionKey);
+      
       if (existingInteraction === 'inProgress') {
-        console.warn('⚠️ Bejelentkezés már folyamatban, nem indítjuk újra.');
-        return;
+        console.warn('⚠️ Beragadt interakció, törlés...');
+        localStorage.removeItem(interactionKey);
       }
-
+  
       await this.msal.loginRedirect({
         scopes: ['user.read'],
         prompt: 'select_account',
@@ -173,6 +184,7 @@ export class AuthService {
       }
     }
   }
+  
 
   public async createStudentMsal() {
 
@@ -211,8 +223,7 @@ public async createEmployeeMsal() {
 }
 
   public async logout(): Promise<void> {
-    localStorage.removeItem('userAccount');
-    localStorage.removeItem('loginMode');
+
     //this.isLoggedInSubject.next(false);
 
     const mode = localStorage.getItem('loginMode') ?? 'employee';
@@ -233,9 +244,20 @@ public async createEmployeeMsal() {
       },
     });
 
+    localStorage.removeItem('userAccount');
+    localStorage.removeItem('loginMode');
+    sessionStorage.removeItem('isLoggedIn'); 
+
+    Object.keys(localStorage).forEach(key => {
+      if (key.startsWith('msal.')) {
+        localStorage.removeItem(key);
+      }
+    });
+
     await msal.initialize();
 
     await msal.logoutRedirect();
+
   }
 
   public storeToken(): void {

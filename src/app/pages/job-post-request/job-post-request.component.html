@@ -1,279 +1,292 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container job-post-request">
-
+    
+    <div class="language-switch-container">
+        <button (click)="switchLanguage()" class="btn btn-primary language-switch">
+            <img
+                *ngIf="lang === 'hu'"
+                src="../../../assets/images/eng.png"
+                alt="Switch to English"
+                class="flag-icon"
+            />
+            <img
+                *ngIf="lang === 'en'"
+                src="../../../assets/images/hu.png"
+                alt="Magyarra váltás"
+                class="flag-icon"
+            />
+        </button>
+    </div>   
     <div class="form-row">
-        <h2>Állásajánlat rögzítése</h2>
+        <h2>{{getParentNameByDictCode("JobPosting")}}</h2>
     </div>
     <div>
-        <p><strong>Cégnév: </strong>{{ form.get('firmName')?.value }}</p>
-        <p><strong>E-mail cím: </strong>{{ form.get('emailAddress')?.value }}</p>
+        <p><strong>{{getParentNameByDictCode("CompanyName")}}: </strong>{{ form.get('firmName')?.value }}</p>
+        <p><strong>{{getParentNameByDictCode("EmailAddress")}}: </strong>{{ form.get('emailAddress')?.value }}</p>
     </div>
-
-
-
     <div class="fieldSet">
-        <label for="introduction">Bemutatkozás</label>
+        <label for="introduction">{{getParentNameByDictCode("Introduction")}}</label>
         <div class="form-row">
             <div class="form-group">
                 <input type="text" id="introduction" class="form-control" formControlName="introduction" required
                     maxlength="1000">
                 <div *ngIf="form.get('introduction')?.invalid && form.get('introduction')?.touched" class="text-danger">
-                    A bemutatkozást kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
         </div>
     </div>
     <hr class="separator">
     <div class="fieldSet">
-        <label>Az ajánlattal kapcsolatos adatok</label>
+        <label>{{getParentNameByDictCode("InformationAboutTheOffer")}}</label>
         <div class="form-row">
             <div class="form-group">
-                <label for="position">Pozíció</label>
+                <label for="position">{{getParentNameByDictCode("Position")}}</label>
                 <input type="text" id="position" class="form-control" formControlName="position" required>
                 <div *ngIf="form.get('position')?.invalid && form.get('position')?.touched" class="text-danger">
-                    A pozíciót kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
-                <label for="appDeadLine">Jelentkezési határidő</label>
+                <label for="appDeadLine">{{getParentNameByDictCode("ApplicationDeadline")}}</label>
                 <input type="date" id="appDeadLine" class="form-control" formControlName="appDeadLine" required>
                 <div *ngIf="form.get('appDeadLine')?.invalid && form.get('appDeadLine')?.touched" class="text-danger">
-                    A jelentkezési határidőt kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
             <div class="form-group">
-                <label for="expectedNumberOfApplicants">Elvárt jelentkezői létszám</label>
+                <label for="expectedNumberOfApplicants">{{getParentNameByDictCode("ExpectedNumberOfApplicants")}}</label>
                 <input type="number" id="expectedNumberOfApplicants" class="form-control"
                     formControlName="expectedNumberOfApplicants" required min="1">
                 <div *ngIf="form.get('expectedNumberOfApplicants')?.invalid && form.get('expectedNumberOfApplicants')?.touched"
                     class="text-danger">
-                    Az elvárt jelentkezői létszámot kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
-                <label for="selectionProcess">Kiválasztás menete</label>
+                <label for="selectionProcess">{{getParentNameByDictCode("SelectionProcess")}}</label>
                 <input type="text" id="selectionProcess" class="form-control" formControlName="selectionProcess">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
-                <label for="selectionDeadline">Kiválasztás határideje</label>
+                <label for="selectionDeadline">{{getParentNameByDictCode("SelectionDeadline")}}</label>
                 <input type="date" id="selectionDeadline" class="form-control" formControlName="selectionDeadline">
             </div>
             <div class="form-group">
-                <label for="plannedStartOfEmployment">Foglalkoztatás tervezett kezdete</label>
+                <label for="plannedStartOfEmployment">{{getParentNameByDictCode("PlannedStartOfEmployment")}}</label>
                 <input type="date" id="plannedStartOfEmployment" class="form-control"
                     formControlName="plannedStartOfEmployment" required>
                 <div *ngIf="form.get('plannedStartOfEmployment')?.invalid && form.get('plannedStartOfEmployment')?.touched"
                     class="text-danger">
-                    Afoglalkoztatás tervezett kezdetét kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
         </div>
     </div>
     <hr class="separator">
     <div class="fieldSet">
-        <label>Munkavégzéssel kapcsolatos adatok</label>
+        <label>{{getParentNameByDictCode("EmploymentDetails")}}</label>
         <div class="form-row">
             <div class="form-group">
-                <label for="sector">Szektor</label>
+                <label for="sector">{{getParentNameByDictCode("SectorCategory")}}</label>
                 <select id="sector" class="form-control" formControlName="sector" required>
-                    <option *ngFor="let option of sectors" [value]="option">{{ option }}</option>
-                </select>
+                    <option *ngFor="let option of getChildsName('SectorCategory')" [value]="option.dictionaryId">{{lang === 'hu' ? option.name_HU : option.name_EN}}</option>
+                  </select>
                 <div *ngIf="form.get('sector')?.invalid && form.get('sector')?.touched" class="text-danger">
-                    A szektort kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
             <div class="form-group">
-                <label for="natureOfWork">Munka jellege</label>
+                <label for="natureOfWork">{{getParentNameByDictCode("NatureOfWorks")}}</label>
                 <select id="natureOfWork" class="form-control" formControlName="natureOfWork" required>
-                    <option *ngFor="let option of natureOfWorks" [value]="option">{{ option }}</option>
+                    <option *ngFor="let option of getChildsName('NatureOfWorks')" [value]="option.dictionaryId">{{lang === 'hu' ? option.name_HU : option.name_EN}}</option>
                 </select>
                 <div *ngIf="form.get('natureOfWork')?.invalid && form.get('natureOfWork')?.touched" class="text-danger">
-                    A munka jellegét kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
-                <label for="placeOfWork">Munkavégzés helye</label>
+                <label for="placeOfWork">{{getParentNameByDictCode("PlaceOfWorks")}}</label>
                 <select id="placeOfWork" class="form-control" formControlName="placeOfWork" required>
-                    <option *ngFor="let option of placeOfWorks" [value]="option">{{ option }}</option>
+                    <option *ngFor="let option of getChildsName('PlaceOfWorks')" [value]="option.dictionaryId">{{lang === 'hu' ? option.name_HU : option.name_EN}}</option>
                 </select>
                 <div *ngIf="form.get('placeOfWork')?.invalid && form.get('placeOfWork')?.touched" class="text-danger">
-                    A munkavégzés helyét kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
             <div class="form-group">
-                <label for="timeOfWork">Munkavégzés ideje</label>
+                <label for="timeOfWork">{{getParentNameByDictCode("TimeOfWorks")}}</label>
                 <select id="timeOfWork" class="form-control" formControlName="timeOfWork" required>
-                    <option *ngFor="let option of timeOfWorks" [value]="option">{{ option }}</option>
+                    <option *ngFor="let option of getChildsName('TimeOfWorks')" [value]="option.dictionaryId">{{lang === 'hu' ? option.name_HU : option.name_EN}}</option>
                 </select>
                 <div *ngIf="form.get('timeOfWork')?.invalid && form.get('timeOfWork')?.touched" class="text-danger">
-                    A munkavégzés idejét kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
-                <label for="languageOfWork">Munkavégzés nyelve</label>
+                <label for="languageOfWork">{{getParentNameByDictCode("LanguageOfWorks")}}</label>
                 <select id="languageOfWork" class="form-control" formControlName="languageOfWork" required>
-                    <option *ngFor="let option of languageOfWorks" [value]="option">{{ option }}</option>
+                    <option *ngFor="let option of getChildsName('LanguageOfWorks')" [value]="option.dictionaryId">{{lang === 'hu' ? option.name_HU : option.name_EN}}</option>
                 </select>
                 <div *ngIf="form.get('languageOfWork')?.invalid && form.get('languageOfWork')?.touched"
                     class="text-danger">
-                    A munkavégzés nyelvét kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
-            <div class="form-group" *ngIf="form.get('timeOfWork')?.value === timeOfWorks[2]">
-                <label for="hoursWorkedPerWeek ">Munkavégzéssel töltött órák száma hetente</label>
+            <div class="form-group" *ngIf="form.get('timeOfWork')?.value === getChildDictionaryIdByChildDictionaryCode('Weeklyhours')?.toString()">
+                <label for="hoursWorkedPerWeek ">{{getParentNameByDictCode("WeeklyWorkingHours")}}</label>
                 <input type="number" id="hoursWorkedPerWeek" class="form-control" formControlName="hoursWorkedPerWeek"
                     required min="1">
                 <div *ngIf="form.get('hoursWorkedPerWeek')?.invalid && form.get('hoursWorkedPerWeek')?.touched"
                     class="text-danger">
-                    A munkavégzéssel töltött órák heti számát kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
-            <div class="form-group" *ngIf="form.get('timeOfWork')?.value === timeOfWorks[3]">
-                <label for="daysWorkedPerWeek ">Munkavégzéssel töltött napok száma hetente</label>
+            <div class="form-group" *ngIf="form.get('timeOfWork')?.value === getChildDictionaryIdByChildDictionaryCode('Weeklydays')?.toString()">
+                <label for="daysWorkedPerWeek ">{{getParentNameByDictCode("WeeklyWorkingDays")}}</label>
                 <input type="number" id="daysWorkedPerWeek" class="form-control" formControlName="daysWorkedPerWeek"
-                    required min="1">
+                    required min="1">               
                 <div *ngIf="form.get('daysWorkedPerWeek')?.invalid && form.get('daysWorkedPerWeek')?.touched"
                     class="text-danger">
-                    A munkavégzéssel töltött napok heti számát kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
         </div>
     </div>
     <hr class="separator">
     <div class="fieldSet">
-        <label>Foglalkoztatással kapcsolatos adatok</label>
+        <label>{{getParentNameByDictCode("EmploymentRelatedInformation")}}</label>
         <div class="form-row">
             <div class="form-group">
-                <label for="employmentType">Foglalkoztatás jellege</label>
+                <label for="employmentType">{{getParentNameByDictCode("EmploymentTypes")}}</label>
                 <select id="employmentType" class="form-control" formControlName="employmentType" required>
-                    <option *ngFor="let option of employmentTypes" [value]="option">{{ option }}</option>
+                    <option *ngFor="let option of getChildsName('EmploymentTypes')" [value]="option.dictionaryId">{{lang === 'hu' ? option.name_HU : option.name_EN}}</option>
                 </select>
                 <div *ngIf="form.get('employmentType')?.invalid && form.get('employmentType')?.touched"
                     class="text-danger">
-                    A foglalkoztatás jellegét kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
             <div class="form-group">
-                <label for="employmentForm">Foglalkoztatási forma</label>
+                <label for="employmentForm">{{getParentNameByDictCode("EmploymentForms")}}</label>
                 <select id="employmentForm" class="form-control" formControlName="employmentForm" required>
-                    <option *ngFor="let option of employmentForms" [value]="option">{{ option }}</option>
+                    <option *ngFor="let option of getChildsName('EmploymentForms')" [value]="option.dictionaryId">{{lang === 'hu' ? option.name_HU : option.name_EN}}</option>
                 </select>
                 <div *ngIf="form.get('employmentForm')?.invalid && form.get('employmentForm')?.touched"
                     class="text-danger">
-                    A foglalkoztatás formáját kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
-                <label for="employmentDurationType">Foglalkoztatás időtartam típusa</label>
+                <label for="employmentDurationType">{{getParentNameByDictCode("EmploymentDurationType")}}</label>
                 <select id="employmentDurationType" class="form-control" formControlName="employmentDurationType"
                     required>
-                    <option *ngFor="let option of employmentDurationTypes" [value]="option">{{ option }}</option>
+                    <option *ngFor="let option of getChildsName('EmploymentDurationType')" [value]="option.dictionaryId">{{lang === 'hu' ? option.name_HU : option.name_EN}}</option>
                 </select>
                 <div *ngIf="form.get('employmentDurationType')?.invalid && form.get('employmentDurationType')?.touched"
                     class="text-danger">
-                    A foglalkoztatás időtartam típusát kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group" *ngIf="form.get('employmentDurationType')?.value === employmentDurationTypes[1]">
-                <label for="employmentDurationInDays">Foglalkoztatás időtartama napokban</label>
+            <div class="form-group" *ngIf="form.get('employmentDurationType')?.value === getChildDictionaryIdByChildDictionaryCode('Day')?.toString()">
+                <label for="employmentDurationInDays">{{getParentNameByDictCode("EmploymentDurationInDays")}}</label>
                 <input type="number" id="employmentDurationInDays" class="form-control"
                     formControlName="employmentDurationInDays" required min="1">
                 <div *ngIf="form.get('employmentDurationInDays')?.invalid && form.get('employmentDurationInDays')?.touched"
                     class="text-danger">
-                    A foglalkoztatás időtartamát kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
-            <div class="form-group" *ngIf="form.get('employmentDurationType')?.value === employmentDurationTypes[2]">
-                <label for="employmentDurationInWeeks">Foglalkoztatás időtartama hetekben</label>
+            <div class="form-group" *ngIf="form.get('employmentDurationType')?.value === getChildDictionaryIdByChildDictionaryCode('Week')?.toString()">
+                <label for="employmentDurationInWeeks">{{getParentNameByDictCode("EmploymentDurationInWeeks")}}</label>
                 <input type="number" id="employmentDurationInWeeks" class="form-control"
                     formControlName="employmentDurationInWeeks" required min="1">
                 <div *ngIf="form.get('employmentDurationInWeeks')?.invalid && form.get('employmentDurationInWeeks')?.touched"
                     class="text-danger">
-                    A foglalkoztatás időtartamát kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
-            <div class="form-group" *ngIf="form.get('employmentDurationType')?.value === employmentDurationTypes[3]">
-                <label for="employmentDurationInMonths">Foglalkoztatás időtartama hónapokban</label>
+            <div class="form-group" *ngIf="form.get('employmentDurationType')?.value === getChildDictionaryIdByChildDictionaryCode('Month')?.toString()">
+                <label for="employmentDurationInMonths">{{getParentNameByDictCode("EmploymentDurationInMonths")}}</label>
                 <input type="number" id="employmentDurationInMonths" class="form-control"
                     formControlName="employmentDurationInMonths" required min="1">
                 <div *ngIf="form.get('employmentDurationInMonths')?.invalid && form.get('employmentDurationInMonths')?.touched"
                     class="text-danger">
-                    A foglalkoztatás időtartamát kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group"
-                    *ngIf="form.get('employmentDurationType')?.value === employmentDurationTypes[0]">
-                    <label for="employmentStartDate">Foglalkoztatás kezdete</label>
+                    *ngIf="form.get('employmentDurationType')?.value === getChildDictionaryIdByChildDictionaryCode('Date')?.toString()">
+                    <label for="employmentStartDate">{{getParentNameByDictCode("EmploymentStartDate")}}</label>
                     <input type="date" id="employmentStartDate" class="form-control"
                         formControlName="employmentStartDate" required>
                     <div *ngIf="form.get('employmentStartDate')?.invalid && form.get('employmentStartDate')?.touched"
                         class="text-danger">
-                        A foglalkoztatás időtartamát kötelező kitölteni!
+                        {{getParentNameByDictCode("RequiredField")}}
                     </div>
                 </div>
                 <div class="form-group"
-                    *ngIf="form.get('employmentDurationType')?.value === employmentDurationTypes[0]">
-                    <label for="employmentEndDate">Foglalkoztatás vége</label>
+                    *ngIf="form.get('employmentDurationType')?.value === getChildDictionaryIdByChildDictionaryCode('Date')?.toString()">
+                    <label for="employmentEndDate">{{getParentNameByDictCode("EmploymentEndDate")}}</label>
                     <input type="date" id="employmentEndDate" class="form-control" formControlName="employmentEndDate"
                         required>
                     <div *ngIf="form.get('employmentEndDate')?.invalid && form.get('employmentEndDate')?.touched"
                         class="text-danger">
-                        A foglalkoztatás időtartamát kötelező kitölteni!
+                        {{getParentNameByDictCode("RequiredField")}}
                     </div>
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
-                <label for="compensationType">Javadalmazás típusa</label>
+                <label for="compensationType">{{getParentNameByDictCode("CompensationTypes")}}</label>
                 <select id="compensationType" class="form-control" formControlName="compensationType" required>
-                    <option *ngFor="let option of compensationTypes" [value]="option">{{ option }}</option>
+                    <option *ngFor="let option of getChildsName('CompensationTypes')" [value]="option.dictionaryId">{{lang === 'hu' ? option.name_HU : option.name_EN}}</option>
                 </select>
                 <div *ngIf="form.get('compensationType')?.invalid && form.get('compensationType')?.touched"
                     class="text-danger">
-                    A javadalmazás típusát kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
             <div class="form-group">
-                <label for="compensationValue">Javadalmazás értéke</label>
+                <label for="compensationValue">{{getParentNameByDictCode("CompensationValue")}}</label>
                 <input type="number" id="compensationValue" class="form-control" formControlName="compensationValue"
                     required min="1">
                 <div *ngIf="form.get('compensationValue')?.invalid && form.get('compensationValue')?.touched"
                     class="text-danger">
-                    A javadalmazás értékét kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group">
-                <label for="additionalBenefit">Egyéb juttatás</label>
+                <label for="additionalBenefit">{{getParentNameByDictCode("AdditionalBenefits")}}</label>
                 <select id="additionalBenefit" class="form-control" formControlName="additionalBenefit" required>
-                    <option *ngFor="let option of additionalBenefits" [value]="option">{{ option }}</option>
+                    <option *ngFor="let option of getChildsName('AdditionalBenefits')" [value]="option.dictionaryId">{{lang === 'hu' ? option.name_HU : option.name_EN}}</option>
                 </select>
                 <div *ngIf="form.get('additionalBenefit')?.invalid && form.get('additionalBenefit')?.touched"
                     class="text-danger">
-                    A javadalmazás típusát kötelező kitölteni!
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
-            <div class="form-group" *ngIf="form.get('additionalBenefit')?.value === additionalBenefits[10]">
-                <label for="other">Egyéb</label>
+            <div class="form-group" *ngIf="form.get('additionalBenefit')?.value == additionalBenefitOtherId">
+                <label for="other">{{getParentNameByDictCode("Other")}}</label>
                 <input type="text" id="other" class="form-control" formControlName="other" required>
                 <div *ngIf="form.get('other')?.invalid && form.get('other')?.touched" class="text-danger">
-                    Az egyéb értékét kötelező kitölteni!
+                   {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
         </div>
@@ -282,122 +295,107 @@
     <hr class="separator">
 
     <div class="fieldSet">
-        <label>Jelenzkezővel kapcsolatos adatok</label>
+        <label>{{getParentNameByDictCode("ApplicantInformation")}}</label>
         <div formArrayName="tasks">
-            <label>Ellátandó feladatok:</label>
+            <label>{{getParentNameByDictCode("TasksToBePerformed")}}:</label>
             <div *ngFor="let item of tasks.controls; let i = index" [formGroupName]="i" class="form-group">
                 <div class="d-flex align-items-center form-row">
-                    <input type="text" class="form-control" formControlName="input" placeholder="Írja be a feladatot"
+                    <input type="text" class="form-control" formControlName="value" 
                         required>
                     <button type="button" class="btn btn-danger" (click)="removeInput(tasks, i)"
-                        [disabled]="tasks.length<=1">Törlés</button>
+                        [disabled]="tasks.length<=1">{{getParentNameByDictCode("Delete")}}</button>
                 </div>
-                <div *ngIf="item.get('input')?.invalid && (item.get('input')?.touched)" class="text-danger">
-                    A feladatot kötelező kitölteni!
+                <div *ngIf="item.get('id')?.invalid && (item.get('id')?.touched)" class="text-danger">
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
-            <button type="button" class="btn btn-primary" (click)="addInput(tasks)" [disabled]="tasks.length>=20">+ Új
-                feladat</button>
+            <button type="button" class="btn btn-primary" (click)="addInput(tasks)" [disabled]="tasks.length>=20">+ {{getParentNameByDictCode("NewTask")}}</button>
         </div>
 
         <hr class="separator">
 
         <div formArrayName="requiredQualifications">
-            <label>Szükséges elvárások:</label>
+            <label>{{getParentNameByDictCode("RequiredExpectations")}}:</label>
             <div *ngFor="let item of requiredQualifications.controls; let i = index" [formGroupName]="i"
                 class="form-group">
                 <div class="d-flex align-items-center form-row">
-                    <input type="text" class="form-control" formControlName="input" placeholder="Írja be az elvárást"
+                    <input type="text" class="form-control" formControlName="value" 
                         required>
                     <button type="button" class="btn btn-danger" (click)="removeInput(requiredQualifications, i)"
-                        [disabled]="requiredQualifications.length<=1">Törlés</button>
+                        [disabled]="requiredQualifications.length<=1">{{getParentNameByDictCode("Delete")}}</button>
                 </div>
-                <div *ngIf="item.get('input')?.invalid && (item.get('input')?.touched)" class="text-danger">
-                    Az elvárást kötelező kitölteni!
+                <div *ngIf="item.get('id')?.invalid && (item.get('id')?.touched)" class="text-danger">
+                    {{getParentNameByDictCode("RequiredField")}}
                 </div>
             </div>
             <button type="button" class="btn btn-primary" (click)="addInput(requiredQualifications)"
-                [disabled]="requiredQualifications.length>=10">+ Új elvárás</button>
+                [disabled]="requiredQualifications.length>=10">+ {{getParentNameByDictCode("NewExpectation")}}</button>
         </div>
 
         <hr class="separator">
 
         <div formArrayName="languages">
-            <label>Nyelv:</label>
+            <label>{{getParentNameByDictCode("Languages")}}:</label>
             <div *ngFor="let item of languages.controls; let i = index" [formGroupName]="i" class="form-group">
 
                 <div class="d-flex align-items-center form-row">
                     <div class="form-group">
-                        <label for="lang">Nyelv</label>
+                        <label for="lang">{{getParentNameByDictCode("LanguageExamLang")}}</label>
                         <select id="lang" class="form-control" formControlName="lang" required>
-                            <option *ngFor="let option of langs" [value]="option">{{ option }}</option>
+                            <option *ngFor="let option of getChildsName('LanguageExamLang')" [value]="option.dictionaryId">{{lang === 'hu' ? option.name_HU : option.name_EN}}</option>
                         </select>
-
                     </div>
                     <div class="form-group">
-                        <label for="langLevel">Nyelvismeret szintje</label>
+                        <label for="langLevel">{{getParentNameByDictCode("LanguageExamLevel")}}</label>
                         <select id="langLevel" class="form-control" formControlName="langLevel" required>
-                            <option *ngFor="let option of langLevels" [value]="option">{{ option }}</option>
+                            <option *ngFor="let option of getChildsName('LanguageExamLevel')" [value]="option.dictionaryId">{{lang === 'hu' ? option.name_HU : option.name_EN}}</option>
                         </select>
-
                     </div>
                     <div class="form-group">
-                        <label for="langType">Nyelvismeret típusa</label>
+                        <label for="langType">{{getParentNameByDictCode("LanguageExamType")}}</label>
                         <select id="langType" class="form-control" formControlName="langType" required>
-                            <option *ngFor="let option of langTypes" [value]="option">{{ option }}</option>
+                            <option *ngFor="let option of getChildsName('LanguageExamType')" [value]="option.dictionaryId">{{lang === 'hu' ? option.name_HU : option.name_EN}}</option>
                         </select>
-
                     </div>
                     <div class="form-group">
                         <label></label>
-                        <button type="button" class="btn btn-danger" (click)="removeInput(languages, i)">Törlés</button>
+                        <button type="button" class="btn btn-danger" (click)="removeInput(languages, i)">{{getParentNameByDictCode("Delete")}}</button>
                     </div>
                 </div>
-                <div *ngIf="item.get('lang')?.invalid && item.get('lang')?.touched" class="text-danger">
-                    A nyelvet kötelező megadni!
-                </div>
-                <div *ngIf="item.get('langLevel')?.invalid && item.get('langLevel')?.touched" class="text-danger">
-                    A nyelvismeret szintjét kötelező megadni!
-                </div>
-                <div *ngIf="item.get('langType')?.invalid && item.get('langType')?.touched" class="text-danger">
-                    A nyelvismeret típusást kötelező megadni!
+                <div *ngIf="item.get('lang')?.invalid && item.get('lang')?.touched || item.get('langType')?.invalid && item.get('langType')?.touched || item.get('langLevel')?.invalid && item.get('langLevel')?.touched" class="text-danger">
+                  {{getParentNameByDictCode("RequiredField")}}
                 </div>
                 <hr class="separator">
             </div>
-            <button type="button" class="btn btn-primary" (click)="addLanguages()" [disabled]="languages.length>=3">+
-                Új nyelv</button>
+            <button type="button" class="btn btn-primary" (click)="addLanguages()" [disabled]="languages.length>=3">+ {{getParentNameByDictCode("NewLanguage")}}</button>
         </div>
         <hr class="separator">
         <div formArrayName="competencies">
-            <label>Kompetenciák:</label>
+            <label>{{getParentNameByDictCode("Competencies")}}:</label>
             <div *ngFor="let item of competencies.controls; let i = index" [formGroupName]="i" class="form-group">
                 <div class="d-flex align-items-center form-row">
-                    <input type="text" class="form-control" formControlName="input" placeholder="Írja be a kompetenciát">
-                    <button type="button" class="btn btn-danger" (click)="removeInput(competencies, i)">Törlés</button>
+                    <input type="text" class="form-control" formControlName="value">
+                    <button type="button" class="btn btn-danger" (click)="removeInput(competencies, i)">{{getParentNameByDictCode("Delete")}}</button>
                 </div>
             </div>
             <button type="button" class="btn btn-primary" (click)="addInput(competencies)"
-                [disabled]="competencies.length>=10">+ Új kompetencia</button>
+                [disabled]="competencies.length>=10">+ {{getParentNameByDictCode("NewCompetencies")}}</button>
         </div>
         <hr class="separator">
         <div formArrayName="advantages">
-            <label>Előnyt jelent:</label>
+            <label>{{getParentNameByDictCode("PreferredAdvantages")}}:</label>
             <div *ngFor="let item of advantages.controls; let i = index" [formGroupName]="i" class="form-group">
                 <div class="d-flex align-items-center form-row">
-                    <input type="text" class="form-control" formControlName="input" placeholder="Írja be az előnyt">
-                    <button type="button" class="btn btn-danger" (click)="removeInput(advantages, i)">Törlés</button>
+                    <input type="text" class="form-control" formControlName="value">
+                    <button type="button" class="btn btn-danger" (click)="removeInput(advantages, i)">{{getParentNameByDictCode("Delete")}}</button>
                 </div>
             </div>
             <button type="button" class="btn btn-primary" (click)="addInput(advantages)"
-                [disabled]="advantages.length>=10">+ Új előny</button>
+                [disabled]="advantages.length>=10">+ {{getParentNameByDictCode("NewAdvantage")}}</button>
         </div>
         <hr class="separator">
     </div>
 
-
-    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Küldés</button>
-
-    {{getInvalidControls() | json}}
-    <!-- {{form.controls | json}} -->
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">{{getParentNameByDictCode("Send")}}</button>
 
 </form>

@@ -1,21 +1,16 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { StudentPreviousStudies } from '../../../models/studentPreviousStudies.model';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { StudentStudy } from '../../../models/studentStudy.model';
 
 @Component({
-  selector: 'app-student-previous-studies',
+  selector: 'app-student-study',
   imports: [FormsModule, ReactiveFormsModule],
-  templateUrl: './student-previous-studies.component.html',
-  styleUrl: './student-previous-studies.component.scss'
+  templateUrl: './student-study.component.html',
+  styleUrl: './student-study.component.scss'
 })
-export class StudentPreviousStudiesComponent {
+export class StudentStudyComponent {
   router = inject(Router);
 
   @Input() formGroup!: FormGroup;
-
-
-
-
 }
