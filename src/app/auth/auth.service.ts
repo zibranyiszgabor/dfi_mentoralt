@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 import { tap } from 'rxjs/operators';
 import { Student } from '../models/student.model';
 import { PublicClientApplication, AuthenticationResult } from '@azure/msal-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Injectable({
@@ -20,6 +21,7 @@ export class AuthService {
   private userSubject = new BehaviorSubject<any>(null);
 
   public msal!: PublicClientApplication;
+  router = Inject(Router);
 
   constructor(
     private msalService: MsalService,
@@ -222,43 +224,57 @@ public async createEmployeeMsal() {
 
 }
 
-  public async logout(): Promise<void> {
+public async logout(): Promise<void> {
+  const mode = localStorage.getItem('loginMode') ?? 'employee';
 
-    //this.isLoggedInSubject.next(false);
+  const msal = new PublicClientApplication({
+    auth: {
+      clientId: mode === 'student'
+        ? environment.azureAd.clientId_student
+        : environment.azureAd.clientId_employee,
+      authority: mode === 'student'
+        ? environment.azureAd.authority_student
+        : environment.azureAd.authority_employee,
+      redirectUri: environment.azureAd.redirectUri,
+    },
+    cache: {
+      cacheLocation: 'localStorage',
+      storeAuthStateInCookie: true,
+    },
+  });
 
-    const mode = localStorage.getItem('loginMode') ?? 'employee';
+  await msal.initialize();
 
-    const msal = new PublicClientApplication({
-      auth: {
-        clientId: mode === 'student'
-          ? environment.azureAd.clientId_student
-          : environment.azureAd.clientId_employee,
-        authority: mode === 'student'
-          ? environment.azureAd.authority_student
-          : environment.azureAd.authority_employee,
-        redirectUri: environment.azureAd.redirectUri,
-      },
-      cache: {
-        cacheLocation: 'localStorage',
-        storeAuthStateInCookie: true,
-      },
-    });
+  const accounts = msal.getAllAccounts();
 
-    localStorage.removeItem('userAccount');
-    localStorage.removeItem('loginMode');
-    sessionStorage.removeItem('isLoggedIn'); 
-
-    Object.keys(localStorage).forEach(key => {
-      if (key.startsWith('msal.')) {
-        localStorage.removeItem(key);
-      }
-    });
-
-    await msal.initialize();
-
-    await msal.logoutRedirect();
-
+  if (accounts.length === 0) {
+    console.warn('⚠️ Nincs bejelentkezett fiók. Csak lokális tisztítás történik.');
+    this.clearLocalData();
+    this.router.navigate(['/']);
+    return;
   }
+
+  const account = accounts[0]; // vagy keress konkrét userName/email alapján
+
+  this.clearLocalData();
+
+  await msal.logoutRedirect({
+    account,
+    postLogoutRedirectUri: environment.azureAd.redirectUri // pl. window.location.origin
+  });
+}
+
+private clearLocalData(): void {
+  localStorage.removeItem('userAccount');
+  localStorage.removeItem('loginMode');
+  sessionStorage.removeItem('isLoggedIn');
+
+  Object.keys(localStorage).forEach(key => {
+    if (key.startsWith('msal.')) {
+      localStorage.removeItem(key);
+    }
+  });
+}
 
   public storeToken(): void {
     const account = this.msalService.instance.getActiveAccount();

@@ -1,56 +1,82 @@
 <form *ngIf="formGroup" [formGroup]="formGroup" class="default-form" style="border-radius: 10px; padding: 20px">
   <section class="candidate-detail-section">
+
+
+
     <div class="auto-container">
       <div class="dashboard-outer">
         <div class="upper-title-box">
           <h3>Profilom</h3>
-          <div class="text"></div>
+          <div class="text">{{ student()?.firstName }} {{ student()?.lastName }}</div>
         </div>
+
+        <br><br>
 
         <div class="row">
           <div class="col-lg-12">
             <div class="row">
               <div class="uploading-outer">
                 <div class="uploadButton">
-                  <input class="uploadButton-input" type="file" name="attachments[]" accept="image/*, application/pdf"
-                    id="upload" multiple />
-                  <label class="uploadButton-button ripple-effect" for="upload">Browse Logo</label>
-                  <span class="uploadButton-file-name"></span>
-                </div>
-                <div class="text">
-                  Maximális fájlméret 1MB, Minimum felbontás: 330x300 és a fájl
-                  formátuma .jpg vagy .png
+
+                  <input class="uploadButton-input" type="file" name="profileImage" accept="image/*" id="upload"
+                    (change)="onFileSelected($event)" />
+
+                  <!-- 📸 Nincs új és nincs mentett kép -->
+                  <label *ngIf="!imagePreviewUrl && !student()?.profileImage" class="uploadButton-button ripple-effect"
+                    for="upload">
+                    Browse Logo
+                  </label>
+
+                  <!-- 🖼️ Újonnan kiválasztott kép -->
+                  <div class="preview-container" *ngIf="imagePreviewUrl">
+                    <img [src]="imagePreviewUrl" alt="Előnézet"
+                      style="max-width: 150px; max-height: 100px; object-fit: contain; border: 1px solid #ccc; cursor: pointer;"
+                      (click)="resetImage()" />
+                    <p style="font-size: 12px; color: #666;">Kattints a kép törléséhez</p>
+                  </div>
+
+                  <!-- 🖼️ Mentett kép, ha nincs új -->
+                  <div class="preview-container" *ngIf="!imagePreviewUrl && student()?.profileImage">
+                    <img [src]="getImageSrc(student()?.profileImage)" alt="Profilkép"
+                      style="max-width: 150px; max-height: 100px; object-fit: contain; border: 1px solid #ccc; cursor: pointer;"
+                      (click)="resetImage()" />
+                    <p style="font-size: 12px; color: #666;">Kattints a kép törléséhez</p>
+                  </div>
+
                 </div>
               </div>
             </div>
           </div>
         </div>
 
+
+
+
         <div class="ls-widget">
           <div class="tabs-box">
             <div class="widget-title">
-              <h4>Tanulmányok</h4>
+              <h4>Felsőokatatási tanulmányok, végzettségek</h4>
             </div>
 
-            <div>
-              <input formControlName="firstName" id="firstName" />
-            </div>
 
-            <div class="sections" formArrayName="studentStudy">
-              @for(studentStudy of
-              getFormArray('studentStudy').controls; track
-              studentStudy; let i = $index) {
+            <!--
+            <div class="widget-content">
 
-              <app-student-study [formGroup]="getFormGroup(studentStudy)"></app-student-study>
+              <div class="sections" formArrayName="studentStudy">
+                @for(studentStudy of
+                getFormArray('studentStudy').controls; track
+                studentStudy; let i = $index) {
 
-              <div class="form-group col-lg-1 col-md-12">
-                <br><br>
+
+              <div style="display: flex; width: 100%;">
+
+                <app-student-study [formGroup]="getFormGroup(studentStudy)"></app-student-study>
+
                 <span class="fa fa-trash" (click)="removeStudentStudy(i)"></span>
-              </div>
 
-              <div class="form-group col-lg-12 col-md-12">
+                <div class="form-group col-lg-12 col-md-12">
 
-                <button id="addStudentStudy" (click)="addStudentStudy()" class="theme-btn" style="    font-size: 20px;
+                  <button id="addStudentStudy" (click)="addStudentStudy()" class="theme-btn" style="    font-size: 20px;
                   font-weight: 500;
           background-color: rgb(231,231,230);
           border-radius: 10px;
@@ -58,36 +84,425 @@
           min-width: 30px;
           min-height: 30px;
           padding: 5px;">+</button>
+                </div>
               </div>
+                }
 
-
-              }
-
+              </div>
             </div>
+-->
 
+            <!-- TANULMÁNYOK -->
+            <div formArrayName="studentStudies">
+              <div class="widget-content">
 
+                <div *ngFor="let study of getStudentStudyFormArray().controls; let i = index" [formGroupName]="i">
+                  <div class="row">
+                    <div class="form-group col-lg-3 col-md-12">
+                      <label>Felsőoktatási intézmény neve</label>
+                      <input class="form-control" type="text" formControlName="nameOfInstitution">
+                    </div>
 
+                    <div class="form-group col-lg-3 col-md-12">
+                      <label>Szak neve</label>
+                      <input class="form-control" type="text" formControlName="nameOfTraining">
+                    </div>
 
-            <app-student-language-skills></app-student-language-skills>
+                    <div class="form-group col-lg-3 col-md-12">
+                      <label>Szakképzettség, specializáció stb.</label>
+                      <input class="form-control" type="text" formControlName="nameOfDegree">
+                    </div>
 
-            <app-student-licences></app-student-licences>
+                    <div class="form-group col-lg-2 col-md-12">
+                      <label>CV-n Látható</label><br>
+                      <input type="checkbox" formControlName="IsVisible">
+                    </div>
 
-            <app-student-preferences></app-student-preferences>
+                    <div class="form-group col-lg-1 col-md-12">
+                      <br><br>
+                      <span class="fa fa-trash" (click)="removeStudentStudy(i)"></span>
+                    </div>
+                  </div>
 
+                  <div class="row">
 
-            <div style="margin-top: 10px">
-              <button type="button" (click)="save()" class="theme-btn btn-style-one">
-                Mentés
-              </button>
-              &NonBreakingSpace;
-              <button type="button" (click)="cancel()" class="theme-btn btn-style-one">
-                Mégsem
-              </button>
+                    <div class="form-group col-lg-3 col-md-12">
+                      <label>Jogviszony kezdete</label>
+                      <input type="date" name="StartDateOfLegalRelationship"
+                        formControlName="StartDateOfLegalRelationship" placeholder="">
+                    </div>
+
+                    <div class="form-group col-lg-3 col-md-12">
+                      <label>Jogviszony vége</label>
+                      <input type="date" name="EndDateOfLegalRelationship" formControlName="EndDateOfLegalRelationship"
+                        placeholder="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-lg-12 col-md-12">
+
+                  <button type="button" id="addStudentStudy" (click)="addStudentStudy()" class="theme-btn" style=" font-size: 20px;
+font-weight: 500;
+background-color: rgb(231,231,230);
+border-radius: 10px;
+width: 50px !important;
+min-width: 30px;
+min-height: 30px;
+padding: 5px;">+</button>
+                </div>
+              </div>
+            </div>
+            <!-- TANULMÁNYOK VÉGE -->
+          </div>
+        </div>
+
+        <!-- NYELVISMERET -->
+        <div class="ls-widget">
+          <div class="tabs-box">
+            <div class="widget-title">
+              <h4>Nyelvismeret</h4>
+            </div>
+            <div formArrayName="languageSkills">
+              <div class="widget-content">
+                <div *ngFor="let lang of getStudentLanguageSkillFormArray().controls; let i = index"
+                  [formGroupName]="i">
+                  <div class="row">
+
+                    <div class="form-group col-lg-3 col-md-12">
+                      <label>Nyelv</label>
+                      <select formControlName="languageExamLangDictId" class="form-control">
+                        <option *ngFor="let item of languageExamLanguages()" [value]="item.dictionaryId">
+                          {{ item.name_HU }}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-lg-3 col-md-12">
+                      <label>Nyelvvizsga szint</label>
+                      <select formControlName="languageExamLevelDictId" class="form-control">
+                        <option *ngFor="let item of languageExamLevels()" [value]="item.dictionaryId">
+                          {{ item.name_HU }}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-lg-3 col-md-12">
+                      <label>Nyelvvizsga típusa</label>
+                      <select formControlName="languageExamTypeDictId" class="form-control">
+                        <option *ngFor="let item of languageExamTypes()" [value]="item.dictionaryId">
+                          {{ item.name_HU }}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-lg-2 col-md-12">
+                      <label>CV-n Látható</label><br>
+                      <input type="checkbox" formControlName="IsVisible">
+                    </div>
+
+                    <div class="form-group col-lg-1 col-md-12">
+                      <br><br>
+                      <span class="fa fa-trash" (click)="removeStudentLanguageSkill(i)"></span>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="form-group col-lg-12 col-md-12">
+
+                  <button type="button" id="addStudentLanguageSkill" (click)="addStudentLanguageSkill()"
+                    class="theme-btn" style=" font-size: 20px;
+    font-weight: 500;
+    background-color: rgb(231,231,230);
+    border-radius: 10px;
+    width: 50px !important;
+    min-width: 30px;
+    min-height: 30px;
+    padding: 5px;">+</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <!-- NYELVISMERET VÉGE-->
+
+
+        <!-- Skills -->
+
+        <div class="ls-widget">
+          <div class="tabs-box">
+            <div class="widget-title">
+              <h4>Vezetői engedély</h4>
+            </div>
+            <div formArrayName="studentSkills">
+              <div class="widget-content">
+                <div *ngFor="let lang of getStudentSkillFormArray().controls; let i = index" [formGroupName]="i">
+                  <div class="row">
+
+                    <div class="form-group col-lg-3 col-md-12">
+                      <label>Vezetői engedély(ek) kategória</label>
+                      <select [disabled]="!isDrivingLicence(i)" formControlName="dictionaryId" class="form-control">
+                        <option *ngFor="let item of drivingLicences()" [value]="item.dictionaryId">
+                          {{ item.name_HU }}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-lg-2 col-md-12">
+                      <label>CV-n Látható</label><br>
+                      <input type="checkbox" formControlName="IsVisible">
+                    </div>
+
+                    <div class="form-group col-lg-1 col-md-12">
+                      <br><br>
+                      <span class="fa fa-trash" (click)="removeStudentSkill(i)"></span>
+                    </div>
+
+
+                  </div>
+
+                </div>
+                <div class="form-group col-lg-1 col-md-12">
+
+                  <button type="button" id="addStudentSkill" (click)="addStudentSkill()" class="theme-btn"
+                    style=" font-size: 20px;
+font-weight: 500;
+background-color: rgb(231,231,230);
+border-radius: 10px;
+width: 50px !important;
+min-width: 30px;
+min-height: 30px;
+padding: 5px;">+</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Munkatapasztalat -->
+
+        <div class="ls-widget">
+          <div class="tabs-box">
+            <div class="widget-title">
+              <h4>Munkatapasztalat</h4>
+            </div>
+            <div formArrayName="workExperiences">
+              <div class="widget-content">
+                <div *ngFor="let workexp of getStudentWorkExperienceFormArray().controls; let i = index"
+                  [formGroupName]="i">
+                  <div class="row">
+
+                    <div class="form-group col-lg-6 col-md-12">
+                      <label>Szakterületi kategória</label>
+                      <select formControlName="sectorCategoryId" class="form-control">
+                        <option *ngFor="let item of sectors()" [value]="item.dictionaryId">
+                          {{ item.name_HU }}
+                        </option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-lg-6 col-md-12">
+                      <label>Munkahely neve</label>
+                      <input class="form-control" type="text" formControlName="workplaceName">
+                    </div>
+
+                    <div class="form-group col-lg-2 col-md-12">
+                      <label>Munkavégzés kezdete</label>
+                      <input type="date" name="workStartDate" formControlName="workStartDate" placeholder="">
+                    </div>
+
+                    <div class="form-group col-lg-2 col-md-12">
+                      <label>Munkavégzés vége</label>
+                      <input type="date" name="workEndDate" formControlName="workEndDate" placeholder="">
+                    </div>
+
+                    <div class="form-group col-lg-3 col-md-12">
+                      <label>Munkakör</label>
+                      <input class="form-control" type="text" formControlName="positionTitle">
+                    </div>
+
+                    <div class="form-group col-lg-2 col-md-12">
+                      <label>CV-n Látható</label><br>
+                      <input type="checkbox" formControlName="IsVisible">
+                    </div>
+
+                    <div class="form-group col-lg-1 col-md-12">
+                      <br><br>
+                      <span class="fa fa-trash" (click)="removeStudentWorkExperience(i)"></span>
+                    </div>
+                  </div>
+
+                  <hr class="hr-divider" />
+
+                </div>
+
+                <div class="form-group col-lg-12 col-md-12">
+                  <button type="button" id="addStudentWorkExperience" (click)="addStudentWorkExperience()"
+                    class="theme-btn" style=" font-size: 20px;
+    font-weight: 500;
+    background-color: rgb(231,231,230);
+    border-radius: 10px;
+    width: 50px !important;
+    min-width: 30px;
+    min-height: 30px;
+    padding: 5px;">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- VÉGE Munkatapasztalat -->
+
+
+        <!-- Munkavégzéssel kapcsolatos preferenciák ELEJE -->
+
+        <div class="ls-widget">
+          <div class="tabs-box">
+            <div class="widget-title">
+              <h4>Munkavégzéssel kapcsolatos preferenciák</h4>
+            </div>
+
+            <div class="widget-content">
+
+              <div formArrayName="studentPreferences">
+                <div class="row">
+
+
+                  <div class="form-group col-lg-3 col-md-12">
+                    <label>Munka jellege</label>
+                    <select formControlName="natureOfWorks" class="form-control" multiple>
+                      <option *ngFor="let item of natureOfWorks()" [value]="item.dictionaryId">
+                        {{ item.name_HU }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-lg-3 col-md-12">
+                    <label>Foglalkoztatás típusa</label>
+                    <select formControlName="employmentTypes" class="form-control" multiple>
+                      <option *ngFor="let item of employmentTypes()" [value]="item.dictionaryId">
+                        {{ item.name_HU }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-lg-3 col-md-12">
+                    <label>Munkavégzés ideje</label>
+                    <select formControlName="TimeOfWorks" class="form-control" multiple>
+                      <option *ngFor="let item of timeOfWorks()" [value]="item.dictionaryId">
+                        {{ item.name_HU }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-lg-3 col-md-12">
+                    <label>Munkavégzés helye</label>
+                    <select formControlName="PlaceOfWorks" class="form-control" multiple>
+                      <option *ngFor="let item of placeOfWorks()" [value]="item.dictionaryId">
+                        {{ item.name_HU }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-lg-3 col-md-12">
+                    <label>Munka nyelve</label>
+                    <select formControlName="LanguageOfWorks" class="form-control" multiple>
+                      <option *ngFor="let item of languageOfWorks()" [value]="item.dictionaryId">
+                        {{ item.name_HU }}
+                      </option>
+                    </select>
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- Munkavégzéssel kapcsolatos preferenciák VÉGE -->
+
+
+        <!-- RÓLAM -->
+        <div class="ls-widget">
+          <div class="tabs-box">
+            <div class="widget-title">
+              <h4>Rólam</h4>
+            </div>
+            <div class="widget-content">
+              <div class="row">
+                <div class="form-group col-lg-12 col-md-12">
+                  <textarea id="aboutMe" formControlName="aboutMe" rows="5" class="form-control"></textarea>
+                </div>
+              </div>
+              
+              <div class="form-group col-lg-2 col-md-12 d-flex align-items-center">
+                <input id="aboutMeIsVisible" type="checkbox" formControlName="aboutMeIsVisible" class="me-2">
+                <label class="mb-0">CV-n Látható</label>
+              </div>
+
+            </div>
+
+            <div class="widget-title">
+              <h4>Személyes érdeklődés</h4>
+            </div>
+            <div class="widget-content">
+              <div class="row">
+                <div class="form-group col-lg-12 col-md-12">
+                  <input type="text" formControlName="personalInterest" id="personalInterest" />
+                </div>
+              </div>
+
+              <div class="form-group col-lg-2 col-md-12 d-flex align-items-center">
+                <input id="personalInterestIsVisible" type="checkbox" formControlName="personalInterestIsVisible" class="me-2">
+                <label class="mb-0">CV-n Látható</label>
+              </div>
+            </div>
+
+            <div class="widget-title">
+              <h4>linkedIn</h4>
+            </div>
+            <div class="widget-content">
+              <div class="row">
+                <div class="form-group col-lg-12 col-md-12">
+                  <input type="text" formControlName="linkedIn" id="linkedIn" />
+                </div>
+              </div>
+
+              <div class="form-group col-lg-2 col-md-12 d-flex align-items-center">
+                <input id="linkedInIsVisible" type="checkbox" formControlName="linkedInIsVisible" class="me-2">
+                <label class="mb-0">CV-n Látható</label>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+        <!-- RÓLAM -->
+
+
+        <div class="row">
+          <div class="widget-content">
+            <div style="margin-top: 10px">
+              <button type="button" (click)="save()" class="theme-btn btn-style-one w-100">Mentés</button>
+              &NonBreakingSpace;
+              <button type="button" (click)="cancel()" class="theme-btn btn-style-one w-100">Mégsem</button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
+
+    <!-- End Dashboard -->
   </section>
-  <!-- End Dashboard -->
 </form>

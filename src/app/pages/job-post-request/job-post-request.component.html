@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container job-post-request">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container job-post-request default-form">
     
     <div class="language-switch-container">
         <button (click)="switchLanguage()" class="btn btn-primary language-switch">
@@ -92,9 +92,9 @@
         <label>{{getParentNameByDictCode("EmploymentDetails")}}</label>
         <div class="form-row">
             <div class="form-group">
-                <label for="sector">{{getParentNameByDictCode("SectorCategory")}}</label>
+                <label for="sector">{{getParentNameByDictCode("Sector")}}</label>
                 <select id="sector" class="form-control" formControlName="sector" required>
-                    <option *ngFor="let option of getChildsName('SectorCategory')" [value]="option.dictionaryId">{{lang === 'hu' ? option.name_HU : option.name_EN}}</option>
+                    <option *ngFor="let option of getChildsName('Sector')" [value]="option.dictionaryId">{{lang === 'hu' ? option.name_HU : option.name_EN}}</option>
                   </select>
                 <div *ngIf="form.get('sector')?.invalid && form.get('sector')?.touched" class="text-danger">
                     {{getParentNameByDictCode("RequiredField")}}
@@ -142,7 +142,7 @@
                 </div>
             </div>
             <div class="form-group" *ngIf="form.get('timeOfWork')?.value === getChildDictionaryIdByChildDictionaryCode('Weeklyhours')?.toString()">
-                <label for="hoursWorkedPerWeek ">{{getParentNameByDictCode("WeeklyWorkingHours")}}</label>
+                <label for="hoursWorkedPerWeek ">{{getParentNameByDictCode("HoursWorkedPerWeek")}}</label>
                 <input type="number" id="hoursWorkedPerWeek" class="form-control" formControlName="hoursWorkedPerWeek"
                     required min="1">
                 <div *ngIf="form.get('hoursWorkedPerWeek')?.invalid && form.get('hoursWorkedPerWeek')?.touched"
@@ -151,7 +151,7 @@
                 </div>
             </div>
             <div class="form-group" *ngIf="form.get('timeOfWork')?.value === getChildDictionaryIdByChildDictionaryCode('Weeklydays')?.toString()">
-                <label for="daysWorkedPerWeek ">{{getParentNameByDictCode("WeeklyWorkingDays")}}</label>
+                <label for="daysWorkedPerWeek ">{{getParentNameByDictCode("DaysWorkedPerWeek")}}</label>
                 <input type="number" id="daysWorkedPerWeek" class="form-control" formControlName="daysWorkedPerWeek"
                     required min="1">               
                 <div *ngIf="form.get('daysWorkedPerWeek')?.invalid && form.get('daysWorkedPerWeek')?.touched"
@@ -273,9 +273,9 @@
         </div>
         <div class="form-row">
             <div class="form-group">
-                <label for="additionalBenefit">{{getParentNameByDictCode("AdditionalBenefits")}}</label>
+                <label for="additionalBenefit">{{getParentNameByDictCode("AdditionalBenefit")}}</label>
                 <select id="additionalBenefit" class="form-control" formControlName="additionalBenefit" required>
-                    <option *ngFor="let option of getChildsName('AdditionalBenefits')" [value]="option.dictionaryId">{{lang === 'hu' ? option.name_HU : option.name_EN}}</option>
+                    <option *ngFor="let option of getChildsName('AdditionalBenefit')" [value]="option.dictionaryId">{{lang === 'hu' ? option.name_HU : option.name_EN}}</option>
                 </select>
                 <div *ngIf="form.get('additionalBenefit')?.invalid && form.get('additionalBenefit')?.touched"
                     class="text-danger">
@@ -371,7 +371,7 @@
         </div>
         <hr class="separator">
         <div formArrayName="competencies">
-            <label>{{getParentNameByDictCode("Competencies")}}:</label>
+            <label>{{getParentNameByDictCode("Competencie")}}:</label>
             <div *ngFor="let item of competencies.controls; let i = index" [formGroupName]="i" class="form-group">
                 <div class="d-flex align-items-center form-row">
                     <input type="text" class="form-control" formControlName="value">

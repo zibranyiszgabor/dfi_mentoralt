@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../../auth/auth.service';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-aboutus',
-  imports: [RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './aboutus.component.html',
   styleUrl: './aboutus.component.scss'
 })
 export class AboutusComponent implements OnInit {
+  showLogin = false;
+  isLoggedIn = false;
 
-  speedStud: number = 1200;
-  stopStud: number = 20;
+  speedStud: number = 2500;
+  stopStud: number = 20000;
   countStud: number = 0;
 
   speedDef: number = 2000;
@@ -29,14 +33,17 @@ export class AboutusComponent implements OnInit {
   stopPart: number = 250;
   countPart: number = 0;
 
-  ngOnInit(): void {
+  constructor(private authService: AuthService) { }
+
+  async ngOnInit(): Promise<void> {
     this.startCounting();
+    this.isLoggedIn = await this.authService.initAndCheckLogin();
   }
   
   startCounting(): void {
     const intervalStud = this.speedStud / this.stopStud;
     const counterStud = setInterval(() => {
-    this.countStud++;
+    this.countStud+=100;
       if (this.countStud >= this.stopStud) {
         clearInterval(counterStud);
       }
@@ -73,6 +80,21 @@ export class AboutusComponent implements OnInit {
         clearInterval(counterPart);
       }
     }, intervalPart);      
+  }
+
+  logout(): void {
+    console.log('🔹 Dolgozóként történő bejelentkezés...');
+    this.authService.logout(); // 🔹 Dolgozói bejelentkezés
+  }
+
+  loginAsEmployee(): void {
+    console.log('🔹 Dolgozóként történő bejelentkezés...');
+    this.authService.loginAsEmployee(); // 🔹 Dolgozói bejelentkezés
+  }
+
+  loginAsStudent(): void {
+    console.log('🔹 Diákként történő bejelentkezés...');
+    this.authService.loginAsStudent(); // 🔹 Diák bejelentkezés
   }
 
 }

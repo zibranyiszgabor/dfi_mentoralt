@@ -1,23 +1,37 @@
-<!-- Overlay háttér -->
-<div style="position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1040;"></div>
+<form [formGroup]="form" (ngSubmit)="save()">
+  <!-- Overlay háttér -->
+  <div class="modal-backdrop"></div>
 
-<!-- Modal középen, kattintható gombbal -->
-<div style="position: fixed; inset: 0; z-index: 1050; display: flex; align-items: center; justify-content: center;">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content shadow-lg">
+  <!-- Modal tartalom -->
+  <div class="modal-wrapper">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content shadow-lg">
 
-      <div class="modal-header">
-        <h5 class="modal-title">Adatkezelési Nyilatkozat</h5>
+        <div class="modal-header">
+          <h5 class="modal-title">Adatkezelési Nyilatkozat</h5>
+        </div>
+
+        <div class="modal-body">
+          <p>Kérjük, fogadd el az adatkezelési nyilatkozatot a folytatáshoz.</p>
+
+          <div class="form-check">
+            <input type="checkbox" id="isDataProtDeclAccepted" class="form-check-input" formControlName="isDataProtDeclAccepted">
+            <label for="isDataProtDeclAccepted" class="form-check-label">Elfogadom a GDPR-t</label>
+          </div>
+
+          <div class="form-check mt-2">
+            <input type="checkbox" id="isServiceInterested" class="form-check-input" formControlName="isServiceInterested">
+            <label for="isServiceInterested" class="form-check-label">Részt veszek a szolgáltatásban</label>
+          </div>
+
+          <!-- <pre class="mt-3">{{ form.value | json }}</pre> -->
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="submit">Mentés</button>
+        </div>
+
       </div>
-
-      <div class="modal-body">
-        <p>Kérjük, fogadd el az adatkezelési nyilatkozatot a folytatáshoz.</p>
-      </div>
-
-      <div class="modal-footer">
-        <button class="btn btn-primary" (click)="accept()">Elfogadom</button>
-      </div>
-
     </div>
   </div>
-</div>
+</form>

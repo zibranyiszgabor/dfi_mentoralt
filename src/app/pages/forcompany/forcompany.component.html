@@ -1,297 +1,284 @@
 <div class="page-wrapper">
 
-    <!-- Header Span -->
-    <span class="header-span"></span>
+  <!-- Header Span -->
+  <span class="header-span"></span>
 
-      <!-- Main Header-->
-      <header class="main-header header-style-four -type-16 header-shaddow">
-        <div class="container-fluid">
-          <!-- Main box -->
-          <div class="main-box">
-            <!--Nav Outer -->
-            <div class="nav-outer">
-              <div class="logo-box">
-                <div class="logo"><a href="index.html"><img src="/assets/images/bge-logo-black.png" alt="" title="" ></a></div>
-              </div>
-  
-              <nav class="nav main-menu">
-                <ul class="navigation" id="navbar">
-                    <li>
-                        <a routerLink="/"><span>Főoldal</span></a>
-                      </li>
-      
-                      <li class="">
-                        <a routerLink="/aboutus"><span>Rólunk</span></a>
-                      </li>
-      
-                      <li class="current">
-                        <a routerLink="/forcompany"><span>Cégeknek</span></a>
-                      </li>                
-      
-                      <li class="">
+  <!-- Main Header-->
+  <header class="main-header header-style-four -type-16 header-shaddow">
+    <div class="container-fluid">
+      <!-- Main box -->
+      <div class="main-box">
+        <!--Nav Outer -->
+        <div class="nav-outer">
+          <div class="logo-box">
+            <div class="logo"><a href="index.html"><img src="/assets/images/bge-logo-black.png" alt="" title=""></a>
+            </div>
+          </div>
+
+          <nav class="nav main-menu">
+            <ul class="navigation" id="navbar">
+              <li>
+                <a routerLink="/"><span>Főoldal</span></a>
+              </li>
+
+              <li class="">
+                <a routerLink="/aboutus"><span>Rólunk</span></a>
+              </li>
+
+              <li class="current">
+                <a routerLink="/forcompany"><span>Cégeknek</span></a>
+              </li>
+
+              <!-- <li class="">
                         <a routerLink="/contact"><span>Kapcsolat</span></a>
-                      </li>
-  
-                  <!-- Only for Mobile View -->
-                  <li class="mm-add-listing">
-                    <span>
-                      <span class="contact-info">
-                        <span class="phone-num"><span>Telefon</span><a href="tel:1234567890">123 456 7890</a></span>
-                        <span class="address">Markó utca 29-31<br>1055 Budapest</span>
-                        <a href="mailto:support@uni-bge.hu" class="email">support&#64;uni-bge.hu</a>
-                      </span>
-                      <span class="social-links">
-                        <a href="#"><span class="fab fa-facebook-f"></span></a>
-                        <a href="#"><span class="fab fa-twitter"></span></a>
-                        <a href="#"><span class="fab fa-instagram"></span></a>
-                        <a href="#"><span class="fab fa-linkedin-in"></span></a>
-                      </span>
-                    </span>
-                  </li>
-                </ul>
-              </nav>
-              <!-- Main Menu End-->
-            </div>
-  
-            <div class="outer-box">
-              <!-- Login/Register -->
-            </div>
-          </div>
-        </div>
-  
-        <!-- Sticky Header  -->
-        <div class="sticky-header">
-          <div class="auto-container">
-  
-            <div class="main-box">
-              <div class="logo-box">
-                <div class="sticky-logo"><a href="index.html"><img src="images/bge-logo-black.png" alt="" title=""></a></div>
-              </div>
-  
-              <!--Keep This Empty / Menu will come through Javascript-->
-            </div>
-          </div>
-        </div>
-        <!-- End Sticky Menu -->
-  
-        <!-- Mobile Header -->
-        <div class="mobile-header">
-          <div class="logo"><a href="index.html"><img src="images/bge-logo-black.png" alt="" title=""></a></div>
-  
-          <!--Nav Box-->
-          <div class="nav-outer clearfix">
-  
-            <div class="outer-box">
-              <!-- Login/Register -->
-              <div class="login-box">
-                <a href="login-popup.html" class="call-modal"><span class="icon-user"></span></a>
-              </div>
-  
-              <a href="#nav-mobile" class="mobile-nav-toggler navbar-trigger"><span class="flaticon-menu-1"></span></a>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Mobile Nav -->
-        <div id="nav-mobile"></div>
-      </header>
-      <!--End Main Header -->   
+                      </li> -->
 
-    <!--Page Title-->
-    <section class="page-title">
-      <div class="auto-container">
-        <div class="title-outer">
-          <h1>Cégeknek</h1>
-          <ul class="page-breadcrumb">
-            <li><a href="index.html">Főoldal</a></li>
-            <li>Cégeknek</li>
-          </ul>
+              <!-- Only for Mobile View -->
+              <li class="mm-add-listing">
+                <span>
+                  <span class="contact-info">
+                    <!-- <span class="phone-num"><span>Call us</span><a href="tel:1234567890">123 456 7890</a></span> -->
+                    <span class="address">1055 Budapest, Markó utca 29-31 </span><br>
+                    <a href="mailto:jobandfuture@uni-bge.hu" class="email">jobandfuture&#64;uni-bge.hu</a>
+                  </span>
+                  <span class="social-links">
+                    <a href="#"><span class="fab fa-facebook-f"></span></a>
+                    <a href="#"><span class="fab fa-instagram"></span></a>
+                    <a href="#"><span class="fab fa-linkedin-in"></span></a>
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </nav>
+          <!-- Main Menu End-->
+        </div>
+
+        <div class="outer-box">
+          <!-- Login/Register -->
+
+          <div class="dropdown dashboard-option" *ngIf="isLoggedIn">
+            <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
+              <img src="/assets/images/icons/user.svg" alt="avatar" class="thumb">
+              <span class="name">Fiókom</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a routerLink="/main/profile-student-view"><i class="la la-user-tie"></i>Profil</a></li>
+              <li><a href="#" (click)="logout()"><i class="la la-sign-out"></i>Kilépés</a></li>
+            </ul>
+          </div>
+
+          <div class="btn-box" *ngIf="!isLoggedIn">
+            <a (click)="showLogin = true" class="theme-btn call-modal">Belépés</a>
+          </div>
+
+          <!-- Egyszerű modal -->
+          <div *ngIf="showLogin" class="simple-modal-backdrop" (click)="showLogin = false"></div>
+
+          <div *ngIf="showLogin" class="simple-modal" id="login-modal" style="width: 500px;">
+
+            <!-- Login Form -->
+            <div id="login-modal">
+              <button class="close-btn" (click)="showLogin = false">×</button>
+
+              <div class="login-form default-form">
+                <div class="form-inner">
+                  <h3>Bejelentkezés</h3>
+                  <div class="bottom-box">
+                    <div class="btn-box row">
+                      <div class="col-lg-6 col-md-12">
+                        <a href="#" class="theme-btn social-btn-two bge-btn" (click)="loginAsStudent()">Hallgató
+                          vagyok</a>
+                      </div>
+                      <div class="col-lg-6 col-md-12">
+                        <a href="#" class="theme-btn social-btn-two bge-btn" (click)="loginAsEmployee()">BGE admin
+                          vagyok</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--End Login Form -->
+
+          </div>
+
         </div>
       </div>
-    </section>
-    <!--End Page Title-->
+    </div>
 
-    <!-- About Section Three -->
-    <section class="about-section-three">
+    <!-- Sticky Header  -->
+    <div class="sticky-header">
       <div class="auto-container">
-        <!--<div class="images-box">
-          <div class="row">
-            <div class="column col-lg-3 col-md-6 col-sm-6">
-              <figure class="image"><img src="images/resource/about-img-1.jpg" alt=""></figure>
-            </div>
-            <div class="column col-lg-3 col-md-6 col-sm-6">
-              <figure class="image"><img src="images/resource/about-img-2.jpg" alt=""></figure>
-              <figure class="image"><img src="images/resource/about-img-3.jpg" alt=""></figure>
-            </div>
-            <div class="column col-lg-3 col-md-6 col-sm-6">
-              <figure class="image"><img src="images/resource/about-img-4.jpg" alt=""></figure>
-              <figure class="image"><img src="images/resource/about-img-5.jpg" alt=""></figure>
-            </div>
-            <div class="column col-lg-3 col-md-6 col-sm-6">
-              <figure class="image"><img src="images/resource/about-img-6.jpg" alt=""></figure>
+
+        <div class="main-box">
+          <div class="logo-box">
+            <div class="sticky-logo"><a href="index.html"><img src="images/bge-logo-black.png" alt="" title=""></a>
             </div>
           </div>
-        </div>-->
 
-        <!-- Fun Fact Section -->
-        <div class="fun-fact-section">
-          <div class="row">
+          <!--Keep This Empty / Menu will come through Javascript-->
+        </div>
+      </div>
+    </div>
+    <!-- End Sticky Menu -->
 
-            <!--Column-->
-            <div class="counter-column col-lg-4 col-md-4 col-sm-12 wow fadeInUp">
-              <div class="count-box"><span class="count-text" data-speed="3000" data-stop="20">0</span>k</div>
-              <h4 class="counter-title">Közel 20 ezer hallgató</h4>
-            </div>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <div class="logo"><a href="index.html"><img src="images/bge-logo-black.png" alt="" title=""></a></div>
 
-            <!--Column-->
-            <div class="counter-column col-lg-4 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay="800ms">
-              <div class="count-box"><span class="count-text" data-speed="3000" data-stop="11">0</span></div>
-              <h4 class="counter-title">Alapképzési szak (6 angol nyelven is)</h4>
-            </div>
+      <!--Nav Box-->
+      <div class="nav-outer clearfix">
 
-            <!--Column-->
-            <div class="counter-column col-lg-4 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay="400ms">
-              <div class="count-box"><span class="count-text" data-speed="3000" data-stop="10">0</span></div>
-              <h4 class="counter-title">Mesterképzési szak (3 angol nyelven is)</h4>
-            </div>
-
-            <!--Column-->
-            <div class="counter-column col-lg-4 col-md-4 col-sm-12 wow fadeInUp">
-              <div class="count-box"><span class="count-text" data-speed="3000" data-stop="1400">0</span>+</div>
-              <h4 class="counter-title">Nemzetközi hallgató</h4>
-            </div>
-
-            <!--Column-->
-            <div class="counter-column col-lg-4 col-md-4 col-sm-12 wow fadeInUp">
-              <div class="count-box"><span class="count-text" data-speed="3000" data-stop="250">0</span>+</div>
-              <h4 class="counter-title">Partneregyetem</h4>
-            </div>
-
+        <div class="outer-box">
+          <!-- Login/Register -->
+          <div class="login-box">
+            <a href="login-popup.html" class="call-modal"><span class="icon-user"></span></a>
           </div>
-        </div>
-        <!-- Fun Fact Section -->
 
-        <div class="text-box">
-          <h4>Rólunk</h4>
-          <p>A BGE Job&Future egy újonnan induló munkaerőközvetítő oldal, mely a hallgatók segítségére lesz abban, hogy valós kompetenciáik alapján kapjanak állásajánlatokat, ezzel támogatva megélhetésüket és szakmai útjuk megkezdését.  
-            Olyan BGE által fejlesztett és üzemeltetett – teljesen önkéntes hallgatói részvételre alapozott – alkalmazás készül, amely a hallgatói álláskeresési szándékot és a vállalati munkaerőkeresést rögzíti, a hallgatók és az állást kínáló cégek között hídként szolgál, elősegítve a hallgatói munkavállalást. 
-            </p>
+          <a href="#nav-mobile" class="mobile-nav-toggler navbar-trigger"><span class="flaticon-menu-1"></span></a>
         </div>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="nav-mobile"></div>
+  </header>
+  <!--End Main Header -->
+
+  <!--Page Title-->
+  <section class="page-title">
+    <div class="auto-container">
+      <div class="title-outer">
+        <h1>Cégeknek</h1>
+        <ul class="page-breadcrumb">
+          <li><a href="index.html">Főoldal</a></li>
+          <li>Cégeknek</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!--End Page Title-->
+
+  <!-- About Section Three -->
+  <section class="about-section-three">
+    <div class="auto-container">
 
       <div class="text-box">
-        <h4>Munkaadóknak – Találjátok meg a legjobb jelölteket!</h4>
-        <p>A BGE Job&Future egy olyan intelligens rendszer, amely az egyetem szakmai hátterére építve előszűrt, releváns jelölteket biztosít a vállalatok számára. </p>
+        <h4>Rólunk</h4>
+        <p>A BGE Job&Future egy munkaerőközvetítő oldal, amely hídként szolgál hallgatók és a munkaerőt kereső cégek
+          között, elősegítve a hallgatók szakmai útjukon való elindulását, és támogatva partnereinket a fiatal,
+          tehetséges munkavállalók megtalálásában. A BGE által fejlesztett és üzemeltetett - teljesen önkéntes hallgatói
+          részvételre alapozott - portál, amelynek segítségével a hallgatók kompetenciáinak alapos elemzése után
+          javasoljuk a cégeknek foglalkoztatásuk megfontolását.
+        </p>
+      </div>
+
+      <div class="text-box">
+        <h4>A legjobb jelöltek, előszűrve!</h4>
+        <p>A BGE Job&Future egy olyan intelligens rendszer, amely az egyetem szakmai hátterére építve előszűrt, jó eséllyel megfelelő érdeklődőket közvetít a vállalatok számára.</p>
       </div>
 
       <div class="text-box">
         <h4>Miért érdemes csatlakozni?</h4>
 
-        <p>✔ <b>Minimális adminisztráció</b> – Nem kérünk mást, csak az álláshirdetés feltöltését.</p>
-        <p>✔ <b>Előszűrt pályázók</b> – A rendszer különböző szűrők segítségével előszűri a jelentkezőket, így csak releváns önéletrajzokat kaptok.</p>
-        <p>✔ <b>Automatikus párosítás, szakértői támogatással</b> – Az Egyetem szakértői a hallgatók tanulmányi adatai és készségeik alapján segítenek a megfelelő jelöltek kiválasztásában.</p>
-        <p>✔ <b>Közvetlen kapcsolat a hallgatókkal</b> – A kiválasztott hallgatók önéletrajzait a rendszer automatikusan továbbítja nektek, onnantól pedig rajtatok áll, hogyan folytatjátok a kiválasztást.</p>
+        <p>✔ <b>Minimális adminisztráció</b> - Nem kérünk mást, csak az álláshirdetés feltöltését.</p>
+        <p>✔ <b>Előszűrt pályázók</b> - A rendszer különböző szűrők segítségével előszűri a jelentkezőket, így az állást hirdetőhöz csak valóban releváns önéletrajzok jutnak el.</p>
+        <p>✔ <b>Automatikus párosítás, szakértői támogatással</b> - A BGE szakértői a hallgatók tanulmányi adatai és készségei alapján segítenek a megfelelő jelöltek kiválasztásában.</p>
+        <p>✔ <b>Közvetlen kapcsolat a hallgatókkal</b> - A megadott feltételek alapján megfelelőnek tűnő, és a munkalehetőség iránt érdeklődő hallgatók önéletrajzát a rendszer automatikusan továbbítja a hirdetőnek. Onnantól pedig rajtatok áll, hogyan folytatjátok a kiválasztást.</p>
 
         <!-- <h4>Csatlakozz most, és építsd a jövőd velünk! </h4> -->
       </div>
 
-  </div>
-    </section>
-    <!-- End About Section Three -->
+      <div class="text-box">
+        <p>Együttműködés, kapcsolatfelvétel: <a href="mailto:bgebusiness@uni-bge.hu" class="email">bgebusiness&#64;uni-bge.hu</a></p>
+      </div>
 
-    <!-- Call To Action Two -->
-    <!-- <section class="call-to-action-two" style="background-image: url(images/index-16/cta/bg.png);">
+    </div>
+  </section>
+  <!-- End About Section Three -->
+
+  <!-- Call To Action Two -->
+  <!-- <section class="call-to-action-two" style="background-image: url(images/index-16/cta/bg.png);">
       <div class="auto-container">
         <div class="sec-title light text-center">
           <h1>Találd meg az álommelód!</h1>
         </div>
       </div>
     </section> -->
-    <!-- End Call To Action -->
+  <!-- End Call To Action -->
 
-    <!-- Main Footer -->
-    <footer class="main-footer style-five">
-      <!--Widgets Section-->
-      <div class="widgets-section">
-        <div class="auto-container">
+  <!-- Main Footer -->
+  <footer class="main-footer style-five">
+    <!--Widgets Section-->
+    <div class="widgets-section">
+      <div class="auto-container">
 
-          <div class="row">
-            <div class="big-column col-xl-3 col-lg-3 col-md-12">
-              <div class="footer-column about-widget">
-                <div class="logo"><a href="#"><img src="images/bge-logo-black.png" alt=""></a></div>
-                <p class="phone-num"><span>Hívj minket </span><a href="thebeehost@support.com">123 456 7890</a></p>
-                <p class="address">1055 Budapest Markó utca 29-31 <br><a href="mailto:support@uni-bge.hu" class="email">support&#64;uni-bge.hu</a></p>
-              </div>
+        <div class="row">
+          <div class="big-column col-xl-4 col-lg-4 col-md-12">
+            <div class="footer-column about-widget">
+              <div class="logo"><a href="#"><img src="/assets/images/bge-logo-black.png" alt=""></a></div>
+              <span class="address">1055 Budapest, Markó utca 29-31 </span><br>
+              <span class="address"><b>Ha problémát tapasztalsz vagy kérdésed van ide írj nekünk: </b></span><br><a
+                href="mailto:jobandfuture@uni-bge.hu" class="email">jobandfuture&#64;uni-bge.hu</a><br>
+              <span class="address"><b>Vállalati együttműködés, üzleti partnerség: </b></span><br><a
+                href="mailto:bgebusiness@uni-bge.hu" class="email">bgebusiness&#64;uni-bge.hu</a>
             </div>
+          </div>
 
-            <div class="big-column col-xl-9 col-lg-9 col-md-12">
-              <div class="row">
-                <div class="footer-column col-lg-3 col-md-6 col-sm-12">
-                  <div class="footer-widget links-widget">
-                    <h4 class="widget-title">Hallgatóknak</h4>
-                    <div class="widget-content">
-                      <ul class="list">
-                        <li><a href="#">Browse Jobs</a></li>
-                        <li><a href="#">Browse Categories</a></li>
-                        <li><a href="#">Candidate Dashboard</a></li>
-                        <li><a href="#">Job Alerts</a></li>
-                        <li><a href="#">My Bookmarks</a></li>
-                      </ul>
-                    </div>
+          <div class="big-column col-xl-8 col-lg-8 col-md-12">
+            <div class="row">
+              <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                <div class="footer-widget links-widget">
+                  <h4 class="widget-title">Navigáció</h4>
+                  <div class="widget-content">
+                    <ul class="list">
+                      <li><a href="#">Főoldal</a></li>
+                      <li><a href="#">Rólunk</a></li>
+                      <li><a href="#">Cégeknek</a></li>
+                      <li><a href="#">Adatkezelési tájékoztató</a></li>
+                    </ul>
                   </div>
                 </div>
-
-                <div class="footer-column col-lg-3 col-md-6 col-sm-12">
-                  <div class="footer-widget links-widget">
-                    <h4 class="widget-title">Partnereknek</h4>
-                    <div class="widget-content">
-                      <ul class="list">
-                        <li><a href="#">Browse Candidates</a></li>
-                        <li><a href="#">Employer Dashboard</a></li>
-                        <li><a href="#">Add Job</a></li>
-                        <li><a href="#">Job Packages</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="footer-column col-lg-3 col-md-6 col-sm-12">
-                  <div class="footer-widget links-widget">
-                    <h4 class="widget-title">Rólunk</h4>
-                    <div class="widget-content">
-                      <ul class="list">
-                        <li><a href="#">Job Page</a></li>
-                        <li><a href="#">Job Page Alternative</a></li>
-                        <li><a href="#">Resume Page</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Contact</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
               </div>
+
+              <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                <div class="footer-widget links-widget">
+                  <h4 class="widget-title">Links</h4>
+                  <div class="widget-content">
+                    <ul class="list">
+                      <li><a href="https://uni-bge.hu/"><b>Budapesti Gazdaságtudományi Egyetem</b></a></li>
+                      <li><a href="https://uni-bge.hu/hu/uzleti-partnersegek"><b>BGE Business</b></a></li>
+                      <li><a href="https://alumni.uni-bge.hu/"><b>BGE Alumni</b></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!--Bottom-->
-      <div class="footer-bottom">
-        <div class="auto-container">
-          <div class="outer-box">
-            <div class="copyright-text">© 2025 <a href="#">BGE</a> Minden jog fenntartva</div>
-            <div class="social-links">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
+    <!--Bottom-->
+    <div class="footer-bottom">
+      <div class="auto-container">
+        <div class="outer-box">
+          <div class="copyright-text">© 2025 <a href="#">BGE</a> Minden jog fenntartva</div>
+          <div class="social-links">
+            <a href="https://www.facebook.com/unibge"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/bge_uni"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/school/budapest-univeristy-of-economics-and-business/posts/?feedView=all"><i
+                class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/channel/UCDFsDIG6TQ0tf214iZmo9kw"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@unibge"><i class="fab fa-tiktok"></i></a>
           </div>
         </div>
       </div>
-      <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
-    </footer>
-    <!-- End Main Footer -->
+    </div>
+    <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
+  </footer>
+  <!-- End Main Footer -->
 
 
-  </div><!-- End Page Wrapper -->
+</div><!-- End Page Wrapper -->

@@ -1,3 +1,5 @@
+import { DictionaryItem } from "./dictionaryItem.model";
+
 export interface Dictionary {
     dictionaryId: number;
     parentDictId?: number;
@@ -6,5 +8,6 @@ export interface Dictionary {
     isDeleted: boolean;
     name_HU: string;
     name_EN: string;
+
   }
   

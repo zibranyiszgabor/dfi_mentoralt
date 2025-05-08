@@ -5,14 +5,19 @@ import { CompanyInfo } from 'models/company-info.model';
 import { FormGroup } from '@angular/forms';
 
 
+interface ApiResponse {
+  status: string;
+  message: string;
+}
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class JobPostRequestService {
   private httpBackend: HttpClient;
   private url: string = "";
   companyInfo: CompanyInfo =  new CompanyInfo();
+  private apiBaseUrl = environment.apiBaseUrl; 
 
 
   constructor(private handler: HttpBackend) {
@@ -22,7 +27,7 @@ export class JobPostRequestService {
 
 
   public fetchCompanyData(firmcode: string, form: FormGroup): void {
-    this.httpBackend.get<CompanyInfo>(`https://127.0.0.1:3000/api/company-info?firmcode=${firmcode}`)
+    this.httpBackend.get<CompanyInfo>(`${this.apiBaseUrl}/api/company-info?firmcode=${firmcode}`)
       .subscribe({
         next: (data: CompanyInfo) => {
           form.patchValue({
@@ -40,13 +45,16 @@ export class JobPostRequestService {
 
   public saveFormData(form: FormGroup): void {
     if (form.valid) {
-      this.httpBackend.post('https://127.0.0.1:3000/api/job-post-request', form.value)
+      this.httpBackend.post<ApiResponse>(`${this.apiBaseUrl}/api/job-post-request`, form.value)
         .subscribe({
-          next: (response) => {
-            console.log('Form submitted successfully', response);
+          next: (response: ApiResponse) => {
+            const status = response?.status ?? 'Unknown';
+            const message = response?.message ?? 'No message received';
+            alert(`Form saved!\nStatus: ${response.status}\nMessage: ${response.message}`);
           },
           error: (error) => {
             console.error('Error submitting form', error);
+            alert("Error save form data! " + error);
           }
         });
     }

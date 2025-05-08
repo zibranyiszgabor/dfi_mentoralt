@@ -4,7 +4,8 @@ import { Student } from '../models/student.model';
 import { environment } from '../../environments/environment';
 import { PublicClientApplication } from '@azure/msal-browser';
 import { AuthService } from '../auth/auth.service';
-import { tap, finalize } from 'rxjs/operators';
+import { StudentGDPR } from 'models/studentGDPR.model';
+import { Observable } from 'rxjs';
 
 
 // alkalmazás szintű service példány
@@ -24,12 +25,12 @@ export class StudentService {
   private secureHttp: HttpClient;
 
   constructor(private http: HttpClient,
-              private authService: AuthService,
-              httpBackend: HttpBackend,
-              private injector: Injector 
-            ) {
-              this.defaultHttp = new HttpClient(httpBackend); 
-              this.secureHttp = this.injector.get(HttpClient);    
+    private authService: AuthService,
+    httpBackend: HttpBackend,
+    private injector: Injector
+  ) {
+    this.defaultHttp = new HttpClient(httpBackend);
+    this.secureHttp = this.injector.get(HttpClient);
 
 
     this.msal = authService.msal;
@@ -37,21 +38,56 @@ export class StudentService {
 
   }
 
-  public fetchStudentProfile(): void {
+
+  public neptunDataCheck(): void {
     const accountStr = localStorage.getItem('userAccount');
-  
+
     if (!accountStr) {
       console.warn('⚠️ Nincs mentett felhasználói fiók.');
       return;
     }
-  
+
     const account = JSON.parse(accountStr);
     const email = account.username;
     console.log("email:" + email);
-  
+
+    const url = `${this.apiBaseUrl}/api/student/neptuncodebyemail?email=${encodeURIComponent(email)}`;
+    console.log('📡 Hívott URL:', url);
+
+    this.defaultHttp.get(url).subscribe({
+      next: (response: any) => {
+        console.log('✅ Válasz a szervertől:', response);
+        if (response.neptunCode) {
+          console.log('🎓 Neptun kód:', response.neptunCode);
+        } else {
+          console.warn('⚠️ Nincs Neptun-kód. Üzenet:', response.message);
+        }
+      },
+      error: (err) => {
+        console.error('❌ HTTP hiba:', err);
+      }
+    });
+
+
+  }
+
+  public fetchStudentProfile(): void {
+    const accountStr = localStorage.getItem('userAccount');
+
+    if (!accountStr) {
+      console.warn('⚠️ Nincs mentett felhasználói fiók.');
+      return;
+    }
+
+    //this.neptunDataCheck();
+
+    const account = JSON.parse(accountStr);
+    const email = account.username;
+    console.log("email:" + email);
+
     const url = `${this.apiBaseUrl}/api/student/email?email=${encodeURIComponent(email)}`;
     console.log('📡 Hívott URL:', url);
-  
+
     this.defaultHttp.get<Student>(url).subscribe({
       next: (profile) => {
         console.log('🎓 Student profil lekérve:', profile); // Látod ezt?
@@ -62,8 +98,8 @@ export class StudentService {
       }
     });
   }
-  
-  
+
+
 
   public fetchStudentProfile_msal(): void {
 
@@ -89,6 +125,28 @@ export class StudentService {
     }).catch(err => {
       console.error('❌ Token hiba:', err);
     });
+  }
+
+
+  updateStudentGDPR(studentGDPR: StudentGDPR): void {
+    this.defaultHttp.patch<{ message: string }>(`${this.apiBaseUrl}/api/student/update/gdpr`, studentGDPR)
+      .subscribe({
+        next: (response) => {
+          alert(response.message);
+        },
+        error: (error) => {
+          alert("Error saving form data! " + (error?.error?.detail ?? 'Unknown error.'));
+        }
+      });
+  }
+
+  public updateStudent(id: number, student: Student): Observable<void> {
+    return this.http.put<void>(`${this.apiBaseUrl}/api/student/update/${id}`, student);
+  }
+
+  updateStudentWithoutInterceptor(id: number, student: Student): Observable<void> {
+    const url = `${this.apiBaseUrl}/api/student/update/${id}`;
+    return this.defaultHttp.put<void>(url, student);
   }
 
 }

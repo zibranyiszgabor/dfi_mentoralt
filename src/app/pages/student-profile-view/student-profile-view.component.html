@@ -2,7 +2,7 @@
 
   
     <!-- Candidate Detail Section -->
-    <section class="candidate-detail-section">
+    <section class="candidate-detail-section" id="pdf-container">
       <!-- Upper Box -->
       <div class="upper-box">
         <div class="auto-container">
@@ -10,8 +10,7 @@
           <div class="candidate-block-five">
             <div class="inner-box">
               <div class="content">
-                <figure class="image"><img src="images/icons/user.svg" alt=""></figure>
-                <h1 class="name"><a href="#">{{ student()?.lastName }} {{ student()?.firstName }}</a></h1>
+                <figure class="image"><img src="/images/icons/user.svg" alt=""></figure>
                 <ul class="candidate-info">
                   <!--<li class="designation">UI Designer at Invision</li>
                   <li><span class="icon flaticon-map-locator"></span> London, UK</li>
@@ -39,8 +38,6 @@
           <div class="row">
             <div class="sidebar-column col-lg-4 col-md-12 col-sm-12">
               <aside class="sidebar">
-
-                <!--<figure class="image"><img src="images/icons/user.svg" alt=""></figure>-->
 
                 <div class="sidebar-widget">
                   <h4 class="widget-title">Kapcsolati adatok</h4>
@@ -114,6 +111,14 @@
                 </div>
 
 
+                <div class="sidebar-widget">
+                  <h4 class="widget-title">Rólam <i class="fa-solid fa-circle-info fa-xs bs-tooltip-arrow" data-toggle="tooltip" title="Ide olyan személyes készségeket, attitűdöket és tapasztalatokat írj, amelyeket máshol még nem említettél, de hasznosak lehetnek a munkavégzés szempontjából. Például: szeretek önállóan dolgozni, de csapatban is jól érzem magam/gyorsan kiismerem magam az új rendszerekben/ kreatívan kezelem a váratlan helyzeteket stb."></i></h4>
+                  <div class="widget-content">
+                    <p>{{ student()?.aboutMe }}</p> 
+                  </div>
+                </div>
+
+
 
               </aside>
             </div>            
@@ -127,27 +132,13 @@
                     <div class="inner">
                       <div class="btn-box">
                         <a  routerLink="/main/profile-student-edit" class="theme-btn btn-style-one">Szerkesztés</a>
-                        <a href="candidate-dashboard-profile.html" class="theme-btn btn-style-one">CV letöltés</a>
+                        <a (click)="generatePDF()" class="theme-btn btn-style-one">CV letöltés</a>
                         <a href="candidate-dashboard-profile.html" class="theme-btn btn-style-one">CV megtekintése</a>
                         <!--<button class="bookmark-btn"><i class="flaticon-bookmark"></i></button>-->
                       </div>
                     </div>
                   </div>
                 </div>
-
-                <!-- Resume / Rólam -->
-                <div class="resume-outer theme-gray">
-                  <div class="upper-title">
-                    <h4>Rólam</h4>
-                  </div>
-                  <div class="resume-block">
-                    <div class="inner">
-                      <h4></h4>
-                      <p>{{ student()?.aboutMe }}</p> 
-                    </div>  
-                  </div>
-                </div>
-
 
                   <!-- Resume / Tanulmányok -->
                   <div class="resume-outer theme-gray">

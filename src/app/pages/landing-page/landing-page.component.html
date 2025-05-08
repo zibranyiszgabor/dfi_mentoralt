@@ -10,7 +10,7 @@
           <!--Nav Outer -->
           <div class="nav-outer">
             <div class="logo-box">
-              <div class="logo"><a href="index.html"><img src="/assets/images/bge-logo-black.png" alt="" title="" style="width: 200px;"></a></div>
+              <div class="logo"><a href="index.html"><img src="/assets/images/bge-logo-black.png" alt="" title="" style=""></a></div>
             </div>
 
             <nav class="nav main-menu">
@@ -25,23 +25,22 @@
 
                 <li class="">
                   <a routerLink="/forcompany"><span>Cégeknek</span></a>
-                </li>                
-
-                <li class="">
-                  <a routerLink="/contact"><span>Kapcsolat</span></a>
                 </li>
+
+                <!-- <li class="">
+                  <a routerLink="/contact"><span>Kapcsolat</span></a>
+                </li> -->
 
                 <!-- Only for Mobile View -->
                 <li class="mm-add-listing">
-                  <a href="add-listing.html" class="theme-btn btn-style-one">Job Post</a>
                   <span>
                     <span class="contact-info">
-                      <span class="phone-num"><span>Call us</span><a href="tel:1234567890">123 456 7890</a></span>
-                      <span class="address">329 Queensberry Street, North Melbourne VIC <br>3051, Australia.</span>
+                      <!-- <span class="phone-num"><span>Call us</span><a href="tel:1234567890">123 456 7890</a></span> -->
+                      <span class="address">1055 Budapest, Markó utca 29-31 </span><br>
+                      <a href="mailto:jobandfuture@uni-bge.hu" class="email">jobandfuture&#64;uni-bge.hu</a>
                     </span>
                     <span class="social-links">
                       <a href="#"><span class="fab fa-facebook-f"></span></a>
-                      <a href="#"><span class="fab fa-twitter"></span></a>
                       <a href="#"><span class="fab fa-instagram"></span></a>
                       <a href="#"><span class="fab fa-linkedin-in"></span></a>
                     </span>
@@ -65,36 +64,39 @@
                 <li><a href="#" (click)="logout()"><i class="la la-sign-out"></i>Kilépés</a></li>
               </ul>
             </div>
-            
+
+            <div class="btn-box" *ngIf="!isLoggedIn">
+              <a (click)="showLogin = true" class="theme-btn call-modal">Belépés</a>
+            </div>
+
             <!-- Egyszerű modal -->
             <div *ngIf="showLogin" class="simple-modal-backdrop" (click)="showLogin = false"></div>
-            
+
             <div *ngIf="showLogin" class="simple-modal" id="login-modal" style="width: 500px;">
 
+              <!-- Login Form -->
+              <div id="login-modal">
+                <button class="close-btn" (click)="showLogin = false">×</button>
 
-    <!-- Login Form -->
-    <div id="login-modal">
-      <button class="close-btn" (click)="showLogin = false">×</button>
-
-    <div class="login-form default-form">
-      <div class="form-inner">
-        <h3>Bejelentkezés</h3>
-        <div class="bottom-box">
-          <div class="btn-box row">
-            <div class="col-lg-6 col-md-12">
-              <a href="#" class="theme-btn social-btn-two bge-btn" (click)="loginAsStudent()">Hallgató vagyok</a>
-            </div>            
-            <div class="col-lg-6 col-md-12">
-              <a href="#" class="theme-btn social-btn-two bge-btn" (click)="loginAsEmployee()">Dolgozó vagyok</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-    <!--End Login Form -->
-
-
+                <div class="login-form default-form">
+                  <div class="form-inner">
+                    <h3>Bejelentkezés</h3>
+                    <div class="bottom-box">
+                      <div class="btn-box row">
+                        <div class="col-lg-6 col-md-12">
+                          <a href="#" class="theme-btn social-btn-two bge-btn" (click)="loginAsStudent()">Hallgató
+                            vagyok</a>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                          <a href="#" class="theme-btn social-btn-two bge-btn" (click)="loginAsEmployee()">BGE admin
+                            vagyok</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--End Login Form -->
 
             </div>
 
@@ -108,9 +110,10 @@
 
           <div class="main-box">
             <div class="logo-box">
-              <div class="sticky-logo"><a href="index.html"><img src="/assets/images/bge-logo-black.png" alt="" title=""></a></div>
+              <div class="sticky-logo">
+                <a href="index.html"><img src="/assets/images/bge-logo-black.png" alt="" title=""></a>
+              </div>
             </div>
-
             <!--Keep This Empty / Menu will come through Javascript-->
           </div>
         </div>
@@ -141,65 +144,103 @@
     <!--End Main Header -->
 
     <!-- Banner Section-->
-    <section class="banner-section-four -type-16" style="background-image: url(/assets/images/index-16/header/bg.png); ">
+    <section class="banner-section-four -type-16" style="background-image: url(/assets/images/banner-01.png); ">
       <div class="auto-container">
         <div class="content-box">
           <div class="title-box wow fadeInUp" data-wow-delay="500ms">
-            <h3>JOB & FUTURE</h3>
-            <p>Tanulás mellett dolgoznál, vagy a legjobb fiatal tehetségeket keresed? A Job&Future összeköti a BGE hallgatóit és a vállalatokat, hogy mindenki magabiztosan építhesse a jövőjét</p>
+            <h3>BGE JOB & FUTURE</h3>
+            <h5>Elkezdenéd a karriered építését már az egyetemi évek alatt?</h5>
+            <p><b>Lépj be velünk a munka világába!</b></p>
+            <p>A BGE Job&Future rendszere összeköti a hallgatóit és az állásajánlatokat hirdető üzleti partnereit. Mert
+              a BGE nem csak tudást ad, hanem segít ennek a hasznosításában is.</p>
             <div class="btn-box" style="margin-top: 20px !important;" *ngIf="!isLoggedIn">
-              <a (click)="showLogin = true" style="font-size: 20px; width: 175px; height: 60px !important;" class="theme-btn btn-style-five call-modal">Belépés</a>
-            </div>
-           </div>
-
+              <a (click)="showLogin = true" style="font-size: 35px; width: 275px; height: 75px !important;"
+                class="theme-btn btn-style-one call-modal">Belépés</a>
+              </div>
+          </div>
         </div>
       </div>
     </section>
     <!-- End Banner Section-->
 
 
-    <section class="cta -type-2" >
+    <section class="cta index-textbox">
       <div class="auto-container">
-        <div class="row grid-base justify-content-between">
+        <div class="row">
+          <div class="col-lg-2 col-md-12">
+            <div class="cta-item">
+              <div class="content">
+                <!-- <div class="title">Partner vagy?</div>
+                <div class="text">Adj fel álláshirdetést néhány kattintással, regisztráció nélkül.</div> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-9 col-md-12">
+            <div class="cta-item">
+              <div class="content">
+                <div class="title">Azonnal értesítünk, ha a BGE-n keresztül éppen neked való állást kínálnak, ha
+                  megfelelsz a velünk kapcsolatban álló cég elvárásainak - legyen szó alkalmi, gyakornoki vagy
+                  karrierépítő munkáról.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="col-lg-12 col-md-12">
+    <section class="cta -type-2"
+      style="background-image: url(/assets/images/index-01/asset-6.png); background-size: contain; background-position: 110% ;">
+      <div class="auto-container">
+        <div class="row grid-base">
+
+          <div class="col-lg-9 col-md-12">
+            <div class="cta-item">
+              <div class="icon-wrap">
+                <!-- <div class="icon icon-contact"></div> -->
+              </div>
+              <div class="content title-box">
+                <div class="title">Megtesszük az álláskeresés első lépéseit helyetted!</div>
+                <div class="text">
+                  <br />
+                  <p>✔ A BGE céges kapcsolatrendszerén keresztüli álláslehetőségek esetén mi választjuk ki a
+                    feltételeknek megfelelő hallgatóinkat. Jelezzük Neked, ha megfelelőnek tűnő állásajánlat érkezett
+                    számodra, és ha pozitívan jelzel vissza, automatikusan elkészített önéletrajzoddal összekötünk a
+                    céggel. A többi már a Ti dolgotok!</p>
+                  <p>✔ Csak olyan ajánlatot küldünk számodra, amelynél a cég által megadott kritériumok és a rólad
+                    rendelkezésünkre álló adatok alapján jó eséllyel egymásra találhattok, így nyugodtan eldöntheted,
+                    hogy felveszed-e a kapcsolatot velük.</p>
+                  <p>✔ Nem spammelünk! Csak arról küldünk értesítést, ami számodra releváns lehet.</p>
+                  <br />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-12"></div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cta -type-2"
+      style="background-image: url(/assets/images/index-01/asset-6.png); background-size: contain; background-position: -5% !important;">
+      <div class="auto-container">
+        <div class="row grid-base">
+
+          <div class="col-lg-4 col-md-12"></div>
+          <div class="col-lg-8 col-md-12">
             <div class="cta-item">
               <div class="icon-wrap">
                 <!-- <div class="icon icon-contact"></div> -->
               </div>
               <div class="content">
-                <div class="title">Lehetőséget biztosítunk a jövőd építésére,  kötöttségek nélkül!</div>
+                <div class="title">Teljes adatbiztonság</div>
                 <div class="text">
-                  <br/>
-                  <h5>Teljes adatbiztonság</h5>
-                  <br/>
+                  <br />
                   <p>
-                      ✔ Nem adjuk ki az adataidat harmadik fél számára – a tanulmányi eredményeid, önéletrajzod és minden személyes információd nálunk marad, amíg másként nem döntesz.
+                    ✔ Nem adjuk ki az adataidat harmadik fél számára, csak amiket az automatikusan generált
+                    önéletrajzodon engedélyezel.
                   </p>
-                  <br/>
-                  <h5>Partnerként tekintünk rád</h5>
-                  <br/>
-                   <p>
-                      ✔ Mi nem csak összekötünk cégekkel –a feltöltött állásokat előszűrjűk, így támogatunk abban, hogy megtaláld a hozzád illő lehetőségeket.
-                  </p>
-                  <p>
-                      ✔ Célunk, hogy biztonságban és magabiztosan építhesd a karriered már az egyetem alatt is.
-                  </p>
-                  <p>
-                      ✔ Nem spammelünk! Csak arról küldünk értesítést, ami számodra releváns lehet.
-                  </p>
-                  <br/>
-                  <h5>Te döntesz mindenről!</h5>
-                  <br/>
-                  <p>
-                      ✔ Csak akkor közvetítünk ki, ha te jelentkezel egy állásra.
-                  </p>
-                  <p>
-                      ✔ Semmit sem osztunk meg rólad a cégekkel a beleegyezésed nélkül.
-                  </p>
-                  <p>
-                      ✔ Bármikor leiratkozhatsz a platformról, nincs rejtett kötelezettség.
-                  </p>                    
+                  <br />
                 </div>
               </div>
             </div>
@@ -208,84 +249,90 @@
       </div>
     </section>
 
-    <section class="call-to-action-two -type-4" style="background-image: url(/assets/images/job&amp;future_banner.png);
-    background-size: cover;
-    z-index: 10090;
-    height: 1000px;">
-    </section>
-
-
-
-    <!-- Call To Action Two
-    <section class="call-to-action-two -type-4" style="background-image: url(/assets/images/index-16/cta/bg.png);">
-      <div class="auto-container wow fadeInUp">
-        <div class="sec-title light text-center">
-          <h2>Számtalan lehetőség vár rád</h2>
-          <div class="text text-white">Több száz partner még több lehetőség</div>
-        </div>
-
-        <div class="btn-box">
-          <a href="#" class="theme-btn btn-two">Csatlakozom</a>
+    <section class="cta -type-2"
+      style="background-image: url(/assets/images/index-01/asset-6.png); background-size: contain; background-position: 110% ;">
+      <div class="auto-container">
+        <div class="row grid-base">
+          <div class="col-lg-9 col-md-12">
+            <div class="cta-item">
+              <div class="icon-wrap">
+                <!-- <div class="icon icon-contact"></div> -->
+              </div>
+              <div class="content">
+                <div class="title">Te döntesz mindenről!</div>
+                <div class="text">
+                  <br />
+                  <p>✔ Csak akkor jut el a jelentkezésed egy céghez, ha megerősíted e szándékodat.</p>
+                  <p>✔ Semmit sem osztunk meg rólad a cégekkel a beleegyezésed nélkül.</p>
+                  <p>✔ Bármikor leiratkozhatsz a platformról, ekkor töröljük a jelentkezésed.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-12"></div>
         </div>
       </div>
     </section>
-     End Call To Action -->
 
     <!-- Work Section -->
     <section class="layout-pt-120 layout-pb-120">
       <div class="auto-container">
         <div class="sec-title text-center">
           <h2>Hogyan működik?</h2>
-          <div class="text">Többszáz partner segít neked megtalálni első munkahelyed</div>
+          <div class="text">Többszáz partner segít neked megtalálni első munkahelyed.</div>
         </div>
 
         <div class="row grid-base pt-50 wow fadeInUp">
 
+                    <!-- Work Block -->
+          <div class="col-lg-1 col-md-1 col-sm-1">
+          </div>
+
           <!-- Work Block -->
           <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="work-block -type-4">
               <div class="icon-wrap">
-                <span class="icon icon-drawing"></span>
+                <img src="/assets/images/icons/Job&Future-icon-01.svg">
               </div>
 
               <h5 class="title">Lépj be</h5>
-              <p class="text">Hallgatói fiókoddal egyszerűen beléphetsz</p>
+              <p class="text">Hallgatói fiókoddal ezt egyszerűen megteheted.</p>
             </div>
+          </div>
+
+                    <!-- Work Block -->
+          <div class="col-lg-1 col-md-1 col-sm-1">
           </div>
 
           <!-- Work Block -->
           <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="work-block -type-4">
               <div class="icon-wrap">
-                <span class="icon icon-process"></span>
+                <img src="/assets/images/icons/Job&Future-icon-03.svg">
               </div>
 
               <h5 class="title">Készítsd el a profilod</h5>
-              <p class="text">Töltsd fel elérhetőségeidet</p>
+              <p class="text">Mi jónéhány adatodat már előkészítettük, ezeket csak ki kell egészítened, és már kész is
+                az automatikusan <b>generált önéletrajzod</b>. Megadhatod a részedről keresett munkák típusát, de még a
+                jövedelmi elvárásaid is.</p>
             </div>
+          </div>
+
+                    <!-- Work Block -->
+          <div class="col-lg-1 col-md-1 col-sm-1">
           </div>
 
           <!-- Work Block -->
           <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="work-block -type-4">
               <div class="icon-wrap">
-                <span class="icon icon-task"></span>
+                <img src="/assets/images/icons/Job&Future-icon-04.svg">
               </div>
 
-              <h5 class="title">Generáld le az önéletrajzod</h5>
-              <p class="text">Önéletrajzod elékészítéséhez hasznos információkat találhatsz oldalunkon</p>
-            </div>
-          </div>
-
-          <!-- Work Block -->
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="work-block -type-4">
-              <div class="icon-wrap">
-                <span class="icon icon-one-finger-click"></span>
-              </div>
-
-              <h5 class="title">Pihenj és várd az ajánlatokat</h5>
-              <p class="text">Automatikusan küldjük neked az ajánlatokat</p>
+              <h5 class="title">Dőlj hátra!</h5>
+              <p class="text">A naprakész adataid alapján folyamatosan szűrjük az állásajánlatokat, és megfelelő
+                illeszkedés esetén összepárosítunk az ideálisnak tűnő munkaadóval. És már kapod is az emailt, hogy
+                dönthess a folytatásról!</p>
             </div>
           </div>
 
@@ -301,55 +348,41 @@
         <div class="auto-container">
 
           <div class="row">
-            <div class="big-column col-xl-3 col-lg-3 col-md-12">
+            <div class="big-column col-xl-4 col-lg-4 col-md-12">
               <div class="footer-column about-widget">
                 <div class="logo"><a href="#"><img src="/assets/images/bge-logo-black.png" alt=""></a></div>
-                <p class="phone-num"><span>Hívj minket </span><a href="thebeehost@support.com">123 456 7890</a></p>
-                <p class="address">1055 Budapest Markó utca 29-31 <br></p>
+                <span class="address">1055 Budapest, Markó utca 29-31 </span><br>
+                <span class="address"><b>Ha problémát tapasztalsz vagy kérdésed van ide írj nekünk: </b></span><br><a
+                  href="mailto:jobandfuture@uni-bge.hu" class="email">jobandfuture&#64;uni-bge.hu</a><br>
+                <span class="address"><b>Vállalati együttműködés, üzleti partnerség: </b></span><br><a
+                  href="mailto:bgebusiness@uni-bge.hu" class="email">bgebusiness&#64;uni-bge.hu</a>
               </div>
             </div>
 
-            <div class="big-column col-xl-9 col-lg-9 col-md-12">
+            <div class="big-column col-xl-8 col-lg-8 col-md-12">
               <div class="row">
-                <div class="footer-column col-lg-3 col-md-6 col-sm-12">
+                <div class="footer-column col-lg-6 col-md-6 col-sm-12">
                   <div class="footer-widget links-widget">
-                    <h4 class="widget-title">Diákoknak</h4>
+                    <h4 class="widget-title">Navigáció</h4>
                     <div class="widget-content">
                       <ul class="list">
-                        <li><a href="#">Browse Jobs</a></li>
-                        <li><a href="#">Browse Categories</a></li>
-                        <li><a href="#">Candidate Dashboard</a></li>
-                        <li><a href="#">Job Alerts</a></li>
-                        <li><a href="#">My Bookmarks</a></li>
+                        <li><a href="#">Főoldal</a></li>
+                        <li><a href="#">Rólunk</a></li>
+                        <li><a href="#">Cégeknek</a></li>
+                        <li><a href="#">Adatkezelési tájékoztató</a></li>
                       </ul>
                     </div>
                   </div>
                 </div>
 
-                <div class="footer-column col-lg-3 col-md-6 col-sm-12">
+                <div class="footer-column col-lg-6 col-md-6 col-sm-12">
                   <div class="footer-widget links-widget">
-                    <h4 class="widget-title">Partnereknek</h4>
+                    <h4 class="widget-title">Links</h4>
                     <div class="widget-content">
                       <ul class="list">
-                        <li><a href="#">Browse Candidates</a></li>
-                        <li><a href="#">Employer Dashboard</a></li>
-                        <li><a href="#">Add Job</a></li>
-                        <li><a href="#">Job Packages</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="footer-column col-lg-3 col-md-6 col-sm-12">
-                  <div class="footer-widget links-widget">
-                    <h4 class="widget-title">Rólunk</h4>
-                    <div class="widget-content">
-                      <ul class="list">
-                        <li><a href="#">Job Page</a></li>
-                        <li><a href="#">Job Page Alternative</a></li>
-                        <li><a href="#">Resume Page</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="https://uni-bge.hu/"><b>Budapesti Gazdaságtudományi Egyetem</b></a></li>
+                        <li><a href="https://uni-bge.hu/hu/uzleti-partnersegek"><b>BGE Business</b></a></li>
+                        <li><a href="https://alumni.uni-bge.hu/"><b>BGE Alumni</b></a></li>
                       </ul>
                     </div>
                   </div>
@@ -367,10 +400,11 @@
           <div class="outer-box">
             <div class="copyright-text">© 2025 <a href="#">BGE</a> Minden jog fenntartva</div>
             <div class="social-links">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="https://www.facebook.com/unibge"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.instagram.com/bge_uni"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com/school/budapest-univeristy-of-economics-and-business/posts/?feedView=all"><i class="fab fa-linkedin-in"></i></a>
+              <a href="https://www.youtube.com/channel/UCDFsDIG6TQ0tf214iZmo9kw"><i class="fab fa-youtube"></i></a>
+              <a href="https://www.tiktok.com/@unibge"><i class="fab fa-tiktok"></i></a>
             </div>
           </div>
         </div>
@@ -381,4 +415,3 @@
 
 
   </div><!-- End Page Wrapper -->
-

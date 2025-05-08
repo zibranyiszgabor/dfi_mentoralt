@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../auth/auth.service';
 import { RouterModule } from '@angular/router';
 
-
 @Component({
   selector: 'app-landing-page',
   imports: [CommonModule, RouterModule],

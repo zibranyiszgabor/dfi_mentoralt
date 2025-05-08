@@ -39,13 +39,10 @@ export class AppComponent implements OnInit {
       localStorage.setItem('userAccount', JSON.stringify(redirectResult.account));
       console.log('✅ Redirectből jött account:', redirectResult.account);
     
-
       if (mode === 'student') {
         this.router.navigate(['/main/profile-student-view']);
       }    
-
-
-      
+     
     } else {
       // ♻️ Próbáljuk visszatölteni az accountot cache-ből
       const accounts = msal.getAllAccounts();
@@ -55,14 +52,6 @@ export class AppComponent implements OnInit {
         console.log('♻️ Account visszatöltve MSAL cache-ből:', accounts[0]);
       } 
     }
-    
-
-
-
-    console.log('✅ visszaállitott account :', msal.getActiveAccount());
-
-
-
   }
 
   public onGdprAccepted() {

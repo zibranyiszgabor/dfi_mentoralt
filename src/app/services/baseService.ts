@@ -3,6 +3,7 @@ import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Dictionary } from 'models/dictionary.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { GroupedDictionaries } from 'models/groupedDictionaries';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class BaseService {
   private _groupedDictionaries = new BehaviorSubject<GroupedDictionaries>({});
   private groupedDictionaries$ = this._groupedDictionaries.asObservable() ;
   private groupedDictionaries: GroupedDictionaries = {}; // Most már biztosítva van a típus 
+  private apiBaseUrl = environment.apiBaseUrl;
 
   public get groupedDictionary(): GroupedDictionaries {
     return this.groupedDictionaries;
@@ -32,7 +34,7 @@ export class BaseService {
    * Közvetlenül csoportosítva fetcheli a Dictionary elemeket 
    */
   private fetchGroupedDictionaries(): void {
-    this.httpBackend.get<Dictionary[]>(`https://127.0.0.1:3000/api/get-dictionaries`).subscribe({
+    this.httpBackend.get<Dictionary[]>(`${this.apiBaseUrl}/api/get-dictionaries`).subscribe({
       next: (data: Dictionary[]) => {
         const grouped = this.groupDataByParentId(data);
         this._groupedDictionaries.next(grouped);

@@ -28,4 +28,8 @@ export class HeaderComponent {
   public open(content: any) {
     this.modalService.open(content, { centered: true });
   }
+
+  public logout(): void {
+    this.authService.logout(); 
+  }
 }

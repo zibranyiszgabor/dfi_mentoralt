@@ -3,9 +3,10 @@
   min-width: 500px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  /* border: 1px solid #ccc;
+  border-radius: 8px; */
   background-color: #f9f9f9;
+  background-color: #ffffff;
 }
 
 .form-row {
@@ -41,6 +42,7 @@ select {
   appearance: auto;
   -webkit-appearance: auto;
   /* Safari támogatás */
+  border: solid 1px #ccc;
 }
 
 button.btn-danger {

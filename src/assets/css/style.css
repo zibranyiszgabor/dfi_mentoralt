@@ -85,6 +85,15 @@ Fonts
 @import url("mmenu.css");
 @import url("jquery.fancybox.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@font-face {
+  font-family: 'Kievit-Medium';
+  src: url('/assets/fonts/Kievit-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Kievit';
+  src: url('/assets/fonts/KievitPro-Light.ttf');
+}
 
 
 /*** 
@@ -284,7 +293,7 @@ p,
 .ud-btn2{
   color: #202124;
   font-size: 15px;
-  font-family: 'Kievit';
+  font-family: 'Kievit-Medium';
   font-style: normal;
   font-weight: 500;
   line-height: 28px;
@@ -1037,7 +1046,7 @@ input:checked + .slider:before {
 .default-form .form-group input[type="url"]:focus,
 .default-form .form-group select:focus,
 .default-form .form-group textarea:focus {
-  border-color: #1967D2;
+  border-color: rgb(255,229,31);
   background: #ffffff;
 }
 
@@ -1948,6 +1957,12 @@ About Section Three
 .about-section-three {
   position: relative;
   padding: 50px 0;
+  /* background-color: #f0f0f0; */
+  background-image: url("../images/pure-white-logo.svg");
+  background-size: contain;
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed
 }
 
 .about-section-three .images-box {
@@ -2373,6 +2388,20 @@ Buttons Styles
   justify-content: center;
   align-items: center;
   z-index: 1;
+  /* border: solid 1px rgba(0, 0, 0, 0.5);
+  border-radius: 10px; */
+}
+
+.main-header .theme-btn {
+  position: relative;
+  display: inline-flex;
+  transition: all 0.5s ease;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  border: solid 1px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
 }
 
 /* Btn Style One */
@@ -3525,7 +3554,7 @@ Contact Section
 
 .dashboard-option .dropdown-toggle::after {
   margin-left: 12px;
-  content: "\f107";
+  /* content: "\f107"; */
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
   border: 0;
@@ -4916,7 +4945,8 @@ Chat Widget
   font-size: 18px;
   line-height: 30px;
   color: #1b2032;
-  font-weight: 500;
+  font-family: 'Kievit-Medium';
+  font-weight: 700;
   margin-right: 30px;
   padding: 7px 0;
 }
@@ -5916,7 +5946,7 @@ Main Header
   height: auto;
   z-index: 99;
   transition: all 300ms ease;
-  background-color: rgba(255, 255, 255, .5);
+  background-color: rgba(255, 255, 255, 1);
 }
 
 .header-span {
@@ -5958,6 +5988,8 @@ Main Header
   position: relative;
   display: flex;
   align-items: center;
+  top: 0px;
+  margin-right: 10px;
 }
 
 .main-header .logo {
@@ -5966,11 +5998,11 @@ Main Header
   padding: 25px 0;
   margin-right: 100px;
   transition: all 300ms ease;
-  width: 120px;
+  width: 180px;
 }
 
 .main-header .logo-box .logo img {
-  max-width: 120px !important;
+  max-width: 180px !important;
 }
 
 .main-header .menu-box {
@@ -9202,6 +9234,7 @@ Login Section
   background-color: transparent ;
   border: 1px solid #2f2f2f;
   color: #000000;
+  border-radius: 5px;
 }
 
 .social-btn-two.bge-btn:hover {
@@ -9217,6 +9250,128 @@ Login Section
 .social-btn-two.google-btn:hover {
   background-color: #dc4d28;
   color: #ffffff;
+}
+
+.fadeIn-btn {
+  animation: fadeIn 3s;
+  -webkit-animation: fadeIn 3s;
+  -moz-animation: fadeIn 3s;
+  -o-animation: fadeIn 3s;
+  -ms-animation: fadeIn 3s;
+  animation-name: grow;
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+    font-size: small;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+    font-size: large;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% { opacity: 0; width: 150%;}
+  100% { opacity: 1; width: 150%;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% { opacity: 0;  width: 150%;}
+  100% { opacity: 1;  width: 150%;}
+}
+
+@-o-keyframes fadeIn {
+  0% { opacity: 0;  width: 150%;}
+  100% { opacity: 1;  width: 150%;}
+}
+
+@-ms-keyframes fadeIn {
+  0% { opacity: 0;  width: 150%;}
+  100% { opacity: 1;  width: 150%;}
+}
+
+@keyframes grow {
+  from {
+    width: 0px;
+    height: 0px;
+    transform: scale(0);
+    font-size: 4px;
+  }
+
+  to {
+    width: 200px;
+    height: 100px;
+    transform: scale(1);
+    font-size: 30px;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  from {
+    width: 0px;
+    height: 0px;
+    transform: scale(0);
+    font-size: 4px;
+  }
+
+  to {
+    width: 200px;
+    height: 100px;
+    transform: scale(1);
+    font-size: 30px;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    width: 0px;
+    height: 0px;
+    transform: scale(0);
+    font-size: 4px;
+  }
+
+  to {
+    width: 200px;
+    height: 100px;
+    transform: scale(1);
+    font-size: 30px;
+  }
+}
+
+@-o-keyframes fadeIn {
+  from {
+    width: 0px;
+    height: 0px;
+    transform: scale(0);
+    font-size: 4px;
+  }
+
+  to {
+    width: 200px;
+    height: 100px;
+    transform: scale(1);
+    font-size: 30px;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  from {
+    width: 0px;
+    height: 0px;
+    transform: scale(0);
+    font-size: 4px;
+  }
+
+  to {
+    width: 200px;
+    height: 100px;
+    transform: scale(1);
+    font-size: 30px;
+  }
 }
 
 .cluster-visible {
@@ -11284,7 +11439,7 @@ input[type="range"]:active::-webkit-slider-thumb{
   background-color: #d5d5d5;
   color: #ffffff;
   text-align: center;
-  font-family: "Kievit",monospace;
+  font-family: "Kievit-Medium",monospace;
   padding: 10px 0;
   border-radius: 5px;
 }
@@ -20022,9 +20177,18 @@ Product Tabs
   height: auto;
 }
 
+.banner-section-four.-type-16 .auto-container {
+  left: 45%;
+  padding: 0;
+  height: auto;
+  position: absolute;
+  background-color: transparent;
+}
+
 .banner-section-four.-type-16 .content-box {
   padding-top: 200px;
   padding-bottom: 150px;
+  background-color: transparent;
 }
 
 @media (max-width: 1199px) {
@@ -20037,6 +20201,10 @@ Product Tabs
   .banner-section-four.-type-16 .content-box {
     padding-top: 180px;
   }
+
+  .banner-section-four.-type-16 .auto-container {
+    position: static;
+  }  
 }
 
 @media (max-width: 767px) {
@@ -20045,15 +20213,46 @@ Product Tabs
   }
 }
 
+.banner-section-four.-type-16 .content-box .title-box {
+  background-color: transparent;
+  max-width: 55%;
+}
+
 .banner-section-four.-type-16 .content-box .title-box h3 {
-  font-family: 'Kievit';
+  font-family: 'Kievit-Medium';
   font-size: 50px;
   font-weight: 700;
   line-height: 1.2;
+  text-align: left;
+  margin: 10px 0;
+  color: #000000;
 }
 
 @media (max-width: 991px) {
+
+  .banner-section-four.-type-16 .content-box .title-box {
+    max-width: 100%;
+  }
+
   .banner-section-four.-type-16 .content-box .title-box h3 {
+    font-size: 30px;
+  }
+}
+
+.banner-section-four.-type-16 .content-box .title-box h5 {
+  font-family: 'Kievit';
+  font-size: 45px;
+  font-weight: 200;
+  line-height: 1;
+  background-color: #000000;
+  color: #FFFFFF;
+  text-align: left;
+  padding: 10px;
+  width: fit-content;
+}
+
+@media (max-width: 991px) {
+  .banner-section-four.-type-16 .content-box .title-box h5 {
     font-size: 30px;
   }
 }
@@ -20061,11 +20260,12 @@ Product Tabs
 .banner-section-four.-type-16 .content-box .title-box p {
   margin-top: 20px;
   font-family: Jost;
-  font-size: 15px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: 1;
-  color: white;
+  color: #000000;
+  text-align: left;
 }
 
 .banner-section-four.-type-16 .job-search-form {
@@ -20196,7 +20396,8 @@ Product Tabs
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #FFFFFF;
+  /* background-color: #FFFFFF; */
+  background-color: rgb(255,229,31);
   box-shadow: 0px 25px 70px rgba(1, 33, 58, 0.07);
   border-radius: 100%;
   width: 120px;
@@ -20333,11 +20534,36 @@ Product Tabs
   }
 }
 
+.cta.index-textbox {
+  padding: 40px;
+}
+
+.cta.index-textbox .content .title {
+  font-family: 'Kievit';
+  font-size: xx-large;
+  font-weight: 600;
+  line-height: 50px;
+}
+
+.cta.index-textbox .content .text {
+  font-family: 'Kievit';
+  font-size: xx-large;
+  font-weight: 600;
+}
+
+.cta.index-textbox .content .text-bold {
+  font-family: 'Kievit-Medium';
+  font-size: xx-large;
+  font-weight: 700;
+}
+
 .cta.-type-2 {
   background-repeat: no-repeat;
   background-size: cover;
   padding: 15px 0;
-  top: -100px;
+  /* top: -100px; */
+  min-height: 400px;
+  align-content: center;
 }
 
 .cta.-type-2 .auto-container{
@@ -20406,8 +20632,20 @@ Product Tabs
   font-family: Jost;
   font-size: 13px;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 24px; 
 }
+
+.cta.-type-2 .text p {
+  margin-top: 20px;
+  font-family: Jost;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  color: #000000 !important;
+  text-align: left;
+}
+
 @media (max-width: 991px) {
   .md\:d-none {
     display: none;
@@ -21105,6 +21343,20 @@ Banner Section Four
   margin: 0 auto;
   /*box-shadow: 0px 0px 30px 35px rgba(0,0,0, .75);*/
   border-radius: 10px;
+}
+
+@media (max-width: 1440px) {
+  .banner-section-four.-type-16 .content-box .title-box {
+    margin: 0;
+    padding: 50px;
+  }
+}
+
+
+@media (max-width: 1280px) {
+  .banner-section-four.-type-16 .content-box .title-box {
+    margin: 0;
+  }
 }
 
 .banner-section-four h3 {
@@ -22780,3 +23032,10 @@ Work Section
   overflow: hidden;
 }
 
+.hr-divider {
+  border: none;
+  height: 2px;
+  background-color: #ccc;
+  margin: 1.5rem 0;
+  width: 100%;
+}

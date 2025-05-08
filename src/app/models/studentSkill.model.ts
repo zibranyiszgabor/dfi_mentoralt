@@ -10,6 +10,7 @@ export interface StudentSkill {
     valueString?: string;
     isHardOrSoft?: string; // char(1)
     recStat?: boolean;
+    IsVisible?: boolean;
     createdAt?: Date;
     createdBy?: number;
     changedAt?: Date;

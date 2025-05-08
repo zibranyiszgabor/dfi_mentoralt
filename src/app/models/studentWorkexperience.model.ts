@@ -12,6 +12,7 @@ export interface StudentWorkExperience {
     positionTitle?: string;
     positionTasks?: string;
   
+    IsVisible?: boolean;
     student?: Student;
     sectorCategory?: Dictionary;
   }

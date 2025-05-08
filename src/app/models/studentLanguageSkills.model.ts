@@ -5,4 +5,8 @@ export interface StudentLanguageSkills {
     languageExamLevelDict?: Dictionary;
     languageExamLangDict?: Dictionary;
     languageExamTypeDict?: Dictionary;
+    languageExamLevelDictId?: number;
+    languageExamLangDictId?: number;
+    languageExamTypeDictId?: number;
+    IsVisible: boolean;
   }

@@ -11,6 +11,7 @@ import { JobPostRequestComponent } from './pages/job-post-request/job-post-reque
 import { AboutusComponent } from './pages/aboutus/aboutus.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { ForcompanyComponent } from './pages/forcompany/forcompany.component';
+import { GdprModalComponent } from 'pages/student-profile/student-gdpr-dialog/student-gdpr-dialog.component';
 
 
 export const routes: Routes = [
@@ -54,6 +55,10 @@ export const routes: Routes = [
         path: 'profile',
         component: ProfileComponent,
       },
+      {
+        path: 'student-gdpr',
+        component: GdprModalComponent,
+      },      
     ],
   },
   {

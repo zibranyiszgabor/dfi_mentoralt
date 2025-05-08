@@ -19,6 +19,7 @@ export interface StudentStudy {
     trainingStatusId: number;
   
     isSelfFilled: boolean;
+    IsVisible: boolean;
     isDeleted?: boolean;
   
     createdAt?: Date;
